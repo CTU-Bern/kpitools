@@ -35,7 +35,11 @@ calc_kpi <- function(data,
            , .before = 1 # experimental option!
            )
 
-  class(out, c("kpicalc", class(out)))
+  if(!is.null(by)) {
+    out <- rename(out, !!by := by)
+  }
+
+  class(out) <- c("kpicalc", class(out))
 
   out
 }
