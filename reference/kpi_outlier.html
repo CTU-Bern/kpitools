@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • kpitools</title>
+<title>Get the outliers — kpi_outlier • kpitools</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Get the outliers — kpi_outlier" />
+<meta property="og:description" content="Get the outliers" />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -100,66 +101,44 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Get the outliers</h1>
+    
+    <div class="hidden name"><code>kpi_outlier.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Get the outliers</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>kpi_outlier</span><span class='op'>(</span><span class='va'>kpitab</span>, n_iqr <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="calc_kpi.html">calc_kpi()</a></code> </p>
-        </td>
-        <td><p>Calculate KPIs</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="kpi.html">kpi()</a></code> </p>
-        </td>
-        <td><p>Create KPI tables</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="kpi_cut.html">kpi_cut()</a></code> </p>
-        </td>
-        <td><p>Cut KPI indicators</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="kpi_fn_.html">kpi_fn_n()</a></code> <code><a href="kpi_fn_.html">kpi_fn_prop()</a></code> <code><a href="kpi_fn_.html">kpi_fn_perc()</a></code> <code><a href="kpi_fn_.html">kpi_fn_median()</a></code> <code><a href="kpi_fn_.html">kpi_fn_mean()</a></code> <code><a href="kpi_fn_.html">kpi_fn_iqr()</a></code> <code><a href="kpi_fn_.html">kpi_fn_min()</a></code> <code><a href="kpi_fn_.html">kpi_fn_max()</a></code> </p>
-        </td>
-        <td><p>KPI summary functions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="kpi_outlier.html">kpi_outlier()</a></code> </p>
-        </td>
-        <td><p>Get the outliers</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>kpitab</th>
+      <td><p>result from calc_kpi</p></td>
+    </tr>
+    <tr>
+      <th>n_iqr</th>
+      <td><p>number of IQRs below/above the lower/upper quartiles that should be considered outliers</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p><code>kpitab</code> without the outliers</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples">kpi_outlier,Get the outliers,Get the outliers — kpi_outlier,kpi_outlier.Rd,character(0),kpi_outlier,character(0),list(title = "Description", contents = "<p>Get the outliers</p>"),list(description = "Get the outliers"),<span class='fu'>kpi_outlier</span><span class='op'>(</span><span class='va'>kpitab</span>, n_iqr <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>,list(list(name = "kpitab", description = "<p>result from calc_kpi</p>"), list(name = "n_iqr", description = "<p>number of IQRs below/above the lower/upper quartiles that should be considered outliers</p>")),TRUE,<div class='input'><span class='co'>#' data(mtcars)</span>
+<span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='calc_kpi.html'>calc_kpi</a></span><span class='op'>(</span><span class='st'>"mpg"</span>, by <span class='op'>=</span> <span class='st'>"am"</span>, kpi_fn <span class='op'>=</span> <span class='va'>kpi_fn_median</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>kpi_outlier</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 0 x 4</span><span>
+#&gt; </span><span style='color: #949494;'># … with 4 variables: txt &lt;chr&gt;, am &lt;dbl&gt;, stat &lt;dbl&gt;, N &lt;int&gt;</span><span></div></span>,list(list(title = "Value", contents = "<p><code>kpitab</code> without the outliers</p>", slug = "value")),2021,list(name = "kpitools", version = "0.0.0.9000", authors = "First Last"),list(destination = "dev", mode = "release", version_label = "default", version_tooltip = "Released version", in_dev = FALSE),list(root = "../", title = "kpitools"),list(),list(type = "default", left = "<li>\n  <a href=\"../index.html\">\n    <span class=\"fas fa-home fa-lg\"></span>\n     \n  </a>\n</li>\n<li>\n  <a href=\"../reference/index.html\">Reference</a>\n</li>", right = ""),list(.present = TRUE),list(version = "1.6.1"),FALSE</pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>

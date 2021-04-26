@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • kpitools</title>
+<title>Create KPI tables — kpi • kpitools</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Create KPI tables — kpi" />
+<meta property="og:description" content="Create KPI tables" />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -100,66 +101,43 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Create KPI tables</h1>
+    
+    <div class="hidden name"><code>kpi.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Create KPI tables</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>kpi</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  <span class='va'>var</span>,
+  by <span class='op'>=</span> <span class='cn'>NULL</span>,
+  kpi_fn <span class='op'>=</span> <span class='va'>kpi_fn_mean</span>,
+  txt <span class='op'>=</span> <span class='st'>""</span>,
+  cutpoints <span class='op'>=</span> <span class='cn'>NULL</span>,
+  cutlabels <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="calc_kpi.html">calc_kpi()</a></code> </p>
-        </td>
-        <td><p>Calculate KPIs</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="kpi.html">kpi()</a></code> </p>
-        </td>
-        <td><p>Create KPI tables</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="kpi_cut.html">kpi_cut()</a></code> </p>
-        </td>
-        <td><p>Cut KPI indicators</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="kpi_fn_.html">kpi_fn_n()</a></code> <code><a href="kpi_fn_.html">kpi_fn_prop()</a></code> <code><a href="kpi_fn_.html">kpi_fn_perc()</a></code> <code><a href="kpi_fn_.html">kpi_fn_median()</a></code> <code><a href="kpi_fn_.html">kpi_fn_mean()</a></code> <code><a href="kpi_fn_.html">kpi_fn_iqr()</a></code> <code><a href="kpi_fn_.html">kpi_fn_min()</a></code> <code><a href="kpi_fn_.html">kpi_fn_max()</a></code> </p>
-        </td>
-        <td><p>KPI summary functions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="kpi_outlier.html">kpi_outlier()</a></code> </p>
-        </td>
-        <td><p>Get the outliers</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>cutlabels</th>
+      <td></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    
+
+
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
