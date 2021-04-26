@@ -69,7 +69,7 @@ jobs:
         git config --global user.name "Render action"
         git add README.md
         git commit -m "Re-build README.md" || echo "No changes to commit"
-        git push origin master || echo "No changes to commit"
+        git push origin main || echo "No changes to commit"
 
     - name: Deploy package
       run: pkgdown::deploy_to_branch(new_process = FALSE)
