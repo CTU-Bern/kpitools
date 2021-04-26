@@ -9,7 +9,7 @@ kpi_by <- function(data,
                    cutpoints = NULL,
                    cutlabels = NULL){
 
-  print(by)
+  # print(by)
   out <- list()
   out$calc <- calc_kpi(data,
                        var = var,
@@ -33,16 +33,30 @@ kpi_by <- function(data,
 
 
 
+#' Create KPI tables
+#'
+#' @param data
+#' @param var
+#' @param by
+#' @param kpi_fn
+#' @param txt
+#' @param cutpoints
+#' @param cutlabels
+#'
+#' @return
+#' @export
+#'
+#' @examples
 kpi <- function(data,
-                   var,
-                   by = NULL,
-                   kpi_fn = kpi_fn_mean,
-                   txt = "",
-                   cutpoints = NULL,
-                   cutlabels = NULL
-                   ){
+                var,
+                by = NULL,
+                kpi_fn = kpi_fn_mean,
+                txt = "",
+                cutpoints = NULL,
+                cutlabels = NULL
+                ){
 
-  print("start")
+  # print("start")
   out <- list()
   out$overall <- kpi_by(data
                         , var = var
@@ -51,12 +65,12 @@ kpi <- function(data,
                         , cutpoints = cutpoints
                         , cutlabels = cutlabels
                         )
-  print("by")
+  # print("by")
 
   if (!is.null(by)){
 
     for (byi in by){
-      print(byi)
+      # print(byi)
 
       out[[byi]] <- kpi_by(data
                            , var = var
