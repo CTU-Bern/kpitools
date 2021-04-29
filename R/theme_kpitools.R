@@ -4,6 +4,7 @@
 #'
 #' @return
 #' @export
+#' @importFrom ggplot2 theme_bw %+replace% theme element_blank margin
 #'
 #' @examples
 #' kpi <- mtcars %>%

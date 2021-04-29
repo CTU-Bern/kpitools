@@ -7,6 +7,7 @@
 #' @return list of ggplot objects
 #' @export
 #'
+#' @importFrom ggplot2 ggplot geom_point xlab aes
 #' @examples
 #' # defaults
 #' kpi <- mtcars %>%
@@ -21,6 +22,7 @@
 #'   labs(title = "Foo")
 #'
 plot.kpi <- function(kpi, col = "#E6002EFF", pch = 21){
+  stat <- N <- NULL # avoid global binding note
 
   w <- names(kpi)[!names(kpi) %in% "overall"]
 
