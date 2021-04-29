@@ -1,3 +1,6 @@
 ^\.Rproj\.user$
 ^.*\.Rproj$
 ^LICENSE\.md$
+^R/kpi_fn.R$
+^.github$
+^README
