@@ -7,7 +7,7 @@
 #' @param txt textual description of the KPI
 #'
 #' @return a data frame of class \code{kpicalc}
-#' @export # could also be internal...
+#' @export
 #'
 #' @importFrom dplyr is_grouped_df select rename group_by filter any_of
 #' @importFrom rlang :=
@@ -46,6 +46,6 @@ calc_kpi <- function(data,
   out
 }
 
-
+# could also be internal...
 
 
