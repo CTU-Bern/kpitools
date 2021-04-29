@@ -1,6 +1,7 @@
 #' Plot KPI objects
 #'
-#' @param kpi result from kpi
+#' @param x result from kpi
+#' @param y ignored
 #' @param col colour for points
 #' @param pch point character
 #' @param ... for possible future expansion
@@ -22,16 +23,16 @@
 #'   theme_bw() +
 #'   labs(title = "Foo")
 #'
-plot.kpi <- function(kpi, col = "#E6002EFF", pch = 21, ...){
+plot.kpi <- function(x, y, col = "#E6002EFF", pch = 21, ...){
   stat <- N <- NULL # avoid global binding note
 
-  w <- names(kpi)[!names(kpi) %in% "overall"]
+  w <- names(x)[!names(x) %in% "overall"]
 
   if(length(w) == 0) warning("plots only created with the by option")
 
-  kpi2 <- kpi[w]
+  x2 <- x[w]
 
-  plots <- lapply(kpi2, function(x){
+  plots <- lapply(x2, function(x){
     y <- ggplot(x$calc, aes(x = stat, y = 1, size = N)) +
       geom_point(pch = 21, col = col) +
       xlab(unique(x$calc$txt))

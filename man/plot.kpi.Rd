@@ -4,10 +4,12 @@
 \alias{plot.kpi}
 \title{Plot KPI objects}
 \usage{
-\method{plot}{kpi}(kpi, col = "#E6002EFF", pch = 21, ...)
+\method{plot}{kpi}(x, y, col = "#E6002EFF", pch = 21, ...)
 }
 \arguments{
-\item{kpi}{result from kpi}
+\item{x}{result from kpi}
+
+\item{y}{ignored}
 
 \item{col}{colour for points}
 
