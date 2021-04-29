@@ -6,6 +6,9 @@ output: github_document
 
 # kpitools
 
+`r badger::badge_custom("dev version", as.character(packageVersion("presize")), "blue", "https://github.com/CTU-Bern/presize")`
+[![R-CMD-fullcheck](https://github.com/CTU-Bern/kpitools/actions/workflows/R-CMD-full.yaml/badge.svg)](https://github.com/CTU-Bern/kpitools/actions/workflows/R-CMD-full.yaml)
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
