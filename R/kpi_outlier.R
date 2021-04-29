@@ -4,13 +4,12 @@
 #' @param n_iqr number of IQRs below/above the lower/upper quartiles that should be considered outliers
 #'
 #' @return \code{kpitab} with just the outliers
-#' @export
 #'
 #' @examples
-#' data(mtcars)
-#' mtcars %>%
-#'   calc_kpi("mpg", by = "am", kpi_fn = kpi_fn_median) %>%
-#'   kpi_outlier()
+#' # data(mtcars)
+#' # mtcars %>%
+#' #   calc_kpi("mpg", by = "am", kpi_fn = kpi_fn_median) %>%
+#' #   kpi_outlier()
 kpi_outlier <- function(kpitab, n_iqr = 2){
   kpitab %>%
     mutate(outlier = outlier(.data$stat, n_iqr)) %>%
