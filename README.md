@@ -203,7 +203,7 @@ There is a plot method for the output from `kpi` which returns a list of
 
     ## $cyl
 
-![](README_files/figure-markdown_strict/unnamed-chunk-7-1.png)
+![](man/figures/README-unnamed-chunk-7-1.png)
 
 `ggplot2` objects allow for easy modification after their creation for
 further customisation.
@@ -217,7 +217,7 @@ further customisation.
             legend.margin = margin(0,0,0,0)
             )
 
-![](README_files/figure-markdown_strict/unnamed-chunk-8-1.png)
+![](man/figures/README-unnamed-chunk-8-1.png)
 
 A `ggplot2` theme is also provided which implements modifications
 similar to those above - `theme_kpitools`.
@@ -225,4 +225,4 @@ similar to those above - `theme_kpitools`.
     plot$cyl +
       theme_kpitools()
 
-![](README_files/figure-markdown_strict/unnamed-chunk-9-1.png)
+![](man/figures/README-unnamed-chunk-9-1.png)
