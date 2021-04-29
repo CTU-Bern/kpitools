@@ -14,8 +14,7 @@ Theme based on \code{theme_bw} and removing y-axis and moving the legend to bene
 }
 \examples{
 kpi <- mtcars \%>\%
-  kpi("mpg", by = c("am", "vs"), txt = "MPG")
-plot(kpi) +
+  kpi("mpg", by = "cyl", txt = "MPG")
+plot(kpi)$cyl +
   theme_kpitools()
-
 }
