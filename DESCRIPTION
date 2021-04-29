@@ -1,6 +1,6 @@
 Package: kpitools
 Title: Tools for creating key performance indicator reports for clinical trial
-Version: 0.0.0.9000
+Version: 0.0.1.9000
 Authors@R: 
     c(person(given = "Alan",
            family = "Haynes",
@@ -18,5 +18,6 @@ Suggests:
 Config/testthat/edition: 3
 Depends:
   dplyr,
+  ggplot2,
   magrittr,
   rlang
