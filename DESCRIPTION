@@ -2,15 +2,15 @@ Package: kpitools
 Title: Tools for creating key performance indicator reports for clinical trial
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    c(person(given = "Alan",
+           family = "Haynes",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+           email = "alan.haynes@ctu.unibe.ch",
+           comment = c(ORCID = "0000-0003-1374-081X")))
+Description: Assessing performance of clinical trials can assist identify problems earlier in the trial than might be possible without it and help to improve trial quality. Tools for the creating performance indicator reports are however uncommon. 'kpitools' aims to provide tools to create such reports. 
 License: GPL (>= 3)
 Encoding: UTF-8
-LazyData: true
+LazyData: false
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Suggests: 
@@ -18,4 +18,5 @@ Suggests:
 Config/testthat/edition: 3
 Depends:
   dplyr,
-  magrittr
+  magrittr,
+  rlang
