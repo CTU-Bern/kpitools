@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • kpitools</title>
+<title>kpitools ggplot2 theme — theme_kpitools • kpitools</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="kpitools ggplot2 theme — theme_kpitools" />
+<meta property="og:description" content="Theme based on theme_bw and removing y-axis and moving the legend to beneath the plot." />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -100,78 +101,33 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>kpitools <code>ggplot2</code> theme</h1>
+    
+    <div class="hidden name"><code>theme_kpitools.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Theme based on <code>theme_bw</code> and removing y-axis and moving the legend to beneath the plot.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>theme_kpitools</span><span class='op'>(</span><span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="calc_kpi.html">calc_kpi()</a></code> </p>
-        </td>
-        <td><p>Calculate KPIs</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="kpi.html">kpi()</a></code> </p>
-        </td>
-        <td><p>Create KPI tables</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="kpi_cut.html">kpi_cut()</a></code> </p>
-        </td>
-        <td><p>Cut KPI indicators</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="kpi_fn_.html">kpi_fn_n()</a></code> <code><a href="kpi_fn_.html">kpi_fn_prop()</a></code> <code><a href="kpi_fn_.html">kpi_fn_perc()</a></code> <code><a href="kpi_fn_.html">kpi_fn_median()</a></code> <code><a href="kpi_fn_.html">kpi_fn_mean()</a></code> <code><a href="kpi_fn_.html">kpi_fn_iqr()</a></code> <code><a href="kpi_fn_.html">kpi_fn_min()</a></code> <code><a href="kpi_fn_.html">kpi_fn_max()</a></code> </p>
-        </td>
-        <td><p>KPI summary functions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="kpi_outlier.html">kpi_outlier()</a></code> </p>
-        </td>
-        <td><p>Get the outliers</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.kpi.html">plot(<i>&lt;kpi&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot KPI objects</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="theme_kpitools.html">theme_kpitools()</a></code> </p>
-        </td>
-        <td><p>kpitools <code>ggplot2</code> theme</p></td>
-      </tr>
-    </tbody>
-    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    
+
+
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='va'>kpi</span> <span class='op'>&lt;-</span> <span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='kpi.html'>kpi</a></span><span class='op'>(</span><span class='st'>"mpg"</span>, by <span class='op'>=</span> <span class='st'>"cyl"</span>, txt <span class='op'>=</span> <span class='st'>"MPG"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>kpi</span><span class='op'>)</span><span class='op'>$</span><span class='va'>cyl</span> <span class='op'>+</span>
+  <span class='fu'>theme_kpitools</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='theme_kpitools-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>

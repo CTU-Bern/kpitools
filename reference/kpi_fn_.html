@@ -40,7 +40,12 @@
 
 
 <meta property="og:title" content="KPI summary functions — kpi_fn_n" />
-<meta property="og:description" content="KPI summary functions" />
+<meta property="og:description" content="These functions are not intended to be run as they are. They are intended to
+be passed as arguments to the kpi or calc_kpi functions. They
+summarize the data in the appropriate manner for the type of KPI. For example,
+the kpi_fn_prop counts the number of cases and total number of observations
+then calculates a proportion. kpi_fn_median simply calculates the median
+of the observations." />
 
 
 
@@ -72,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kpitools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9000</span>
       </span>
     </div>
 
@@ -109,7 +114,12 @@
     </div>
 
     <div class="ref-description">
-    <p>KPI summary functions</p>
+    <p>These functions are not intended to be run as they are. They are intended to
+be passed as arguments to the <code>kpi</code> or <code>calc_kpi</code> functions. They
+summarize the data in the appropriate manner for the type of KPI. For example,
+the <code>kpi_fn_prop</code> counts the number of cases and total number of observations
+then calculates a proportion. <code>kpi_fn_median</code> simply calculates the median
+of the observations.</p>
     </div>
 
     <pre class="usage"><span class='fu'>kpi_fn_n</span><span class='op'>(</span><span class='va'>.data</span><span class='op'>)</span>
@@ -142,7 +152,35 @@
     
 
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
+    <p>Functions should accept a dataframe with a <code>var</code> variable and return a
+dataframe with <code>stat</code> (other variables are optional, although an <code>N</code>
+variable allows for compatibility with downstream functions). All provided
+functions return <code>stat</code> and <code>N</code>, with some also returning <code>n</code>.</p>
+<p>See the examples passing custom functions.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='va'>fn</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='va'>x</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>summarize</span><span class='op'>(</span>stat <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>var</a></span><span class='op'>(</span><span class='va'>var</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+<span class='fu'><a href='kpi.html'>kpi</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='st'>"mpg"</span>, kpi_fn <span class='op'>=</span> <span class='va'>fn</span><span class='op'>)</span>
+</div><div class='co'>#&gt; $overall
+#&gt; $overall$calc
+#&gt;   txt    stat
+#&gt; 1     36.3241
+#&gt; 
+#&gt; $overall$outlier
+#&gt; [1] txt  stat
+#&gt; &lt;0 rows&gt; (or 0-length row.names)
+#&gt; 
+#&gt; 
+#&gt; attr(,"class")
+#&gt; [1] "kpi"  "list"</div><div class='input'>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -154,7 +192,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by First Last.</p>
+  <p>Developed by Alan Haynes.</p>
 </div>
 
 <div class="pkgdown">

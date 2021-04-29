@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kpitools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9000</span>
       </span>
     </div>
 
@@ -129,15 +129,14 @@
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>kpitab</code> without the outliers</p>
+    <p><code>kpitab</code> with just the outliers</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples">kpi_outlier,Get the outliers,Get the outliers — kpi_outlier,kpi_outlier.Rd,character(0),kpi_outlier,character(0),list(title = "Description", contents = "<p>Get the outliers</p>"),list(description = "Get the outliers"),<span class='fu'>kpi_outlier</span><span class='op'>(</span><span class='va'>kpitab</span>, n_iqr <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>,list(list(name = "kpitab", description = "<p>result from calc_kpi</p>"), list(name = "n_iqr", description = "<p>number of IQRs below/above the lower/upper quartiles that should be considered outliers</p>")),TRUE,<div class='input'><span class='co'>#' data(mtcars)</span>
-<span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='calc_kpi.html'>calc_kpi</a></span><span class='op'>(</span><span class='st'>"mpg"</span>, by <span class='op'>=</span> <span class='st'>"am"</span>, kpi_fn <span class='op'>=</span> <span class='va'>kpi_fn_median</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>kpi_outlier</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 0 x 4</span><span>
-#&gt; </span><span style='color: #949494;'># … with 4 variables: txt &lt;chr&gt;, am &lt;dbl&gt;, stat &lt;dbl&gt;, N &lt;int&gt;</span><span></div></span>,list(list(title = "Value", contents = "<p><code>kpitab</code> without the outliers</p>", slug = "value")),2021,list(name = "kpitools", version = "0.0.0.9000", authors = "First Last"),list(destination = "dev", mode = "release", version_label = "default", version_tooltip = "Released version", in_dev = FALSE),list(root = "../", title = "kpitools"),list(),list(type = "default", left = "<li>\n  <a href=\"../index.html\">\n    <span class=\"fas fa-home fa-lg\"></span>\n     \n  </a>\n</li>\n<li>\n  <a href=\"../reference/index.html\">Reference</a>\n</li>", right = ""),list(.present = TRUE),list(version = "1.6.1"),FALSE</pre>
+    <pre class="examples"><div class='input'><span class='co'># data(mtcars)</span>
+<span class='co'># mtcars %&gt;%</span>
+<span class='co'>#   calc_kpi("mpg", by = "am", kpi_fn = kpi_fn_median) %&gt;%</span>
+<span class='co'>#   kpi_outlier()</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -149,7 +148,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by First Last.</p>
+  <p>Developed by Alan Haynes.</p>
 </div>
 
 <div class="pkgdown">
