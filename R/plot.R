@@ -3,6 +3,7 @@
 #' @param kpi result from kpi
 #' @param col colour for points
 #' @param pch point character
+#' @param ... for possible future expansion
 #'
 #' @return list of ggplot objects
 #' @export
@@ -21,7 +22,7 @@
 #'   theme_bw() +
 #'   labs(title = "Foo")
 #'
-plot.kpi <- function(kpi, col = "#E6002EFF", pch = 21){
+plot.kpi <- function(kpi, col = "#E6002EFF", pch = 21, ...){
   stat <- N <- NULL # avoid global binding note
 
   w <- names(kpi)[!names(kpi) %in% "overall"]
