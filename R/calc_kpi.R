@@ -7,7 +7,6 @@
 #' @param txt textual description of the KPI
 #'
 #' @return a data frame of class \code{kpicalc}
-#' @export
 #'
 #' @importFrom dplyr is_grouped_df select rename group_by filter any_of
 #' @importFrom rlang :=
