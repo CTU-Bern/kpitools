@@ -12,14 +12,14 @@ kpi_outlier(kpitab, n_iqr = 2)
 \item{n_iqr}{number of IQRs below/above the lower/upper quartiles that should be considered outliers}
 }
 \value{
-\code{kpitab} without the outliers
+\code{kpitab} with just the outliers
 }
 \description{
 Get the outliers
 }
 \examples{
-#' data(mtcars)
-mtcars \%>\%
-  calc_kpi("mpg", by = "am", kpi_fn = kpi_fn_median) \%>\%
-  kpi_outlier()
+# data(mtcars)
+# mtcars \%>\%
+#   calc_kpi("mpg", by = "am", kpi_fn = kpi_fn_median) \%>\%
+#   kpi_outlier()
 }
