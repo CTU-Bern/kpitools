@@ -5,17 +5,16 @@
 #' @param cutlabels labels for the cut points
 #'
 #' @return
-#' @export
 #' @importFrom magrittr '%>%'
 #' @importFrom dplyr mutate summarize n
 #' @importFrom rlang .data
 #'
 #' @examples
-#' kpitab <- mtcars %>% calc_kpi("mpg", by = "am", kpi_fn = kpi_fn_median, txt = "MPG")
-#' cutpoints <- c(0, 20, 30)
-#' kpi_cut(kpitab, cutpoints, cutlabels = c("Low", "High"))
-#' kpi_cut(kpitab, cutpoints, cutlabels = 1:2)
-#' kpi_cut(kpitab, cutpoints)
+#' # kpitab <- mtcars %>% calc_kpi("mpg", by = "am", kpi_fn = kpi_fn_median, txt = "MPG")
+#' # cutpoints <- c(0, 20, 30)
+#' # kpi_cut(kpitab, cutpoints, cutlabels = c("Low", "High"))
+#' # kpi_cut(kpitab, cutpoints, cutlabels = 1:2)
+#' # kpi_cut(kpitab, cutpoints)
 
 kpi_cut <- function(kpitab, cutpoints, cutlabels = NULL){
 
