@@ -1,14 +1,13 @@
 #' Get the outliers
 #'
 #' @param kpitab result from calc_kpi
-#' @param n_iqr number of IQRs below/above the lower/upper quartiles that should
-#' be considered outliers
+#' @param n_iqr number of IQRs below/above the lower/upper quartiles that should be considered outliers
 #'
 #' @return \code{kpitab} with just the outliers
 #' @export
 #'
 #' @examples
-#' #' data(mtcars)
+#' data(mtcars)
 #' mtcars %>%
 #'   calc_kpi("mpg", by = "am", kpi_fn = kpi_fn_median) %>%
 #'   kpi_outlier()
