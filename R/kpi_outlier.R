@@ -1,9 +1,10 @@
 #' Get the outliers
 #'
 #' @param kpitab result from calc_kpi
-#' @param n_iqr number of IQRs below/above the lower/upper quartiles that should be considered outliers
+#' @param n_iqr number of IQRs below/above the lower/upper quartiles that should
+#' be considered outliers
 #'
-#' @return \code{kpitab} without the outliers
+#' @return \code{kpitab} with just the outliers
 #' @export
 #'
 #' @examples
@@ -13,7 +14,7 @@
 #'   kpi_outlier()
 kpi_outlier <- function(kpitab, n_iqr = 2){
   kpitab %>%
-    mutate(outlier = outlier(stat, n_iqr)) %>%
+    mutate(outlier = outlier(.data$stat, n_iqr)) %>%
     filter(outlier) %>%
     select(-outlier)
 }

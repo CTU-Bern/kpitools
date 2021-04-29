@@ -1,11 +1,14 @@
 #' Cut KPI indicators
 #'
-#' @param kpitab
-#' @param cutpoints
-#' @param cutlabels
+#' @param kpitab output from calc_kpi
+#' @param cutpoints cut points (if KPIs use a traffic light system)
+#' @param cutlabels labels for the cut points
 #'
 #' @return
 #' @export
+#' @importFrom magrittr '%>%'
+#' @importFrom dplyr mutate summarize n
+#' @importFrom rlang .data
 #'
 #' @examples
 #' kpitab <- mtcars %>% calc_kpi("mpg", by = "am", kpi_fn = kpi_fn_median, txt = "MPG")
@@ -21,14 +24,14 @@ kpi_cut <- function(kpitab, cutpoints, cutlabels = NULL){
   }
 
   out <- kpitab %>%
-    mutate(cut = cut(stat
+    mutate(cut = cut(.data$stat
                      , breaks = cutpoints
                      # , labels = cutlabels
                      )
            )
   if (!is.null(cutlabels)){
     out <- out %>% mutate(
-      cutgrp = cut(stat
+      cutgrp = cut(.data$stat
                    , breaks = cutpoints
                    , labels = cutlabels
       )

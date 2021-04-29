@@ -35,18 +35,21 @@ kpi_by <- function(data,
 
 #' Create KPI tables
 #'
-#' @param data
-#' @param var
-#' @param by
-#' @param kpi_fn
-#' @param txt
-#' @param cutpoints
-#' @param cutlabels
+#' @param data a data frame
+#' @param var the variable to summarize
+#' @param by optional variable(s) to group over
+#' @param kpi_fn summary function
+#' @param txt a descriptive text
+#' @param cutpoints cut points (if KPIs use a traffic light system)
+#' @param cutlabels labels for the cut points
 #'
-#' @return
+#' @return a list with either 1 or (length(by) + 1) lists.
 #' @export
 #'
 #' @examples
+#' mtcars %>%
+#'   mutate(cylgt4 = cyl > 4) %>%
+#'   kpi(var = "mpg", cutpoints = c(0, 22, 50), by = c("am", "cyl"), txt = "MPG")
 kpi <- function(data,
                 var,
                 by = NULL,
@@ -85,6 +88,9 @@ kpi <- function(data,
 
   }
 
+
+  class(out) <- c("kpi", class(out))
+
   out
 
 }
@@ -96,7 +102,8 @@ kpi <- function(data,
 #   # wrap1(var = "mpg", by = c("am")) %>%
 #   # wrap1(var = "mpg", by = c("am"), cutpoints = c(0, 22, 50)) %>%
 #   # wrap1(var = "mpg", cutpoints = c(0, 22, 50), txt = "MPG") %>%
-#   kpi(var = "mpg", cutpoints = c(0, 22, 50), by = c("am", "cylgt4"), txt = "MPG") %>%
+#   # kpi(var = "mpg", cutpoints = c(0, 22, 50), by = c("am", "cylgt4"), txt = "MPG") %>%
+#   kpi(var = "mpg", cutpoints = c(0, 22, 50), by = c("am", "cyl"), txt = "MPG") -> kpis
 #   # kpi(var = "mpg", cutpoints = c(0, 22, 50), by = "am", txt = "MPG") #%>%
 #   # kpi_by(var = "mpg", by = "am", txt = "MPG") %>%
 #   # kpi_by(var = "mpg", txt = "MPG") %>%

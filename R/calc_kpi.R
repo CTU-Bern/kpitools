@@ -6,9 +6,11 @@
 #' @param kpi_fn summary function
 #' @param txt textual description of the KPI
 #'
-#' @return
-#' @export
+#' @return a data frame of class \code{kpicalc}
+#' @export # could also be internal...
 #'
+#' @importFrom dplyr is_grouped_df select rename group_by filter any_of
+#' @importFrom rlang :=
 #' @examples
 #' data(mtcars)
 #' mtcars %>% calc_kpi("mpg", by = "am", kpi_fn = kpi_fn_median)
