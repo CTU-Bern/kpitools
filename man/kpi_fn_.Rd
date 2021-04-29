@@ -41,5 +41,16 @@ kpi_fn_max(.data)
 
 }
 \description{
-KPI summary functions
+These functions are not intended to be run as they are. They are intended to
+be passed as arguments to the \code{kpi} or \code{calc_kpi} functions. They
+summarize the data in the appropriate manner for the type of KPI. For example,
+the \code{kpi_fn_prop} counts the number of cases and total number of observations
+then calculates a proportion. \code{kpi_fn_median} simply calculates the median
+of the observations.
+}
+\details{
+Functions should accept a dataframe with a \code{var} variable and return a
+dataframe with \code{stat} (other variables are optional, although an \code{N}
+variable allows for compatibility with downstream functions). All provided
+functions return \code{stat} and \code{N}, with some also returning \code{n}.
 }

@@ -15,11 +15,28 @@ kpi(
 )
 }
 \arguments{
-\item{cutlabels}{}
+\item{data}{a data frame}
+
+\item{var}{the variable to summarize}
+
+\item{by}{optional variable(s) to group over}
+
+\item{kpi_fn}{summary function}
+
+\item{txt}{a descriptive text}
+
+\item{cutpoints}{cut points (if KPIs use a traffic light system)}
+
+\item{cutlabels}{labels for the cut points}
 }
 \value{
-
+a list with either 1 or (length(by) + 1) lists.
 }
 \description{
 Create KPI tables
+}
+\examples{
+mtcars \%>\%
+  mutate(cylgt4 = cyl > 4) \%>\%
+  kpi(var = "mpg", cutpoints = c(0, 22, 50), by = c("am", "cyl"), txt = "MPG")
 }

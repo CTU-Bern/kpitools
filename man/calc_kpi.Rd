@@ -18,7 +18,7 @@ calc_kpi(data, var, by = NULL, kpi_fn, txt = "")
 \item{txt}{textual description of the KPI}
 }
 \value{
-
+a data frame of class \code{kpicalc}
 }
 \description{
 Calculate KPIs

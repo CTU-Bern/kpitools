@@ -7,7 +7,11 @@
 kpi_cut(kpitab, cutpoints, cutlabels = NULL)
 }
 \arguments{
-\item{cutlabels}{}
+\item{kpitab}{output from calc_kpi}
+
+\item{cutpoints}{cut points (if KPIs use a traffic light system)}
+
+\item{cutlabels}{labels for the cut points}
 }
 \value{
 
