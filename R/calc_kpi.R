@@ -11,8 +11,8 @@
 #' @importFrom dplyr is_grouped_df select rename group_by filter any_of
 #' @importFrom rlang :=
 #' @examples
-#' data(mtcars)
-#' mtcars %>% calc_kpi("mpg", by = "am", kpi_fn = kpi_fn_median)
+#' # data(mtcars)
+#' # mtcars %>% calc_kpi("mpg", by = "am", kpi_fn = kpi_fn_median)
 calc_kpi <- function(data,
                      var,
                      by = NULL,

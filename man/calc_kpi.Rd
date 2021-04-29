@@ -24,6 +24,6 @@ a data frame of class \code{kpicalc}
 Calculate KPIs
 }
 \examples{
-data(mtcars)
-mtcars \%>\% calc_kpi("mpg", by = "am", kpi_fn = kpi_fn_median)
+# data(mtcars)
+# mtcars \%>\% calc_kpi("mpg", by = "am", kpi_fn = kpi_fn_median)
 }
