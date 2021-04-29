@@ -12,6 +12,8 @@
 #' variable allows for compatibility with downstream functions). All provided
 #' functions return \code{stat} and \code{N}, with some also returning \code{n}.
 #'
+#' See the examples passing custom functions.
+#'
 #' @param .data data frame
 #'
 #' @return
@@ -20,6 +22,16 @@
 #' @rdname kpi_fn_
 #' @importFrom dplyr n
 #' @importFrom stats IQR median quantile
+#'
+#' @examples
+#' fn <- function(x){
+#'   x %>%
+#'     summarize(stat = var(var))
+#' }
+#'
+#' kpi(mtcars, "mpg", kpi_fn = fn)
+#'
+#'
 kpi_fn_n <- function(.data){
   if (!is.logical(.data$var) | any(.data$var > 1)) warning("'kpi_fn_n' takes a sum of 'var'. It is intended for 0/1 or logical variables")
 

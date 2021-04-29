@@ -53,4 +53,16 @@ Functions should accept a dataframe with a \code{var} variable and return a
 dataframe with \code{stat} (other variables are optional, although an \code{N}
 variable allows for compatibility with downstream functions). All provided
 functions return \code{stat} and \code{N}, with some also returning \code{n}.
+
+See the examples passing custom functions.
+}
+\examples{
+fn <- function(x){
+  x \%>\%
+    summarize(stat = var(var))
+}
+
+kpi(mtcars, "mpg", kpi_fn = fn)
+
+
 }
