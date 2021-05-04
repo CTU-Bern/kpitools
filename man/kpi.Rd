@@ -36,7 +36,8 @@ a list with either 1 or (length(by) + 1) lists.
 Create KPI tables
 }
 \examples{
-mtcars \%>\%
+kpi <- mtcars \%>\%
   mutate(cylgt4 = cyl > 4) \%>\%
-  kpi(var = "mpg", cutpoints = c(0, 22, 50), by = c("am", "cyl"), txt = "MPG")
+  kpi(var = "mpg", cutpoints = c(0, 22, 50), by = c("am", "cyl"), txt = "MPG",
+      kpi_fn = kpi_fn_median)
 }
