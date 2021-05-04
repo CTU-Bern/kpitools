@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>KPI summary functions — kpi_fn_n • kpitools</title>
+<title>Print method for kpi objects — print.kpi • kpitools</title>
 
 
 <!-- jquery -->
@@ -39,13 +39,8 @@
 
 
 
-<meta property="og:title" content="KPI summary functions — kpi_fn_n" />
-<meta property="og:description" content="These functions are not intended to be run as they are. They are intended to
-be passed as arguments to the kpi or calc_kpi functions. They
-summarize the data in the appropriate manner for the type of KPI. For example,
-the kpi_fn_prop counts the number of cases and total number of observations
-then calculates a proportion. kpi_fn_median simply calculates the median
-of the observations." />
+<meta property="og:title" content="Print method for kpi objects — print.kpi" />
+<meta property="og:description" content="Print method for kpi objects" />
 
 
 
@@ -108,42 +103,36 @@ of the observations." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>KPI summary functions</h1>
+    <h1>Print method for kpi objects</h1>
     
-    <div class="hidden name"><code>kpi_fn_.Rd</code></div>
+    <div class="hidden name"><code>print.kpi.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>These functions are not intended to be run as they are. They are intended to
-be passed as arguments to the <code>kpi</code> or <code>calc_kpi</code> functions. They
-summarize the data in the appropriate manner for the type of KPI. For example,
-the <code>kpi_fn_prop</code> counts the number of cases and total number of observations
-then calculates a proportion. <code>kpi_fn_median</code> simply calculates the median
-of the observations.</p>
+    <p>Print method for kpi objects</p>
     </div>
 
-    <pre class="usage"><span class='fu'>kpi_fn_n</span><span class='op'>(</span><span class='va'>.data</span><span class='op'>)</span>
-
-<span class='fu'>kpi_fn_prop</span><span class='op'>(</span><span class='va'>.data</span><span class='op'>)</span>
-
-<span class='fu'>kpi_fn_perc</span><span class='op'>(</span><span class='va'>.data</span><span class='op'>)</span>
-
-<span class='fu'>kpi_fn_median</span><span class='op'>(</span><span class='va'>.data</span><span class='op'>)</span>
-
-<span class='fu'>kpi_fn_mean</span><span class='op'>(</span><span class='va'>.data</span><span class='op'>)</span>
-
-<span class='fu'>kpi_fn_iqr</span><span class='op'>(</span><span class='va'>.data</span><span class='op'>)</span>
-
-<span class='fu'>kpi_fn_min</span><span class='op'>(</span><span class='va'>.data</span><span class='op'>)</span>
-
-<span class='fu'>kpi_fn_max</span><span class='op'>(</span><span class='va'>.data</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='co'># S3 method for kpi</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span>, table <span class='op'>=</span> <span class='cn'>TRUE</span>, outlier <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>.data</th>
-      <td><p>data frame</p></td>
+      <th>x</th>
+      <td><p>kpi object</p></td>
+    </tr>
+    <tr>
+      <th>table</th>
+      <td><p>logical, whether to add a table stats by grouping variable(s) to the output</p></td>
+    </tr>
+    <tr>
+      <th>outlier</th>
+      <td><p>logical, whether to add a table of outliers to the output</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>not currently used</p></td>
     </tr>
     </table>
 
@@ -152,27 +141,7 @@ of the observations.</p>
     
 
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Functions should accept a dataframe with a <code>var</code> variable and return a
-dataframe with <code>stat</code> (other variables are optional, although an <code>N</code>
-variable allows for compatibility with downstream functions). All provided
-functions return <code>stat</code> and <code>N</code>, with some also returning <code>n</code>.</p>
-<p>See the examples passing custom functions.</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>fn</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>{</span>
-  <span class='va'>x</span> <span class='op'>%&gt;%</span>
-    <span class='fu'>summarize</span><span class='op'>(</span>stat <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>var</a></span><span class='op'>(</span><span class='va'>var</span><span class='op'>)</span><span class='op'>)</span>
-<span class='op'>}</span>
-
-<span class='fu'><a href='kpi.html'>kpi</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='st'>"mpg"</span>, kpi_fn <span class='op'>=</span> <span class='va'>fn</span><span class='op'>)</span>
-</div><div class='co'>#&gt; Study level:
-#&gt;  txt    stat
-#&gt;  mpg 36.3241
-#&gt; </div><div class='input'>
-
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

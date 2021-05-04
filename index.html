@@ -89,18 +89,9 @@
 <span id="cb4-7"><a href="#cb4-7"></a>      <span class="dt">kpi_fn =</span> kpi_fn_perc,        <span class="co"># summary function</span></span>
 <span id="cb4-8"><a href="#cb4-8"></a>      <span class="dt">txt =</span> <span class="st">"Percentage MPG &gt; 25"</span>) <span class="co"># (optional) nicer text to add to tables</span></span>
 <span id="cb4-9"><a href="#cb4-9"></a></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="co">## $overall</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="co">## $overall$calc</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="co">##                   txt  n  N  stat</span></span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="co">## 1 Percentage MPG &gt; 25 14 32 43.75</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a><span class="co">## </span></span>
-<span id="cb4-15"><a href="#cb4-15"></a><span class="co">## $overall$outlier</span></span>
-<span id="cb4-16"><a href="#cb4-16"></a><span class="co">## [1] txt  n    N    stat</span></span>
-<span id="cb4-17"><a href="#cb4-17"></a><span class="co">## &lt;0 rows&gt; (or 0-length row.names)</span></span>
-<span id="cb4-18"><a href="#cb4-18"></a><span class="co">## </span></span>
-<span id="cb4-19"><a href="#cb4-19"></a><span class="co">## </span></span>
-<span id="cb4-20"><a href="#cb4-20"></a><span class="co">## attr(,"class")</span></span>
-<span id="cb4-21"><a href="#cb4-21"></a><span class="co">## [1] "kpi"  "list"</span></span></code></pre></div>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="co">## Study level:</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="co">##                  txt  n  N  stat</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="co">##  Percentage MPG &gt; 25 14 32 43.75</span></span></code></pre></div>
 <p>It is also possible to calculate the KPIs over specific groups via the <code>by</code> option:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>mtcars <span class="op">%&gt;%</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="st">  </span><span class="kw">kpi</span>(<span class="dt">var =</span> <span class="st">"highmpg"</span>,             <span class="co"># variable to be summarized (focus of the KPI)</span></span>
@@ -108,31 +99,16 @@
 <span id="cb5-4"><a href="#cb5-4"></a>      <span class="dt">txt =</span> <span class="st">"Percentage MPG &gt; 20"</span>, <span class="co"># (optional) nicer text to add to tables</span></span>
 <span id="cb5-5"><a href="#cb5-5"></a>      <span class="dt">by =</span> <span class="st">"am"</span>)                   <span class="co"># (optional) stratifying variable</span></span>
 <span id="cb5-6"><a href="#cb5-6"></a></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="co">## $overall</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="co">## $overall$calc</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="co">##                   txt  n  N  stat</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="co">## 1 Percentage MPG &gt; 20 14 32 43.75</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="co">## </span></span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="co">## $overall$outlier</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="co">## [1] txt  n    N    stat</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="co">## &lt;0 rows&gt; (or 0-length row.names)</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co">## Study level:</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="co">##                  txt  n  N  stat</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co">##  Percentage MPG &gt; 20 14 32 43.75</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="co">## </span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="co">## Grouped by am:</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co">##                  txt am  n  N     stat</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="co">##  Percentage MPG &gt; 20  0  4 19 21.05263</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="co">##  Percentage MPG &gt; 20  1 10 13 76.92308</span></span>
 <span id="cb5-15"><a href="#cb5-15"></a><span class="co">## </span></span>
-<span id="cb5-16"><a href="#cb5-16"></a><span class="co">## </span></span>
-<span id="cb5-17"><a href="#cb5-17"></a><span class="co">## $am</span></span>
-<span id="cb5-18"><a href="#cb5-18"></a><span class="co">## $am$calc</span></span>
-<span id="cb5-19"><a href="#cb5-19"></a><span class="co">## # A tibble: 2 x 5</span></span>
-<span id="cb5-20"><a href="#cb5-20"></a><span class="co">##   txt                    am     n     N  stat</span></span>
-<span id="cb5-21"><a href="#cb5-21"></a><span class="co">##   &lt;chr&gt;               &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;</span></span>
-<span id="cb5-22"><a href="#cb5-22"></a><span class="co">## 1 Percentage MPG &gt; 20     0     4    19  21.1</span></span>
-<span id="cb5-23"><a href="#cb5-23"></a><span class="co">## 2 Percentage MPG &gt; 20     1    10    13  76.9</span></span>
-<span id="cb5-24"><a href="#cb5-24"></a><span class="co">## </span></span>
-<span id="cb5-25"><a href="#cb5-25"></a><span class="co">## $am$outlier</span></span>
-<span id="cb5-26"><a href="#cb5-26"></a><span class="co">## # A tibble: 0 x 5</span></span>
-<span id="cb5-27"><a href="#cb5-27"></a><span class="co">## # … with 5 variables: txt &lt;chr&gt;, am &lt;dbl&gt;, n &lt;int&gt;, N &lt;int&gt;, stat &lt;dbl&gt;</span></span>
-<span id="cb5-28"><a href="#cb5-28"></a><span class="co">## </span></span>
-<span id="cb5-29"><a href="#cb5-29"></a><span class="co">## </span></span>
-<span id="cb5-30"><a href="#cb5-30"></a><span class="co">## attr(,"class")</span></span>
-<span id="cb5-31"><a href="#cb5-31"></a><span class="co">## [1] "kpi"  "list"</span></span></code></pre></div>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="co">## No outliers</span></span></code></pre></div>
 <p>The <code>by</code> argument also works over multiple variables:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>mtcars <span class="op">%&gt;%</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="st">  </span><span class="kw">kpi</span>(<span class="dt">var =</span> <span class="st">"highmpg"</span>,             <span class="co"># variable to be summarized (focus of the KPI)</span></span>
@@ -140,45 +116,23 @@
 <span id="cb6-4"><a href="#cb6-4"></a>      <span class="dt">txt =</span> <span class="st">"Percentage MPG &gt; 20"</span>, <span class="co"># (optional) nicer text to add to tables</span></span>
 <span id="cb6-5"><a href="#cb6-5"></a>      <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">"am"</span>, <span class="st">"gear"</span>))        <span class="co"># (optional) stratifying variables</span></span>
 <span id="cb6-6"><a href="#cb6-6"></a></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="co">## $overall</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="co">## $overall$calc</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="co">##                   txt  n  N  stat</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="co">## 1 Percentage MPG &gt; 20 14 32 43.75</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="co">## </span></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="co">## $overall$outlier</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="co">## [1] txt  n    N    stat</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="co">## &lt;0 rows&gt; (or 0-length row.names)</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co">## Study level:</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="co">##                  txt  n  N  stat</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="co">##  Percentage MPG &gt; 20 14 32 43.75</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="co">## </span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="co">## Grouped by am:</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co">##                  txt am  n  N     stat</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co">##  Percentage MPG &gt; 20  0  4 19 21.05263</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="co">##  Percentage MPG &gt; 20  1 10 13 76.92308</span></span>
 <span id="cb6-15"><a href="#cb6-15"></a><span class="co">## </span></span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="co">## </span></span>
-<span id="cb6-17"><a href="#cb6-17"></a><span class="co">## $am</span></span>
-<span id="cb6-18"><a href="#cb6-18"></a><span class="co">## $am$calc</span></span>
-<span id="cb6-19"><a href="#cb6-19"></a><span class="co">## # A tibble: 2 x 5</span></span>
-<span id="cb6-20"><a href="#cb6-20"></a><span class="co">##   txt                    am     n     N  stat</span></span>
-<span id="cb6-21"><a href="#cb6-21"></a><span class="co">##   &lt;chr&gt;               &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;</span></span>
-<span id="cb6-22"><a href="#cb6-22"></a><span class="co">## 1 Percentage MPG &gt; 20     0     4    19  21.1</span></span>
-<span id="cb6-23"><a href="#cb6-23"></a><span class="co">## 2 Percentage MPG &gt; 20     1    10    13  76.9</span></span>
-<span id="cb6-24"><a href="#cb6-24"></a><span class="co">## </span></span>
-<span id="cb6-25"><a href="#cb6-25"></a><span class="co">## $am$outlier</span></span>
-<span id="cb6-26"><a href="#cb6-26"></a><span class="co">## # A tibble: 0 x 5</span></span>
-<span id="cb6-27"><a href="#cb6-27"></a><span class="co">## # … with 5 variables: txt &lt;chr&gt;, am &lt;dbl&gt;, n &lt;int&gt;, N &lt;int&gt;, stat &lt;dbl&gt;</span></span>
-<span id="cb6-28"><a href="#cb6-28"></a><span class="co">## </span></span>
-<span id="cb6-29"><a href="#cb6-29"></a><span class="co">## </span></span>
-<span id="cb6-30"><a href="#cb6-30"></a><span class="co">## $gear</span></span>
-<span id="cb6-31"><a href="#cb6-31"></a><span class="co">## $gear$calc</span></span>
-<span id="cb6-32"><a href="#cb6-32"></a><span class="co">## # A tibble: 3 x 5</span></span>
-<span id="cb6-33"><a href="#cb6-33"></a><span class="co">##   txt                  gear     n     N  stat</span></span>
-<span id="cb6-34"><a href="#cb6-34"></a><span class="co">##   &lt;chr&gt;               &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;</span></span>
-<span id="cb6-35"><a href="#cb6-35"></a><span class="co">## 1 Percentage MPG &gt; 20     3     2    15  13.3</span></span>
-<span id="cb6-36"><a href="#cb6-36"></a><span class="co">## 2 Percentage MPG &gt; 20     4    10    12  83.3</span></span>
-<span id="cb6-37"><a href="#cb6-37"></a><span class="co">## 3 Percentage MPG &gt; 20     5     2     5  40  </span></span>
-<span id="cb6-38"><a href="#cb6-38"></a><span class="co">## </span></span>
-<span id="cb6-39"><a href="#cb6-39"></a><span class="co">## $gear$outlier</span></span>
-<span id="cb6-40"><a href="#cb6-40"></a><span class="co">## # A tibble: 0 x 5</span></span>
-<span id="cb6-41"><a href="#cb6-41"></a><span class="co">## # … with 5 variables: txt &lt;chr&gt;, gear &lt;dbl&gt;, n &lt;int&gt;, N &lt;int&gt;, stat &lt;dbl&gt;</span></span>
-<span id="cb6-42"><a href="#cb6-42"></a><span class="co">## </span></span>
-<span id="cb6-43"><a href="#cb6-43"></a><span class="co">## </span></span>
-<span id="cb6-44"><a href="#cb6-44"></a><span class="co">## attr(,"class")</span></span>
-<span id="cb6-45"><a href="#cb6-45"></a><span class="co">## [1] "kpi"  "list"</span></span></code></pre></div>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="co">## No outliers</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="co">## Grouped by gear:</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a><span class="co">##                  txt gear  n  N     stat</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a><span class="co">##  Percentage MPG &gt; 20    3  2 15 13.33333</span></span>
+<span id="cb6-20"><a href="#cb6-20"></a><span class="co">##  Percentage MPG &gt; 20    4 10 12 83.33333</span></span>
+<span id="cb6-21"><a href="#cb6-21"></a><span class="co">##  Percentage MPG &gt; 20    5  2  5 40.00000</span></span>
+<span id="cb6-22"><a href="#cb6-22"></a><span class="co">## </span></span>
+<span id="cb6-23"><a href="#cb6-23"></a><span class="co">## No outliers</span></span></code></pre></div>
 <p>KPIs are often reported with cutoffs (for use with a traffic light type approach). Cutoffs can be passed to <code>kpi</code>, with or without labels.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># without labels</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a>mtcars <span class="op">%&gt;%</span></span>
@@ -196,31 +150,16 @@
 <span id="cb8-6"><a href="#cb8-6"></a>      <span class="dt">cutpoints =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">33.3</span>,<span class="fl">66.6</span>,<span class="dv">100</span>),         <span class="co"># (optional) cutoff points </span></span>
 <span id="cb8-7"><a href="#cb8-7"></a>      <span class="dt">cutlabels =</span> <span class="kw">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>)) <span class="co"># (optional) labels for the cutoff points</span></span>
 <span id="cb8-8"><a href="#cb8-8"></a></span>
-<span id="cb8-9"><a href="#cb8-9"></a><span class="co">## $overall</span></span>
-<span id="cb8-10"><a href="#cb8-10"></a><span class="co">## $overall$calc</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a><span class="co">##                   txt  n  N  stat         cut cutgrp</span></span>
-<span id="cb8-12"><a href="#cb8-12"></a><span class="co">## 1 Percentage MPG &gt; 20 14 32 43.75 (33.3,66.6] Medium</span></span>
-<span id="cb8-13"><a href="#cb8-13"></a><span class="co">## </span></span>
-<span id="cb8-14"><a href="#cb8-14"></a><span class="co">## $overall$outlier</span></span>
-<span id="cb8-15"><a href="#cb8-15"></a><span class="co">## [1] txt  n    N    stat</span></span>
-<span id="cb8-16"><a href="#cb8-16"></a><span class="co">## &lt;0 rows&gt; (or 0-length row.names)</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="co">## Study level:</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a><span class="co">##                  txt  n  N  stat         cut cutgrp</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="co">##  Percentage MPG &gt; 20 14 32 43.75 (33.3,66.6] Medium</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a><span class="co">## </span></span>
+<span id="cb8-13"><a href="#cb8-13"></a><span class="co">## Grouped by am:</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a><span class="co">##                  txt am  n  N     stat        cut cutgrp</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a><span class="co">##  Percentage MPG &gt; 20  0  4 19 21.05263   (0,33.3]    Low</span></span>
+<span id="cb8-16"><a href="#cb8-16"></a><span class="co">##  Percentage MPG &gt; 20  1 10 13 76.92308 (66.6,100]   High</span></span>
 <span id="cb8-17"><a href="#cb8-17"></a><span class="co">## </span></span>
-<span id="cb8-18"><a href="#cb8-18"></a><span class="co">## </span></span>
-<span id="cb8-19"><a href="#cb8-19"></a><span class="co">## $am</span></span>
-<span id="cb8-20"><a href="#cb8-20"></a><span class="co">## $am$calc</span></span>
-<span id="cb8-21"><a href="#cb8-21"></a><span class="co">## # A tibble: 2 x 7</span></span>
-<span id="cb8-22"><a href="#cb8-22"></a><span class="co">##   txt                    am     n     N  stat cut        cutgrp</span></span>
-<span id="cb8-23"><a href="#cb8-23"></a><span class="co">##   &lt;chr&gt;               &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;fct&gt;      &lt;fct&gt; </span></span>
-<span id="cb8-24"><a href="#cb8-24"></a><span class="co">## 1 Percentage MPG &gt; 20     0     4    19  21.1 (0,33.3]   Low   </span></span>
-<span id="cb8-25"><a href="#cb8-25"></a><span class="co">## 2 Percentage MPG &gt; 20     1    10    13  76.9 (66.6,100] High  </span></span>
-<span id="cb8-26"><a href="#cb8-26"></a><span class="co">## </span></span>
-<span id="cb8-27"><a href="#cb8-27"></a><span class="co">## $am$outlier</span></span>
-<span id="cb8-28"><a href="#cb8-28"></a><span class="co">## # A tibble: 0 x 5</span></span>
-<span id="cb8-29"><a href="#cb8-29"></a><span class="co">## # … with 5 variables: txt &lt;chr&gt;, am &lt;dbl&gt;, n &lt;int&gt;, N &lt;int&gt;, stat &lt;dbl&gt;</span></span>
-<span id="cb8-30"><a href="#cb8-30"></a><span class="co">## </span></span>
-<span id="cb8-31"><a href="#cb8-31"></a><span class="co">## </span></span>
-<span id="cb8-32"><a href="#cb8-32"></a><span class="co">## attr(,"class")</span></span>
-<span id="cb8-33"><a href="#cb8-33"></a><span class="co">## [1] "kpi"  "list"</span></span></code></pre></div>
+<span id="cb8-18"><a href="#cb8-18"></a><span class="co">## No outliers</span></span></code></pre></div>
 </div>
 <div id="visualising-variation-among-levels-of-the-study-hierarchy" class="section level2">
 <h2 class="hasAnchor">
