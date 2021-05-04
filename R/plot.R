@@ -23,20 +23,22 @@
 #'   theme_bw() +
 #'   labs(title = "Foo")
 #'
-plot.kpi <- function(x, y, col = "#E6002EFF", pch = 21, ...){
+plot.kpi <- function(x, y = 1, col = "#E6002EFF", pch = 21, ...){
   stat <- N <- NULL # avoid global binding note
 
-  w <- names(x)[!names(x) %in% "overall"]
+  w <- names(x)[!names(x) %in% c("settings", "overall")]
 
-  if(length(w) == 0) warning("plots only created with the by option")
+  if(length(w) == 0) stop("plots only created with the by option")
 
-  x2 <- x[w]
+  x2 <- as.list(x)[w]
 
-  plots <- lapply(x2, function(x){
-    y <- ggplot(x$calc, aes(x = stat, y = 1, size = N)) +
+  plots <- lapply(x2, function(l){
+    d <- as.data.frame(l$calc)
+    d$y <- y
+    p <- ggplot(d, aes(x = stat, y = y, size = N)) +
       geom_point(pch = 21, col = col) +
-      xlab(unique(x$calc$txt))
-    y
+      xlab(unique(d$txt))
+    p
   })
 
   return(plots)

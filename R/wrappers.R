@@ -18,7 +18,7 @@ kpi_by <- function(data,
                        txt = txt
                        )
 
-  out$outlier <- kpi_outlier(out$calc)
+  if(!is.null(by)) out$outlier <- kpi_outlier(out$calc)
 
   if (!is.null(cutpoints)) {
     out$calc <- kpi_cut(out$calc,
@@ -47,9 +47,10 @@ kpi_by <- function(data,
 #' @export
 #'
 #' @examples
-#' mtcars %>%
+#' kpi <- mtcars %>%
 #'   mutate(cylgt4 = cyl > 4) %>%
-#'   kpi(var = "mpg", cutpoints = c(0, 22, 50), by = c("am", "cyl"), txt = "MPG")
+#'   kpi(var = "mpg", cutpoints = c(0, 22, 50), by = c("am", "cyl"), txt = "MPG",
+#'       kpi_fn = kpi_fn_median)
 kpi <- function(data,
                 var,
                 by = NULL,
@@ -59,8 +60,18 @@ kpi <- function(data,
                 cutlabels = NULL
                 ){
 
+  if(txt == "") txt <- var
+
+  kpitype <- as.character(as.list(match.call())$kpi_fn)
+  kpitype <- sub("^kpi_fn_", "", kpitype)
+
+
   # print("start")
-  out <- list()
+  out <- list(settings = list(var = var,
+                              by = by,
+                              txt = txt,
+                              kpitype = kpitype)
+              )
   out$overall <- kpi_by(data
                         , var = var
                         , kpi_fn = kpi_fn
@@ -108,5 +119,3 @@ kpi <- function(data,
 #   # kpi_by(var = "mpg", by = "am", txt = "MPG") %>%
 #   # kpi_by(var = "mpg", txt = "MPG") %>%
 #   boomer::boom()
-
-
