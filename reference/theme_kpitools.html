@@ -85,6 +85,9 @@
   </a>
 </li>
 <li>
+  <a href="../articles/kpitools.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
@@ -122,11 +125,12 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>kpi</span> <span class='op'>&lt;-</span> <span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='kpi.html'>kpi</a></span><span class='op'>(</span><span class='st'>"mpg"</span>, by <span class='op'>=</span> <span class='st'>"cyl"</span>, txt <span class='op'>=</span> <span class='st'>"MPG"</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>kpi</span><span class='op'>)</span><span class='op'>$</span><span class='va'>cyl</span> <span class='op'>+</span>
-  <span class='fu'>theme_kpitools</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='img'><img src='theme_kpitools-1.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><span class='r-in'><span class='va'>kpi</span> <span class='op'>&lt;-</span> <span class='va'>mtcars</span> <span class='op'>%&gt;%</span></span>
+<span class='r-in'>  <span class='fu'><a href='kpi.html'>kpi</a></span><span class='op'>(</span><span class='st'>"mpg"</span>, by <span class='op'>=</span> <span class='st'>"cyl"</span>, txt <span class='op'>=</span> <span class='st'>"MPG"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>kpi</span><span class='op'>)</span><span class='op'>$</span><span class='va'>cyl</span> <span class='op'>+</span></span>
+<span class='r-in'>  <span class='fu'>theme_kpitools</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-plt'><img src='theme_kpitools-1.png' alt='' width='700' height='433' /></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

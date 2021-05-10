@@ -90,6 +90,9 @@ of the observations." />
   </a>
 </li>
 <li>
+  <a href="../articles/kpitools.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
@@ -161,18 +164,19 @@ functions return <code>stat</code> and <code>N</code>, with some also returning 
 <p>See the examples passing custom functions.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>fn</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>{</span>
-  <span class='va'>x</span> <span class='op'>%&gt;%</span>
-    <span class='fu'>summarize</span><span class='op'>(</span>stat <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>var</a></span><span class='op'>(</span><span class='va'>var</span><span class='op'>)</span><span class='op'>)</span>
-<span class='op'>}</span>
-
-<span class='fu'><a href='kpi.html'>kpi</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='st'>"mpg"</span>, kpi_fn <span class='op'>=</span> <span class='va'>fn</span><span class='op'>)</span>
-</div><div class='co'>#&gt; Study level:
-#&gt;  txt    stat
-#&gt;  mpg 36.3241
-#&gt; </div><div class='input'>
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='va'>fn</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>{</span></span>
+<span class='r-in'>  <span class='va'>x</span> <span class='op'>%&gt;%</span></span>
+<span class='r-in'>    <span class='fu'>summarize</span><span class='op'>(</span>stat <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>var</a></span><span class='op'>(</span><span class='va'>var</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='op'>}</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'><a href='kpi.html'>kpi</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='st'>"mpg"</span>, kpi_fn <span class='op'>=</span> <span class='va'>fn</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Study level:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  txt    stat</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  mpg 36.3241</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

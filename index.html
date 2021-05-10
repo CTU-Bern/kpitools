@@ -44,6 +44,9 @@
   </a>
 </li>
 <li>
+  <a href="articles/kpitools.html">Get started</a>
+</li>
+<li>
   <a href="reference/index.html">Reference</a>
 </li>
       </ul>
@@ -76,120 +79,25 @@
 <div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">Sys.setenv</span>(<span class="dt">R_REMOTES_NO_ERRORS_FROM_WARNINGS =</span> <span class="st">"true"</span>)</span></code></pre></div>
 <p>And loaded via</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">library</span>(kpitools)</span></code></pre></div>
-<div id="calculating-kpis" class="section level2">
-<h2 class="hasAnchor">
-<a href="#calculating-kpis" class="anchor"></a>Calculating KPIs</h2>
 <p>The main function is the <code>kpi</code> function. A dataframe is passed to it together with the <code>var</code>iable that is of interest for the current KPI. A summary function also needs to be passed which determines how the KPI is calculated.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">data</span>(mtcars)</span>
 <span id="cb4-2"><a href="#cb4-2"></a></span>
 <span id="cb4-3"><a href="#cb4-3"></a>mtcars<span class="op">$</span>highmpg &lt;-<span class="st"> </span>mtcars<span class="op">$</span>mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span></span>
 <span id="cb4-4"><a href="#cb4-4"></a></span>
-<span id="cb4-5"><a href="#cb4-5"></a>mtcars <span class="op">%&gt;%</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="st">  </span><span class="kw">kpi</span>(<span class="dt">var =</span> <span class="st">"highmpg"</span>,             <span class="co"># variable to be summarized (focus of the KPI)</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a>      <span class="dt">kpi_fn =</span> kpi_fn_perc,        <span class="co"># summary function</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a>      <span class="dt">txt =</span> <span class="st">"Percentage MPG &gt; 25"</span>) <span class="co"># (optional) nicer text to add to tables</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="co">## Study level:</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="co">##                  txt  n  N  stat</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="co">##  Percentage MPG &gt; 25 14 32 43.75</span></span></code></pre></div>
-<p>It is also possible to calculate the KPIs over specific groups via the <code>by</code> option:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>mtcars <span class="op">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="st">  </span><span class="kw">kpi</span>(<span class="dt">var =</span> <span class="st">"highmpg"</span>,             <span class="co"># variable to be summarized (focus of the KPI)</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>      <span class="dt">kpi_fn =</span> kpi_fn_perc,        <span class="co"># summary function</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>      <span class="dt">txt =</span> <span class="st">"Percentage MPG &gt; 20"</span>, <span class="co"># (optional) nicer text to add to tables</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>      <span class="dt">by =</span> <span class="st">"am"</span>)                   <span class="co"># (optional) stratifying variable</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="co">## Study level:</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="co">##                  txt  n  N  stat</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="co">##  Percentage MPG &gt; 20 14 32 43.75</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="co">## </span></span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="co">## Grouped by am:</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="co">##                  txt am  n  N     stat</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="co">##  Percentage MPG &gt; 20  0  4 19 21.05263</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="co">##  Percentage MPG &gt; 20  1 10 13 76.92308</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="co">## </span></span>
-<span id="cb5-16"><a href="#cb5-16"></a><span class="co">## No outliers</span></span></code></pre></div>
-<p>The <code>by</code> argument also works over multiple variables:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>mtcars <span class="op">%&gt;%</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="st">  </span><span class="kw">kpi</span>(<span class="dt">var =</span> <span class="st">"highmpg"</span>,             <span class="co"># variable to be summarized (focus of the KPI)</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>      <span class="dt">kpi_fn =</span> kpi_fn_perc,        <span class="co"># summary function</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a>      <span class="dt">txt =</span> <span class="st">"Percentage MPG &gt; 20"</span>, <span class="co"># (optional) nicer text to add to tables</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a>      <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">"am"</span>, <span class="st">"gear"</span>))        <span class="co"># (optional) stratifying variables</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="co">## Study level:</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="co">##                  txt  n  N  stat</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="co">##  Percentage MPG &gt; 20 14 32 43.75</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="co">## </span></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="co">## Grouped by am:</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="co">##                  txt am  n  N     stat</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="co">##  Percentage MPG &gt; 20  0  4 19 21.05263</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="co">##  Percentage MPG &gt; 20  1 10 13 76.92308</span></span>
-<span id="cb6-15"><a href="#cb6-15"></a><span class="co">## </span></span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="co">## No outliers</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a><span class="co">## Grouped by gear:</span></span>
-<span id="cb6-18"><a href="#cb6-18"></a><span class="co">##                  txt gear  n  N     stat</span></span>
-<span id="cb6-19"><a href="#cb6-19"></a><span class="co">##  Percentage MPG &gt; 20    3  2 15 13.33333</span></span>
-<span id="cb6-20"><a href="#cb6-20"></a><span class="co">##  Percentage MPG &gt; 20    4 10 12 83.33333</span></span>
-<span id="cb6-21"><a href="#cb6-21"></a><span class="co">##  Percentage MPG &gt; 20    5  2  5 40.00000</span></span>
-<span id="cb6-22"><a href="#cb6-22"></a><span class="co">## </span></span>
-<span id="cb6-23"><a href="#cb6-23"></a><span class="co">## No outliers</span></span></code></pre></div>
-<p>KPIs are often reported with cutoffs (for use with a traffic light type approach). Cutoffs can be passed to <code>kpi</code>, with or without labels.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># without labels</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>mtcars <span class="op">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="st">  </span><span class="kw">kpi</span>(<span class="dt">var =</span> <span class="st">"highmpg"</span>,                <span class="co"># variable to be summarized (focus of the KPI) </span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>      <span class="dt">kpi_fn =</span> kpi_fn_perc,           <span class="co"># summary function </span></span>
-<span id="cb7-5"><a href="#cb7-5"></a>      <span class="dt">txt =</span> <span class="st">"Percentage MPG &gt; 20"</span>,    <span class="co"># (optional) nicer text to add to tables</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a>      <span class="dt">by =</span> <span class="st">"am"</span>,                      <span class="co"># (optional) stratifying variable</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a>      <span class="dt">cutpoints =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">33.3</span>,<span class="fl">66.6</span>,<span class="dv">100</span>)) <span class="co"># (optional) cutoff points</span></span></code></pre></div>
-<p>Add in cutoffs for quality with labels</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>mtcars <span class="op">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="st">  </span><span class="kw">kpi</span>(<span class="dt">var =</span> <span class="st">"highmpg"</span>,                        <span class="co"># variable to be summarized (focus of the KPI)  </span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>      <span class="dt">kpi_fn =</span> kpi_fn_perc,                   <span class="co"># summary function   </span></span>
-<span id="cb8-4"><a href="#cb8-4"></a>      <span class="dt">txt =</span> <span class="st">"Percentage MPG &gt; 20"</span>,            <span class="co"># (optional) nicer text to add to tables </span></span>
-<span id="cb8-5"><a href="#cb8-5"></a>      <span class="dt">by =</span> <span class="st">"am"</span>,                              <span class="co"># (optional) stratifying variable </span></span>
-<span id="cb8-6"><a href="#cb8-6"></a>      <span class="dt">cutpoints =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">33.3</span>,<span class="fl">66.6</span>,<span class="dv">100</span>),         <span class="co"># (optional) cutoff points </span></span>
-<span id="cb8-7"><a href="#cb8-7"></a>      <span class="dt">cutlabels =</span> <span class="kw">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>)) <span class="co"># (optional) labels for the cutoff points</span></span>
-<span id="cb8-8"><a href="#cb8-8"></a></span>
-<span id="cb8-9"><a href="#cb8-9"></a><span class="co">## Study level:</span></span>
-<span id="cb8-10"><a href="#cb8-10"></a><span class="co">##                  txt  n  N  stat         cut cutgrp</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a><span class="co">##  Percentage MPG &gt; 20 14 32 43.75 (33.3,66.6] Medium</span></span>
-<span id="cb8-12"><a href="#cb8-12"></a><span class="co">## </span></span>
-<span id="cb8-13"><a href="#cb8-13"></a><span class="co">## Grouped by am:</span></span>
-<span id="cb8-14"><a href="#cb8-14"></a><span class="co">##                  txt am  n  N     stat        cut cutgrp</span></span>
-<span id="cb8-15"><a href="#cb8-15"></a><span class="co">##  Percentage MPG &gt; 20  0  4 19 21.05263   (0,33.3]    Low</span></span>
-<span id="cb8-16"><a href="#cb8-16"></a><span class="co">##  Percentage MPG &gt; 20  1 10 13 76.92308 (66.6,100]   High</span></span>
-<span id="cb8-17"><a href="#cb8-17"></a><span class="co">## </span></span>
-<span id="cb8-18"><a href="#cb8-18"></a><span class="co">## No outliers</span></span></code></pre></div>
-</div>
-<div id="visualising-variation-among-levels-of-the-study-hierarchy" class="section level2">
-<h2 class="hasAnchor">
-<a href="#visualising-variation-among-levels-of-the-study-hierarchy" class="anchor"></a>Visualising variation among levels of the study hierarchy</h2>
+<span id="cb4-5"><a href="#cb4-5"></a>kpis &lt;-<span class="st"> </span>(mtcars <span class="op">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="st">  </span><span class="kw">kpi</span>(<span class="dt">var =</span> <span class="st">"highmpg"</span>,                         <span class="co"># variable to be summarized (focus of the KPI)  </span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>      <span class="dt">kpi_fn =</span> kpi_fn_perc,                    <span class="co"># summary function   </span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>      <span class="dt">txt =</span> <span class="st">"Percentage MPG &gt; 20"</span>,             <span class="co"># (optional) nicer text to add to tables </span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>      <span class="dt">by =</span> <span class="st">"cyl"</span>,                               <span class="co"># (optional) stratifying variable </span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>      <span class="dt">cutpoints =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">33.3</span>,<span class="fl">66.6</span>,<span class="dv">100</span>),          <span class="co"># (optional) cutoff points </span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>      <span class="dt">cutlabels =</span> <span class="kw">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>))) <span class="co"># (optional) labels for the cutoff points</span></span></code></pre></div>
 <p>There is a plot method for the output from <code>kpi</code> which returns a list of <code>ggplot2</code> objects.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>kpi &lt;-<span class="st"> </span>mtcars <span class="op">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="st">  </span><span class="kw">kpi</span>(<span class="dt">var =</span> <span class="st">"highmpg"</span>, </span>
-<span id="cb9-3"><a href="#cb9-3"></a>      <span class="dt">kpi_fn =</span> kpi_fn_perc, </span>
-<span id="cb9-4"><a href="#cb9-4"></a>      <span class="dt">txt =</span> <span class="st">"Percentage MPG &gt; 20"</span>,</span>
-<span id="cb9-5"><a href="#cb9-5"></a>      <span class="dt">by =</span> <span class="st">"cyl"</span>)</span>
-<span id="cb9-6"><a href="#cb9-6"></a></span>
-<span id="cb9-7"><a href="#cb9-7"></a>(plot &lt;-<span class="st"> </span><span class="kw">plot</span>(kpi))</span>
-<span id="cb9-8"><a href="#cb9-8"></a></span>
-<span id="cb9-9"><a href="#cb9-9"></a><span class="co">## $cyl</span></span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-7-1.png"></p>
-<p><code>ggplot2</code> objects allow for easy modification after their creation for further customisation.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>plot<span class="op">$</span>cyl <span class="op">+</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb10-4"><a href="#cb10-4"></a>        <span class="dt">axis.text.y =</span> <span class="kw">element_blank</span>(),</span>
-<span id="cb10-5"><a href="#cb10-5"></a>        <span class="dt">axis.title.y =</span> <span class="kw">element_blank</span>(),</span>
-<span id="cb10-6"><a href="#cb10-6"></a>        <span class="dt">axis.ticks.y =</span> <span class="kw">element_blank</span>(),</span>
-<span id="cb10-7"><a href="#cb10-7"></a>        <span class="dt">legend.margin =</span> <span class="kw">margin</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>)</span>
-<span id="cb10-8"><a href="#cb10-8"></a>        )</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-8-1.png"></p>
-<p>A <code>ggplot2</code> theme is also provided which implements modifications similar to those above - <code>theme_kpitools</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>plot<span class="op">$</span>cyl <span class="op">+</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="st">  </span><span class="kw">theme_kpitools</span>()</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-9-1.png"></p>
-</div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>plot &lt;-<span class="st"> </span><span class="kw">plot</span>(kpis)</span>
+<span id="cb5-2"><a href="#cb5-2"></a>plot<span class="op">$</span>cyl <span class="op">+</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="st">  </span><span class="kw">theme_kpitools</span>()</span></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-4-1.png"></p>
+<p>For further details, see the vignette:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">vignette</span>(<span class="st">"kpitools"</span>)</span></code></pre></div>
 </div>
 
   </div>
