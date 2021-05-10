@@ -37,98 +37,37 @@ And loaded via
 library(kpitools)
 ```
 
-## Calculating KPIs 
-
 The main function is the `kpi` function. A dataframe is passed to it together with the `var`iable that is of interest for the current KPI. A summary function also needs to be passed which determines how the KPI is calculated.
 ```{r, eval = TRUE}
 data(mtcars)
 
 mtcars$highmpg <- mtcars$mpg > 20
-
-mtcars %>%
-  kpi(var = "highmpg",             # variable to be summarized (focus of the KPI)
-      kpi_fn = kpi_fn_perc,        # summary function
-      txt = "Percentage MPG > 25") # (optional) nicer text to add to tables
-
 ```
 
 
-It is also possible to calculate the KPIs over specific groups via the `by` option:
 ```{r}
-mtcars %>%
-  kpi(var = "highmpg",             # variable to be summarized (focus of the KPI)
-      kpi_fn = kpi_fn_perc,        # summary function
-      txt = "Percentage MPG > 20", # (optional) nicer text to add to tables
-      by = "am")                   # (optional) stratifying variable
+kpis <- (mtcars %>%
+  kpi(var = "highmpg",                         # variable to be summarized (focus of the KPI)  
+      kpi_fn = kpi_fn_perc,                    # summary function   
+      txt = "Percentage MPG > 20",             # (optional) nicer text to add to tables 
+      by = "cyl",                               # (optional) stratifying variable 
+      cutpoints = c(0,33.3,66.6,100),          # (optional) cutoff points 
+      cutlabels = c("Low", "Medium", "High"))) # (optional) labels for the cutoff points
 
 ```
-
-The `by` argument also works over multiple variables:
-```{r}
-mtcars %>%
-  kpi(var = "highmpg",             # variable to be summarized (focus of the KPI)
-      kpi_fn = kpi_fn_perc,        # summary function
-      txt = "Percentage MPG > 20", # (optional) nicer text to add to tables
-      by = c("am", "gear"))        # (optional) stratifying variables
-
-```
-
-KPIs are often reported with cutoffs (for use with a traffic light type approach). Cutoffs can be passed to `kpi`, with or without labels.
-```{r, eval = FALSE}
-# without labels
-mtcars %>%
-  kpi(var = "highmpg",                # variable to be summarized (focus of the KPI) 
-      kpi_fn = kpi_fn_perc,           # summary function 
-      txt = "Percentage MPG > 20",    # (optional) nicer text to add to tables
-      by = "am",                      # (optional) stratifying variable
-      cutpoints = c(0,33.3,66.6,100)) # (optional) cutoff points
-
-```
-
-Add in cutoffs for quality with labels
-```{r}
-mtcars %>%
-  kpi(var = "highmpg",                        # variable to be summarized (focus of the KPI)  
-      kpi_fn = kpi_fn_perc,                   # summary function   
-      txt = "Percentage MPG > 20",            # (optional) nicer text to add to tables 
-      by = "am",                              # (optional) stratifying variable 
-      cutpoints = c(0,33.3,66.6,100),         # (optional) cutoff points 
-      cutlabels = c("Low", "Medium", "High")) # (optional) labels for the cutoff points
-
-```
-
-## Visualising variation among levels of the study hierarchy
 
 There is a plot method for the output from `kpi` which returns a list of `ggplot2` objects.
 ```{r, fig.height=1.5}
-kpi <- mtcars %>%
-  kpi(var = "highmpg", 
-      kpi_fn = kpi_fn_perc, 
-      txt = "Percentage MPG > 20",
-      by = "cyl")
-
-(plot <- plot(kpi))
-```
-
-`ggplot2` objects allow for easy modification after their creation for further customisation.
-```{r, fig.height=1.5}
-plot$cyl +
-  theme_bw() +
-  theme(legend.position = "bottom",
-        axis.text.y = element_blank(),
-        axis.title.y = element_blank(),
-        axis.ticks.y = element_blank(),
-        legend.margin = margin(0,0,0,0)
-        )
-  
-```
-
-A `ggplot2` theme is also provided which implements modifications similar to those above - `theme_kpitools`.
-```{r, fig.height=1.5}
+plot <- plot(kpis)
 plot$cyl +
   theme_kpitools()
 ```
 
+
+For further details, see the vignette:
+```{r, eval = FALSE}
+vignette("kpitools")
+```
 
 
 

@@ -1,0 +1,139 @@
+---
+title: "Using `kpitools`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using `kpitools`}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+`kpitools` is intended to aid in creating reports on key performance indicators 
+(KPIs). KPIs must be defined by the user, which can be a substantial undertaking, 
+but `kpitools` then takes away some of the pain of putting them into a report.
+
+`kpitools` is loaded as any other package, with the `library` or require `functions`:
+
+
+```{r setup}
+library(kpitools)
+```
+
+
+Once the KPIs are defined, it should be clear what type of indicator one needs to
+report. For instance, using the `mtcars` dataset, we may have an indicator for 
+low mileage (e.g. MPG less than 15). We're not really interested in the individual 
+cars, but at the group of products as a whole. If the proportion of cars with low 
+mileage is higher than 20%, we may have to take actions to reduce the proportion.
+
+to use `kpitools`, we must first load the data and create the indicators themselves
+(using whatever method for a given dataset). 
+
+```{r}
+data(mtcars)
+mtcars$lowmpg <- mtcars$mpg < 15
+```
+
+`kpitools` can then be used to get summary information on the defined KPIs. We 
+tell the `kpi` function which dataset to use, which variable to summarize and how
+to summarize it, using the `kpi_fn` argument.
+
+```{r}
+x <- (kpi(data = mtcars, 
+          var = "lowmpg",
+          kpi_fn = kpi_fn_perc))
+x
+```
+
+
+We see that of the `r x$overall$calc$N` cars, `r x$overall$calc$n` (`r x$overall$calc$stat`%) cars have low mileage (according to our definition).
+
+We can improve the output by adding a more meaningful label via the `txt` argument.
+
+
+```{r}
+kpi(data = mtcars, 
+    var = "lowmpg",
+    kpi_fn = kpi_fn_perc,
+    txt = "Milage < 15 MPG")
+
+```
+
+## Hierarchies
+
+We can also look at specific subgroups (e.g. in a clinical trial, we would be 
+interested in the performance of particular countries or centers) via the `by` 
+argument. Using the `mtcars` example, we can use the number of cylinders.
+
+```{r}
+x_by <- (kpi(data = mtcars, 
+             var = "lowmpg",
+             kpi_fn = kpi_fn_perc,
+             txt = "Milage < 15 MPG",
+             by = "cyl"))
+x_by
+```
+
+Here we can see that all of the low mileage cars are in the 8 cylinder group, 
+with `r x_by$cyl$calc$stat[3]`% of cars having low mileage.
+
+We can also pass multiple variables to `by` (so that we can consider two levels 
+or more levels of hierarchy simultaneously)
+```{r}
+x_by <- (kpi(data = mtcars, 
+             var = "lowmpg",
+             kpi_fn = kpi_fn_perc,
+             txt = "Milage < 15 MPG",
+             by = c("cyl", "am")))
+x_by
+```
+
+Here, we see that cars with manual gearboxes are more problematic than those with
+automatic gearboxes.
+
+## Plotting
+Where hierarchies have been used, KPIs can also be visualized by plotting the 
+object, which returns a list of 
+`ggplot2` objects (so that you can modify the plots afterwards; we suggest a wide, 
+short plot, e.g. `fig.width=7, fig.height=1.5` in the R chunk header). 
+
+```{r, fig.width=7, fig.height=1.5}
+(p <- plot(x_by))
+```
+
+The size of the points is relative to the number of observations (participants)
+in the site/group.
+
+`kpitools` contains a `ggplot2` which can be used to remove the y-axis, move the 
+legend and make various other changes:
+```{r, fig.width=7, fig.height=1.5}
+p[[1]] + theme_kpitools()
+```
+
+Modifications can be made to all plots easily via e.g. `lapply` or `purrr::map`
+
+```{r}
+p <- purrr::map2(p, names(p), function(x, y){
+  x +                                       # extract the ggplot object
+    theme_kpitools() +                      # apply the theme
+    guides(size = guide_legend(nrow = 1)) + # make other modifications
+    ggtitle(toupper(y))                     # add a title
+})
+```
+
+The `patchwork` package, for example, could then be used to arrange the plots 
+
+```{r, fig.width=7, fig.height=3}
+patchwork::wrap_plots(p, ncol = 1)
+```
+
+
+
+
+

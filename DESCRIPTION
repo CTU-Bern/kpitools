@@ -14,6 +14,11 @@ LazyData: false
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Suggests: 
+    knitr,
+    patchwork,
+    purrr,
+    markdown,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Depends:
@@ -21,3 +26,4 @@ Depends:
   ggplot2,
   magrittr,
   rlang
+VignetteBuilder: knitr
