@@ -35,14 +35,19 @@ c.kpi <- function(...){
     x <- args[[i]]
     if("kpilist" %in% class(x)){
       for(j in seq_along(x)){
+        name <- paste0(x[[j]]$settings$var, "__", x[[j]]$settings$kpitype)
+        if(name %in% names(out)) warning("possible duplicate kpi created")
         out[[counter]] <- x[[j]]
+        names(out)[counter] <- name
         counter <- counter + 1
       }
     } else {
+      name <- paste0(x$settings$var, "__", x$settings$kpitype)
+      if(name %in% names(out)) warning("possible duplicate kpi created")
       out[[counter]] <- x
+      names(out)[counter] <- name
       counter <- counter + 1
     }
-    print(length(out))
   }
 
   class(out) <- c("kpilist", "list")
