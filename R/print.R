@@ -1,7 +1,3 @@
-
-
-
-
 #' Print method for kpi objects
 #'
 #' @param x kpi object
@@ -11,7 +7,11 @@
 #'
 #' @return
 #' @export
-#'
+#' kpi <- mtcars %>%
+#'   mutate(cylgt4 = cyl > 4) %>%
+#'   kpi(var = "mpg", cutpoints = c(0, 22, 50), by = c("am", "cyl"), txt = "MPG",
+#'       kpi_fn = kpi_fn_median)
+#' print(kpi, table = TRUE, outlier = FALSE)
 #' @examples
 print.kpi <- function(x, table = TRUE, outlier = TRUE, ...){
 
