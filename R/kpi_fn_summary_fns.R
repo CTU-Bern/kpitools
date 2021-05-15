@@ -16,7 +16,6 @@
 #'
 #' @param .data data frame
 #'
-#' @return
 #' @export
 #'
 #' @rdname kpi_fn_
@@ -24,6 +23,26 @@
 #' @importFrom stats IQR median quantile
 #'
 #' @examples
+#' # mean
+#' kpi(mtcars, "mpg", kpi_fn = kpi_fn_mean)
+#' # median
+#' kpi(mtcars, "mpg", kpi_fn = kpi_fn_median)
+#' # interquartile range
+#' kpi(mtcars, "mpg", kpi_fn = kpi_fn_iqr)
+#' # minimum
+#' kpi(mtcars, "mpg", kpi_fn = kpi_fn_min)
+#' # maximum
+#' kpi(mtcars, "mpg", kpi_fn = kpi_fn_max)
+#' # proportion
+#' kpi(mtcars, "am", kpi_fn = kpi_fn_prop)
+#' # percentage
+#' kpi(mtcars, "am", kpi_fn = kpi_fn_perc)
+#' # number/sum
+#' kpi(mtcars, "am", kpi_fn = kpi_fn_n)
+#'
+#'
+#'
+#'
 #' fn <- function(x){
 #'   x %>%
 #'     summarize(stat = var(var))
