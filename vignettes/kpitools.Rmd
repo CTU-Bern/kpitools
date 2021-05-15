@@ -1,6 +1,8 @@
 ---
 title: "Using `kpitools`"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteIndexEntry{Using `kpitools`}
   %\VignetteEngine{knitr::rmarkdown}
@@ -21,49 +23,95 @@ but `kpitools` then takes away some of the pain of putting them into a report.
 `kpitools` is loaded as any other package, with the `library` or require `functions`:
 
 
-```{r setup}
+```{r setup, message=FALSE}
 library(kpitools)
 ```
 
 
 Once the KPIs are defined, it should be clear what type of indicator one needs to
 report. For instance, using the `mtcars` dataset, we may have an indicator for 
-low mileage (e.g. MPG less than 15). We're not really interested in the individual 
-cars, but at the group of products as a whole. If the proportion of cars with low 
-mileage is higher than 20%, we may have to take actions to reduce the proportion.
+mileage. We're not really interested in the individual 
+cars, but at the group of products as a whole. If the mean 
+mileage is lower than 15, we may have to take actions to reduce the proportion.
 
-to use `kpitools`, we must first load the data and create the indicators themselves
+To use `kpitools`, we must first load the data and create the indicators themselves
 (using whatever method for a given dataset). 
 
 ```{r}
 data(mtcars)
-mtcars$lowmpg <- mtcars$mpg < 15
 ```
 
 `kpitools` can then be used to get summary information on the defined KPIs. We 
 tell the `kpi` function which dataset to use, which variable to summarize and how
-to summarize it, using the `kpi_fn` argument.
+to summarize it (`kpi` summarizes using the mean by default).
 
 ```{r}
 x <- (kpi(data = mtcars, 
-          var = "lowmpg",
-          kpi_fn = kpi_fn_perc))
+          var = "mpg"))
 x
 ```
 
 
-We see that of the `r x$overall$calc$N` cars, `r x$overall$calc$n` (`r x$overall$calc$stat`%) cars have low mileage (according to our definition).
+We see that the `r x$overall$calc$N` cars have a mean MPG of `r round(x$overall$calc$stat)` miles per gallon.
 
 We can improve the output by adding a more meaningful label via the `txt` argument.
 
 
 ```{r}
 kpi(data = mtcars, 
-    var = "lowmpg",
+    var = "mpg",
+    txt = "Miles per gallon")
+
+```
+
+## Summary functions
+
+`kpitools` comes with a set of functions for summarizing the KPIs.  
+
+| Function          |Description
+|-------------------|:---------------------------------------
+|*Categorical KPIs* |
+|`kpi_fn_n`         |takes the sum of objects
+|`kpi_fn_prop`      |calculates the proportion of 1s
+|`kpi_fn_perc`      |as `kpi_fn_prop` but on percentage scale
+|*Numeric KPIs*     |
+|`kpi_fn_median`    |calculates the median
+|`kpi_fn_mean`      |calculates the mean
+|`kpi_fn_iqr`       |calculates the interquartile range
+|`kpi_fn_min`       |calculates the minimum
+|`kpi_fn_max`       |calculates the maximum
+
+These functions are passed to `kpi` via the `kpi_fn` argument. 
+
+Say our KPI is on the proportion of cars with an MPG less than 15... first we create the variable and pass that to `kpi` with the appropriate summary function. 
+
+```{r}
+mtcars$mpg15 <- mtcars$mpg < 15
+kpi(data = mtcars, 
+    var = "mpg15",
     kpi_fn = kpi_fn_perc,
     txt = "Milage < 15 MPG")
 
 ```
+
+### Using custom functions
+
+Custom functions can also be utilized. Simply define a function which accepts a 
+dataframe and performs the summary function of choice on a `var` variable. The summarised 
+variable should be called `stat`. below is example to summarise the variable by
+the variance.
+
+```{r}
+fn <- function(x){
+  x %>%
+    summarize(stat = var(var))
+}
+
+kpi(mtcars, "mpg", kpi_fn = fn)
+
+```
+
+
 
 ## Hierarchies
 
@@ -73,7 +121,7 @@ argument. Using the `mtcars` example, we can use the number of cylinders.
 
 ```{r}
 x_by <- (kpi(data = mtcars, 
-             var = "lowmpg",
+             var = "mpg15",
              kpi_fn = kpi_fn_perc,
              txt = "Milage < 15 MPG",
              by = "cyl"))
@@ -87,7 +135,7 @@ We can also pass multiple variables to `by` (so that we can consider two levels
 or more levels of hierarchy simultaneously)
 ```{r}
 x_by <- (kpi(data = mtcars, 
-             var = "lowmpg",
+             var = "mpg15",
              kpi_fn = kpi_fn_perc,
              txt = "Milage < 15 MPG",
              by = c("cyl", "am")))
