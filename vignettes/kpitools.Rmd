@@ -28,20 +28,22 @@ library(kpitools)
 ```
 
 
-Once the KPIs are defined, it should be clear what type of indicator one needs to
+Once the KPIs are defined conceptually, it should be clear what type of indicator one needs to
 report. For instance, using the `mtcars` dataset, we may have an indicator for 
-mileage. We're not really interested in the individual 
-cars, but at the group of products as a whole. If the mean 
-mileage is lower than 15, we may have to take actions to reduce the proportion.
+mileage. We're not really interested in the individual cars, but at the group of 
+products as a whole. If the mean mileage is lower than 15, we may have to take 
+actions to reduce the proportion. In a clinical trial, such remedial actions might 
+be to retrain staff or, in a particularly serious case, closing a site completely.
 
 To use `kpitools`, we must first load the data and create the indicators themselves
-(using whatever method for a given dataset). 
+(using whatever method for a given dataset). To begin with, we will start with 
+the `mpg` variable in the `mtcars` data.
 
 ```{r}
 data(mtcars)
 ```
 
-`kpitools` can then be used to get summary information on the defined KPIs. We 
+`kpitools` produces summary information on the defined KPIs. We 
 tell the `kpi` function which dataset to use, which variable to summarize and how
 to summarize it (`kpi` summarizes using the mean by default).
 
@@ -54,7 +56,7 @@ x
 
 We see that the `r x$overall$calc$N` cars have a mean MPG of `r round(x$overall$calc$stat)` miles per gallon.
 
-We can improve the output by adding a more meaningful label via the `txt` argument.
+We can improve the output slightly by adding a more meaningful label via the `txt` argument.
 
 
 ```{r}
@@ -68,8 +70,8 @@ kpi(data = mtcars,
 
 `kpitools` comes with a set of functions for summarizing the KPIs.  
 
-| Function          |Description
-|-------------------|:---------------------------------------
+|Function           |Description
+|:------------------|:---------------------------------------
 |*Categorical KPIs* |
 |`kpi_fn_n`         |takes the sum of objects
 |`kpi_fn_prop`      |calculates the proportion of 1s
