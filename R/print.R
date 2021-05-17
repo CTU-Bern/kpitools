@@ -5,7 +5,7 @@
 #' @param outlier logical, whether to add a table of outliers to the output
 #' @param ... not currently used
 #'
-#' @return
+#' @return output printed to the console
 #' @export
 #' kpi <- mtcars %>%
 #'   mutate(cylgt4 = cyl > 4) %>%
