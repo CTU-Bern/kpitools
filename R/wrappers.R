@@ -1,13 +1,17 @@
 # wrappers
 
 
-kpi_by <- function(data,
-                   var = var,
-                   by = NULL,
-                   kpi_fn = kpi_fn_mean,
-                   txt = "",
-                   cutpoints = NULL,
-                   cutlabels = NULL){
+kpi_by <- function(data
+                   , var = var
+                   , by = NULL
+                   , kpi_fn = kpi_fn_mean
+                   , txt = ""
+                   , n_iqr = 2
+                   , breakpoints = NULL
+                   , risklabels = NULL
+                   , direction = c("increasing", "decreasing")
+                   , raw_cut = FALSE
+                   ){
 
   # print(by)
   out <- list()
@@ -18,12 +22,15 @@ kpi_by <- function(data,
                        txt = txt
                        )
 
-  if(!is.null(by)) out$outlier <- kpi_outlier(out$calc)
+  if(!is.null(by)) out$outlier <- kpi_outlier(out$calc, n_iqr)
 
-  if (!is.null(cutpoints)) {
-    out$calc <- kpi_cut(out$calc,
-                        cutpoints,
-                        cutlabels)
+  if (!is.null(breakpoints)) {
+    out$calc <- kpi_cut(out$calc
+                        , breakpoints = breakpoints
+                        , risklabels = risklabels
+                        , direction = direction
+                        , raw_cut = raw_cut
+                        )
   }
 
   out
@@ -34,14 +41,12 @@ kpi_by <- function(data,
 
 
 #' Create KPI tables
-#'
 #' @param data a data frame
 #' @param var the variable to summarize
 #' @param by optional variable(s) to group over
 #' @param kpi_fn summary function
 #' @param txt a descriptive text
-#' @param cutpoints cut points (if KPIs use a traffic light system)
-#' @param cutlabels labels for the cut points
+#' @inheritParams kpi_cut
 #'
 #' @return a list with either 1 or (length(by) + 1) lists.
 #' @export
@@ -49,16 +54,24 @@ kpi_by <- function(data,
 #' @examples
 #' kpi <- mtcars %>%
 #'   mutate(cylgt4 = cyl > 4) %>%
-#'   kpi(var = "mpg", cutpoints = c(0, 22, 50), by = c("am", "cyl"), txt = "MPG",
+#'   kpi(var = "mpg",
+#'       breakpoints = c(0, 22, 50),
+#'       by = c("am", "cyl"),
+#'       txt = "MPG",
 #'       kpi_fn = kpi_fn_median)
-kpi <- function(data,
-                var,
-                by = NULL,
-                kpi_fn = kpi_fn_mean,
-                txt = "",
-                cutpoints = NULL,
-                cutlabels = NULL
+kpi <- function(data
+                , var
+                , by = NULL
+                , kpi_fn = kpi_fn_mean
+                , txt = ""
+                , n_iqr = 2
+                , breakpoints = NULL
+                , risklabels = risklabs(breakpoints)
+                , direction = c("increasing", "decreasing")
+                , raw_cut = FALSE
                 ){
+
+  direction <- match.arg(direction)
 
   if(txt == "") txt <- var
 
@@ -67,17 +80,23 @@ kpi <- function(data,
 
 
   # print("start")
-  out <- list(settings = list(var = var,
-                              by = by,
-                              txt = txt,
-                              kpitype = kpitype)
+  out <- list(settings = list(var = var
+                              , by = by
+                              , txt = txt
+                              , kpitype = kpitype
+                              , breakpoints = breakpoints
+                              , risklabels = risklabels
+                              )
               )
   out$overall <- kpi_by(data
                         , var = var
                         , kpi_fn = kpi_fn
                         , txt = txt
-                        , cutpoints = cutpoints
-                        , cutlabels = cutlabels
+                        , n_iqr = 2
+                        , breakpoints = breakpoints
+                        , risklabels = risklabels
+                        , direction = direction
+                        , raw_cut = raw_cut
                         )
   # print("by")
 
@@ -91,8 +110,10 @@ kpi <- function(data,
                            , by = byi
                            , kpi_fn = kpi_fn
                            , txt = txt
-                           , cutpoints = cutpoints
-                           , cutlabels = cutlabels
+                           , breakpoints = breakpoints
+                           , risklabels = risklabels
+                           , direction = direction
+                           , raw_cut = raw_cut
                            )
 
     }
@@ -119,3 +140,18 @@ kpi <- function(data,
 #   # kpi_by(var = "mpg", by = "am", txt = "MPG") %>%
 #   # kpi_by(var = "mpg", txt = "MPG") %>%
 #   boomer::boom()
+
+kpi_output <- function(kpi
+                       , txt = TRUE
+                       , plot = TRUE
+                       , tabs = TRUE
+
+                       ) {
+
+  if(!"kpi" %in% class(kpi)) stop("'kpi_output' requires object of class 'kpi'")
+
+
+
+
+
+}
