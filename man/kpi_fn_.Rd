@@ -37,9 +37,6 @@ kpi_fn_max(.data)
 \arguments{
 \item{.data}{data frame}
 }
-\value{
-
-}
 \description{
 These functions are not intended to be run as they are. They are intended to
 be passed as arguments to the \code{kpi} or \code{calc_kpi} functions. They
@@ -57,12 +54,24 @@ functions return \code{stat} and \code{N}, with some also returning \code{n}.
 See the examples passing custom functions.
 }
 \examples{
-fn <- function(x){
-  x \%>\%
-    summarize(stat = var(var))
-}
+# mean
+kpi(mtcars, "mpg", kpi_fn = kpi_fn_mean)
+# median
+kpi(mtcars, "mpg", kpi_fn = kpi_fn_median)
+# interquartile range
+kpi(mtcars, "mpg", kpi_fn = kpi_fn_iqr)
+# minimum
+kpi(mtcars, "mpg", kpi_fn = kpi_fn_min)
+# maximum
+kpi(mtcars, "mpg", kpi_fn = kpi_fn_max)
+# proportion
+kpi(mtcars, "am", kpi_fn = kpi_fn_prop)
+# percentage
+kpi(mtcars, "am", kpi_fn = kpi_fn_perc)
+# number/sum
+kpi(mtcars, "am", kpi_fn = kpi_fn_n)
 
-kpi(mtcars, "mpg", kpi_fn = fn)
+
 
 
 }

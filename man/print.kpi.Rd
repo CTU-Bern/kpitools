@@ -16,7 +16,7 @@
 \item{...}{not currently used}
 }
 \value{
-
+output printed to the console
 }
 \description{
 Print method for kpi objects
