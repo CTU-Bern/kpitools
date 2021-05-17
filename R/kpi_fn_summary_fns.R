@@ -43,14 +43,14 @@
 #'
 #'
 #'
-#' fn <- function(x){
-#'   x %>%
-#'     summarize(stat = var(var))
-#' }
-#'
-#' kpi(mtcars, "mpg", kpi_fn = fn)
-#'
-#'
+# fn <- function(x){
+#   x %>%
+#     summarize(stat = var(var))
+# }
+#
+# kpi(mtcars, "mpg", kpi_fn = fn)
+#
+#
 kpi_fn_n <- function(.data){
   if (!is.logical(.data$var) | any(.data$var > 1)) warning("'kpi_fn_n' takes a sum of 'var'. It is intended for 0/1 or logical variables")
 
