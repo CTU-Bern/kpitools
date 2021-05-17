@@ -7,7 +7,7 @@
 #'
 #' @examples
 #' kpi1 <- mtcars %>%
-#'   kpi(var = "mpg", cutpoints = c(0, 22, 50), by = c("am", "cyl"), txt = "MPG",
+#'   kpi(var = "mpg", by = c("am", "cyl"), txt = "MPG",
 #'       kpi_fn = kpi_fn_median)
 #' kpi2 <- mtcars %>%
 #'   kpi(var = "drat", by = c("am", "cyl"), txt = "DRAT",

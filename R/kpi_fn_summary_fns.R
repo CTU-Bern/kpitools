@@ -55,8 +55,8 @@ kpi_fn_n <- function(.data){
   if (!is.logical(.data$var) | any(.data$var > 1)) warning("'kpi_fn_n' takes a sum of 'var'. It is intended for 0/1 or logical variables")
 
   .data %>%
-    summarize(N = n()
-              , stat = sum(.data$var, na.rm = TRUE)
+    summarize(stat = sum(.data$var, na.rm = TRUE)
+              , N = n()
               )
 }
 
