@@ -127,3 +127,17 @@ kpi_fn_max <- function(.data){
     summarize(stat = max(.data$var, na.rm = TRUE),
               N = n())
 }
+
+
+
+#' Get a list of KPI summary functions provided by \code{kpitools}.
+#'
+#' @return character vector of functions
+#' @export
+#'
+#' @seealso kpi_fn_
+#' @examples
+#' kpi_fns()
+kpi_fns <- function(){
+  ls("package:kpitools", pattern = "^kpi_fn_")
+}
