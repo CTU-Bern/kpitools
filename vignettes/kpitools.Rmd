@@ -113,6 +113,20 @@ kpi(mtcars, "mpg", kpi_fn = fn)
 
 ```
 
+We recommend adding an `N` the variable with the number of observations, which 
+is used for plotting (the size of points is relative to the number of observations 
+in the group).
+
+```{r}
+fn <- function(x){
+  x %>%
+    summarize(N = n(),
+              stat = var(var))
+}
+
+kpi(mtcars, "mpg", kpi_fn = fn)
+
+```
 
 
 ## Hierarchies
@@ -183,6 +197,20 @@ The `patchwork` package, for example, could then be used to arrange the plots
 patchwork::wrap_plots(p, ncol = 1)
 ```
 
+
+## From statistics to risk
+
+It is quite common when talking about KPIs to link a given value of the summary 
+statistic to a degree of risk. `kpitools` provides provisions for this too, via 
+the `breakpoints` argument.
+
+```{r}
+kpi(data = mtcars, 
+    var = "mpg",
+    txt = "Milage per gallon",
+    by = "cyl",
+    breakpoints = c(0, 20, 30))
+```
 
 
 
