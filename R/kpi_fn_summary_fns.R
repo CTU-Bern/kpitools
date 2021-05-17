@@ -55,8 +55,9 @@ kpi_fn_n <- function(.data){
   if (!is.logical(.data$var) | any(.data$var > 1)) warning("'kpi_fn_n' takes a sum of 'var'. It is intended for 0/1 or logical variables")
 
   .data %>%
-    summarize(stat = sum(.data$var, na.rm = TRUE),
-              N = n())
+    summarize(N = n()
+              , stat = sum(.data$var, na.rm = TRUE)
+              )
 }
 
 #' @rdname kpi_fn_
@@ -66,8 +67,9 @@ kpi_fn_prop <- function(.data){
   if (!is.logical(.data$var) | any(.data$var > 1)) warning("'kpi_fn_prop' takes a sum of 'var'. It is intended for 0/1 or logical variables")
 
   .data %>%
-    summarize(n = sum(.data$var, na.rm = TRUE),
-              N = n()) %>%
+    summarize(n = sum(.data$var, na.rm = TRUE)
+              , N = n()
+              ) %>%
     mutate(stat = n/.data$N)
 }
 
@@ -78,8 +80,9 @@ kpi_fn_perc <- function(.data){
   if (!is.logical(.data$var) | any(.data$var > 1)) warning("'kpi_fn_perc' takes a sum of 'var'. It is intended for 0/1 or logical variables")
 
   .data %>%
-    summarize(n = sum(.data$var, na.rm = TRUE),
-              N = n()) %>%
+    summarize(n = sum(.data$var, na.rm = TRUE)
+              , N = n()
+              ) %>%
     mutate(stat = n/.data$N*100)
 }
 
@@ -88,8 +91,9 @@ kpi_fn_perc <- function(.data){
 #' @export
 kpi_fn_median <- function(.data){
   .data %>%
-    summarize(stat = median(.data$var, na.rm = TRUE),
-              N = n())
+    summarize(N = n()
+              , stat = median(.data$var, na.rm = TRUE)
+              )
 }
 
 #' @rdname kpi_fn_
@@ -97,8 +101,9 @@ kpi_fn_median <- function(.data){
 #' @export
 kpi_fn_mean <- function(.data){
   .data %>%
-    summarize(stat = mean(.data$var, na.rm = TRUE),
-              N = n())
+    summarize(N = n()
+              , stat = mean(.data$var, na.rm = TRUE)
+              )
 }
 
 #' @rdname kpi_fn_
@@ -106,8 +111,9 @@ kpi_fn_mean <- function(.data){
 #' @export
 kpi_fn_iqr <- function(.data){
   .data %>%
-    summarize(stat = IQR(.data$var, na.rm = TRUE),
-              N = n())
+    summarize(N = n()
+              , stat = IQR(.data$var, na.rm = TRUE)
+              )
 }
 
 #' @rdname kpi_fn_
@@ -115,8 +121,9 @@ kpi_fn_iqr <- function(.data){
 #' @export
 kpi_fn_min <- function(.data){
   .data %>%
-    summarize(stat = min(.data$var, na.rm = TRUE),
-              N = n())
+    summarize(N = n()
+              , stat = min(.data$var, na.rm = TRUE)
+              )
 }
 
 #' @rdname kpi_fn_
@@ -124,8 +131,9 @@ kpi_fn_min <- function(.data){
 #' @export
 kpi_fn_max <- function(.data){
   .data %>%
-    summarize(stat = max(.data$var, na.rm = TRUE),
-              N = n())
+    summarize(N = n()
+              , stat = max(.data$var, na.rm = TRUE)
+              )
 }
 
 
