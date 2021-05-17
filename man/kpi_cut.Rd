@@ -4,14 +4,25 @@
 \alias{kpi_cut}
 \title{Cut KPI indicators}
 \usage{
-kpi_cut(kpitab, cutpoints, cutlabels = NULL)
+kpi_cut(
+  kpitab,
+  breakpoints,
+  risklabels = risklabs(breakpoints),
+  direction = c("increasing", "decreasing"),
+  raw_cut = FALSE
+)
 }
 \arguments{
 \item{kpitab}{output from calc_kpi}
 
-\item{cutpoints}{cut points (if KPIs use a traffic light system)}
+\item{breakpoints}{cut points (if KPIs use a traffic light system)}
 
-\item{cutlabels}{labels for the cut points}
+\item{risklabels}{labels for the cut points. By default, variations on
+low/moderate/high are used}
+
+\item{direction}{seriousness relative to \code{breakpoints}}
+
+\item{raw_cut}{add a group variable without applying \code{risklabels}}
 }
 \value{
 
@@ -20,9 +31,9 @@ kpi_cut(kpitab, cutpoints, cutlabels = NULL)
 Cut KPI indicators
 }
 \examples{
-# kpitab <- mtcars \%>\% calc_kpi("mpg", by = "am", kpi_fn = kpi_fn_median, txt = "MPG")
-# cutpoints <- c(0, 20, 30)
-# kpi_cut(kpitab, cutpoints, cutlabels = c("Low", "High"))
-# kpi_cut(kpitab, cutpoints, cutlabels = 1:2)
-# kpi_cut(kpitab, cutpoints)
+kpitab <- mtcars \%>\% calc_kpi("mpg", by = "am", kpi_fn = kpi_fn_median, txt = "MPG")
+cutpoints <- c(0, 20, 30)
+kpi_cut(kpitab, cutpoints, risklabels = c("Low", "High"))
+kpi_cut(kpitab, cutpoints, risklabels = 1:2)
+kpi_cut(kpitab, cutpoints)
 }

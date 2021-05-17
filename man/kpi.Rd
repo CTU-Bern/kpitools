@@ -10,8 +10,11 @@ kpi(
   by = NULL,
   kpi_fn = kpi_fn_mean,
   txt = "",
-  cutpoints = NULL,
-  cutlabels = NULL
+  n_iqr = 2,
+  breakpoints = NULL,
+  risklabels = risklabs(breakpoints),
+  direction = c("increasing", "decreasing"),
+  raw_cut = FALSE
 )
 }
 \arguments{
@@ -25,9 +28,14 @@ kpi(
 
 \item{txt}{a descriptive text}
 
-\item{cutpoints}{cut points (if KPIs use a traffic light system)}
+\item{breakpoints}{cut points (if KPIs use a traffic light system)}
 
-\item{cutlabels}{labels for the cut points}
+\item{risklabels}{labels for the cut points. By default, variations on
+low/moderate/high are used}
+
+\item{direction}{seriousness relative to \code{breakpoints}}
+
+\item{raw_cut}{add a group variable without applying \code{risklabels}}
 }
 \value{
 a list with either 1 or (length(by) + 1) lists.
@@ -38,6 +46,9 @@ Create KPI tables
 \examples{
 kpi <- mtcars \%>\%
   mutate(cylgt4 = cyl > 4) \%>\%
-  kpi(var = "mpg", cutpoints = c(0, 22, 50), by = c("am", "cyl"), txt = "MPG",
+  kpi(var = "mpg",
+      breakpoints = c(0, 22, 50),
+      by = c("am", "cyl"),
+      txt = "MPG",
       kpi_fn = kpi_fn_median)
 }
