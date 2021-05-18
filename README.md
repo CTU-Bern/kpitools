@@ -37,12 +37,12 @@ calculated.
     mtcars$highmpg <- mtcars$mpg > 20
 
     kpis <- (mtcars %>%
-      kpi(var = "highmpg",                         # variable to be summarized (focus of the KPI)  
-          kpi_fn = kpi_fn_perc,                    # summary function   
-          txt = "Percentage MPG > 20",             # (optional) nicer text to add to tables 
+      kpi(var = "highmpg",                          # variable to be summarized (focus of the KPI)  
+          kpi_fn = kpi_fn_perc,                     # summary function   
+          txt = "Percentage MPG > 20",              # (optional) nicer text to add to tables 
           by = "cyl",                               # (optional) stratifying variable 
-          cutpoints = c(0,33.3,66.6,100),          # (optional) cutoff points 
-          cutlabels = c("Low", "Medium", "High"))) # (optional) labels for the cutoff points
+          breakpoints = c(0,33.3,66.6,100),         # (optional) cutoff points 
+          risklabels = c("Low", "Medium", "High"))) # (optional) labels for the cutoff points
 
 There is a plot method for the output from `kpi` which returns a list of
 `ggplot2` objects.
