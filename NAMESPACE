@@ -3,6 +3,7 @@
 S3method(c,kpi)
 S3method(c,kpilist)
 S3method(plot,kpi)
+S3method(print,kpi)
 export(as_data_frames)
 export(kpi)
 export(kpi_fn_iqr)
