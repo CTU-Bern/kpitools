@@ -24,7 +24,7 @@ Print method for kpi objects
 \examples{
 kpi <- mtcars \%>\%
   mutate(cylgt4 = cyl > 4) \%>\%
-  kpi(var = "mpg", cutpoints = c(0, 22, 50), by = c("am", "cyl"), txt = "MPG",
+  kpi(var = "mpg", breakpoints = c(0, 22, 50), by = c("am", "cyl"), txt = "MPG",
       kpi_fn = kpi_fn_median)
 print(kpi, table = TRUE, outlier = FALSE)
 }
