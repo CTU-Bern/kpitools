@@ -85,12 +85,12 @@
 <span id="cb4-3"><a href="#cb4-3"></a>mtcars<span class="op">$</span>highmpg &lt;-<span class="st"> </span>mtcars<span class="op">$</span>mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span></span>
 <span id="cb4-4"><a href="#cb4-4"></a></span>
 <span id="cb4-5"><a href="#cb4-5"></a>kpis &lt;-<span class="st"> </span>(mtcars <span class="op">%&gt;%</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="st">  </span><span class="kw">kpi</span>(<span class="dt">var =</span> <span class="st">"highmpg"</span>,                         <span class="co"># variable to be summarized (focus of the KPI)  </span></span>
-<span id="cb4-7"><a href="#cb4-7"></a>      <span class="dt">kpi_fn =</span> kpi_fn_perc,                    <span class="co"># summary function   </span></span>
-<span id="cb4-8"><a href="#cb4-8"></a>      <span class="dt">txt =</span> <span class="st">"Percentage MPG &gt; 20"</span>,             <span class="co"># (optional) nicer text to add to tables </span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="st">  </span><span class="kw">kpi</span>(<span class="dt">var =</span> <span class="st">"highmpg"</span>,                          <span class="co"># variable to be summarized (focus of the KPI)  </span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>      <span class="dt">kpi_fn =</span> kpi_fn_perc,                     <span class="co"># summary function   </span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>      <span class="dt">txt =</span> <span class="st">"Percentage MPG &gt; 20"</span>,              <span class="co"># (optional) nicer text to add to tables </span></span>
 <span id="cb4-9"><a href="#cb4-9"></a>      <span class="dt">by =</span> <span class="st">"cyl"</span>,                               <span class="co"># (optional) stratifying variable </span></span>
-<span id="cb4-10"><a href="#cb4-10"></a>      <span class="dt">cutpoints =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">33.3</span>,<span class="fl">66.6</span>,<span class="dv">100</span>),          <span class="co"># (optional) cutoff points </span></span>
-<span id="cb4-11"><a href="#cb4-11"></a>      <span class="dt">cutlabels =</span> <span class="kw">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>))) <span class="co"># (optional) labels for the cutoff points</span></span></code></pre></div>
+<span id="cb4-10"><a href="#cb4-10"></a>      <span class="dt">breakpoints =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">33.3</span>,<span class="fl">66.6</span>,<span class="dv">100</span>),         <span class="co"># (optional) cutoff points </span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>      <span class="dt">risklabels =</span> <span class="kw">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>))) <span class="co"># (optional) labels for the cutoff points</span></span></code></pre></div>
 <p>There is a plot method for the output from <code>kpi</code> which returns a list of <code>ggplot2</code> objects.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>plot &lt;-<span class="st"> </span><span class="kw">plot</span>(kpis)</span>
 <span id="cb5-2"><a href="#cb5-2"></a>plot<span class="op">$</span>cyl <span class="op">+</span></span>
