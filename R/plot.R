@@ -23,7 +23,13 @@
 #'   theme_bw() +
 #'   labs(title = "Foo")
 #'
-plot.kpi <- function(x, y = 1, col = "#E6002EFF", pch = 21, ...){
+plot.kpi <- function(x
+                     , y = 1
+                     , col = "#E6002EFF"
+                     , pch = 21
+                     # , geoms
+                     ,
+                     ...){
   stat <- N <- NULL # avoid global binding note
 
   w <- names(x)[!names(x) %in% c("settings", "overall")]
@@ -36,6 +42,7 @@ plot.kpi <- function(x, y = 1, col = "#E6002EFF", pch = 21, ...){
     d <- as.data.frame(l$calc)
     d$y <- y
     p <- ggplot(d, aes(x = stat, y = y, size = N)) +
+      # geoms +
       geom_point(pch = 21, col = col) +
       xlab(unique(d$txt))
     p
@@ -44,6 +51,5 @@ plot.kpi <- function(x, y = 1, col = "#E6002EFF", pch = 21, ...){
   return(plots)
 
 }
-
 
 

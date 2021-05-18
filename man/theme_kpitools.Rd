@@ -7,7 +7,7 @@
 theme_kpitools()
 }
 \value{
-
+\code{ggplot2} theme object
 }
 \description{
 Theme based on \code{theme_bw} and removing y-axis and moving the legend to beneath the plot.
@@ -15,6 +15,10 @@ Theme based on \code{theme_bw} and removing y-axis and moving the legend to bene
 \examples{
 kpi <- mtcars \%>\%
   kpi("mpg", by = "cyl", txt = "MPG")
+
+# without the theme
+plot(kpi)$cyl
+# with the theme
 plot(kpi)$cyl +
   theme_kpitools()
 }

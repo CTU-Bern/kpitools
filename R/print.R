@@ -1,7 +1,3 @@
-
-
-
-
 #' Print method for kpi objects
 #'
 #' @param x kpi object
@@ -9,10 +5,14 @@
 #' @param outlier logical, whether to add a table of outliers to the output
 #' @param ... not currently used
 #'
-#' @return
+#' @return output printed to the console
 #' @export
-#'
 #' @examples
+#' kpi <- mtcars %>%
+#'   mutate(cylgt4 = cyl > 4) %>%
+#'   kpi(var = "mpg", breakpoints = c(0, 22, 50), by = c("am", "cyl"), txt = "MPG",
+#'       kpi_fn = kpi_fn_median)
+#' print(kpi, table = TRUE, outlier = FALSE)
 print.kpi <- function(x, table = TRUE, outlier = TRUE, ...){
 
 

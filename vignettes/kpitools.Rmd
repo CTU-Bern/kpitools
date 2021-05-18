@@ -1,6 +1,8 @@
 ---
 title: "Using `kpitools`"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteIndexEntry{Using `kpitools`}
   %\VignetteEngine{knitr::rmarkdown}
@@ -21,49 +23,111 @@ but `kpitools` then takes away some of the pain of putting them into a report.
 `kpitools` is loaded as any other package, with the `library` or require `functions`:
 
 
-```{r setup}
+```{r setup, message=FALSE}
 library(kpitools)
 ```
 
 
-Once the KPIs are defined, it should be clear what type of indicator one needs to
+Once the KPIs are defined conceptually, it should be clear what type of indicator one needs to
 report. For instance, using the `mtcars` dataset, we may have an indicator for 
-low mileage (e.g. MPG less than 15). We're not really interested in the individual 
-cars, but at the group of products as a whole. If the proportion of cars with low 
-mileage is higher than 20%, we may have to take actions to reduce the proportion.
+mileage. We're not really interested in the individual cars, but at the group of 
+products as a whole. If the mean mileage is lower than 15, we may have to take 
+actions to reduce the proportion. In a clinical trial, such remedial actions might 
+be to retrain staff or, in a particularly serious case, closing a site completely.
 
-to use `kpitools`, we must first load the data and create the indicators themselves
-(using whatever method for a given dataset). 
+To use `kpitools`, we must first load the data and create the indicators themselves
+(using whatever method for a given dataset). To begin with, we will start with 
+the `mpg` variable in the `mtcars` data.
 
 ```{r}
 data(mtcars)
-mtcars$lowmpg <- mtcars$mpg < 15
 ```
 
-`kpitools` can then be used to get summary information on the defined KPIs. We 
+`kpitools` produces summary information on the defined KPIs. We 
 tell the `kpi` function which dataset to use, which variable to summarize and how
-to summarize it, using the `kpi_fn` argument.
+to summarize it (`kpi` summarizes using the mean by default).
 
 ```{r}
 x <- (kpi(data = mtcars, 
-          var = "lowmpg",
-          kpi_fn = kpi_fn_perc))
+          var = "mpg"))
 x
 ```
 
 
-We see that of the `r x$overall$calc$N` cars, `r x$overall$calc$n` (`r x$overall$calc$stat`%) cars have low mileage (according to our definition).
+We see that the `r x$overall$calc$N` cars have a mean MPG of `r round(x$overall$calc$stat)` miles per gallon.
 
-We can improve the output by adding a more meaningful label via the `txt` argument.
+We can improve the output slightly by adding a more meaningful label via the `txt` argument.
 
 
 ```{r}
 kpi(data = mtcars, 
-    var = "lowmpg",
+    var = "mpg",
+    txt = "Miles per gallon")
+
+```
+
+## Summary functions
+
+`kpitools` comes with a set of functions for summarizing the KPIs.  
+
+|Function           |Description
+|:------------------|:---------------------------------------
+|*Categorical KPIs* |
+|`kpi_fn_n`         |takes the sum of objects
+|`kpi_fn_prop`      |calculates the proportion of 1s
+|`kpi_fn_perc`      |as `kpi_fn_prop` but on percentage scale
+|*Numeric KPIs*     |
+|`kpi_fn_median`    |calculates the median
+|`kpi_fn_mean`      |calculates the mean
+|`kpi_fn_iqr`       |calculates the interquartile range
+|`kpi_fn_min`       |calculates the minimum
+|`kpi_fn_max`       |calculates the maximum
+
+These functions are passed to `kpi` via the `kpi_fn` argument. 
+
+Say our KPI is on the proportion of cars with an MPG less than 15... first we create the variable and pass that to `kpi` with the appropriate summary function. 
+
+```{r}
+mtcars$mpg15 <- mtcars$mpg < 15
+kpi(data = mtcars, 
+    var = "mpg15",
     kpi_fn = kpi_fn_perc,
     txt = "Milage < 15 MPG")
 
 ```
+
+### Using custom functions
+
+Custom functions can also be utilized. Simply define a function which accepts a 
+dataframe and performs the summary function of choice on a `var` variable. The summarised 
+variable should be called `stat`. below is example to summarise the variable by
+the variance.
+
+```{r}
+fn <- function(x){
+  x %>%
+    summarize(stat = var(var))
+}
+
+kpi(mtcars, "mpg", kpi_fn = fn)
+
+```
+
+We recommend adding an `N` the variable with the number of observations, which 
+is used for plotting (the size of points is relative to the number of observations 
+in the group).
+
+```{r}
+fn <- function(x){
+  x %>%
+    summarize(N = n(),
+              stat = var(var))
+}
+
+kpi(mtcars, "mpg", kpi_fn = fn)
+
+```
+
 
 ## Hierarchies
 
@@ -73,7 +137,7 @@ argument. Using the `mtcars` example, we can use the number of cylinders.
 
 ```{r}
 x_by <- (kpi(data = mtcars, 
-             var = "lowmpg",
+             var = "mpg15",
              kpi_fn = kpi_fn_perc,
              txt = "Milage < 15 MPG",
              by = "cyl"))
@@ -87,7 +151,7 @@ We can also pass multiple variables to `by` (so that we can consider two levels
 or more levels of hierarchy simultaneously)
 ```{r}
 x_by <- (kpi(data = mtcars, 
-             var = "lowmpg",
+             var = "mpg15",
              kpi_fn = kpi_fn_perc,
              txt = "Milage < 15 MPG",
              by = c("cyl", "am")))
@@ -113,7 +177,7 @@ in the site/group.
 `kpitools` contains a `ggplot2` which can be used to remove the y-axis, move the 
 legend and make various other changes:
 ```{r, fig.width=7, fig.height=1.5}
-p[[1]] + theme_kpitools()
+p$cyl + theme_kpitools()
 ```
 
 Modifications can be made to all plots easily via e.g. `lapply` or `purrr::map`
@@ -134,6 +198,57 @@ patchwork::wrap_plots(p, ncol = 1)
 ```
 
 
+<!-- ### Other modifications -->
+
+<!-- ```{r, fig.width=7, fig.height=1.5} -->
+<!-- p$cyl + theme_kpitools() + -->
+<!--  ggrepel::geom_label_repel(aes(label = cyl, size = 1), inherit.aes = FALSE) -->
+<!-- ``` -->
+
+## From summary statistics to risk
+
+It is quite common when talking about KPIs to link a given value of the summary 
+statistic to a degree of risk. `kpitools` provides provisions for this too, via 
+the `breakpoints` argument.
+
+```{r}
+kpi(data = mtcars, 
+    var = "mpg",
+    txt = "Milage per gallon",
+    by = "cyl",
+    breakpoints = c(0, 20, 30))
+```
+
+If the higher numbers of the summary statistic are related to lower risk, the `direction` argument can be used to invert the label order. The options are either `increasing` or `decreasing` and abbreviations are accepted.
+
+```{r}
+kpi(data = mtcars, 
+    var = "mpg",
+    txt = "Milage per gallon",
+    by = "cyl",
+    breakpoints = c(0, 20, 30),
+    direction = "decreasing") 
+```
+
+By default, the number of breakpoints is used to create variations on high to low via the `risklabs` function. For instance, giving three to six values as breakpoints produces the following sets of labels. For more than 5 groups (six breakpoints), labels must be defined manually.
+
+```{r}
+risklabs(c(0, 20, 30))
+risklabs(c(0, 20, 30, 40))
+risklabs(c(0, 20, 30, 40, 50))
+risklabs(c(0, 20, 30, 40, 50, 60))
+```
+
+It's simple to override these labels with the `risklabels` argument (be careful combining `risklabels` and `direction` arguments as the label order will be inverted). 
+
+```{r}
+kpi(data = mtcars, 
+    var = "mpg",
+    txt = "Milage per gallon",
+    by = "cyl",
+    breakpoints = c(0, 20, 30), 
+    risklabels = c("too low", "too high"))
+```
 
 
 
