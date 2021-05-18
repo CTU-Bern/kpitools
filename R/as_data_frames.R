@@ -1,6 +1,10 @@
 #' Convert a kpilist to a set of dataframes for overall numbers and each \code{by} group
 #'
 #' @param x kpilist
+#' @param keep_kpiname each kpi in a \code{kpilist} has a name constructed from
+#'   the variable and the summary function. Should this name be retained in the
+#'   output?
+#' @param ... currently ignored
 #'
 #' @return list of dataframes
 #' @export

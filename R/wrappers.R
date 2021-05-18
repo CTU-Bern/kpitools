@@ -47,6 +47,7 @@ kpi_by <- function(data
 #' @param kpi_fn summary function
 #' @param txt a descriptive text
 #' @inheritParams kpi_cut
+#' @inheritParams kpi_outlier
 #'
 #' @return a list with either 1 or (length(by) + 1) lists.
 #' @export
