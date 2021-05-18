@@ -34,7 +34,7 @@ kpi_cut <- function(kpitab
     if(length(risklabels) != (length(breakpoints) - 1)) stop("risklabels should have one less value than cutpoints")
   }
 
-  if(direction == "decreasing") rev(risklabels)
+  if(direction == "decreasing") risklabels <- rev(risklabels)
 
   out <- kpitab %>% mutate(
     risk = cut(.data$stat
