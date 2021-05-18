@@ -4,7 +4,7 @@
 \alias{plot.kpi}
 \title{Plot KPI objects}
 \usage{
-\method{plot}{kpi}(x, y = 1, col = "#E6002EFF", pch = 21, geoms, ...)
+\method{plot}{kpi}(x, y = 1, col = "#E6002EFF", pch = 21, ...)
 }
 \arguments{
 \item{x}{result from kpi}

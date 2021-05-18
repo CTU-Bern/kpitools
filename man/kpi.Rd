@@ -28,6 +28,8 @@ kpi(
 
 \item{txt}{a descriptive text}
 
+\item{n_iqr}{number of IQRs below/above the lower/upper quartiles that should be considered outliers}
+
 \item{breakpoints}{cut points (if KPIs use a traffic light system)}
 
 \item{risklabels}{labels for the cut points. By default, variations on

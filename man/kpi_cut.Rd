@@ -31,9 +31,11 @@ low/moderate/high are used}
 Cut KPI indicators
 }
 \examples{
-kpitab <- mtcars \%>\% calc_kpi("mpg", by = "am", kpi_fn = kpi_fn_median, txt = "MPG")
+kpitab <- mtcars \%>\%
+   kpitools:::calc_kpi("mpg", by = "am",
+     kpi_fn = kpi_fn_median, txt = "MPG")
 cutpoints <- c(0, 20, 30)
-kpi_cut(kpitab, cutpoints, risklabels = c("Low", "High"))
-kpi_cut(kpitab, cutpoints, risklabels = 1:2)
-kpi_cut(kpitab, cutpoints)
+kpitools:::kpi_cut(kpitab, cutpoints, risklabels = c("Low", "High"))
+kpitools:::kpi_cut(kpitab, cutpoints, risklabels = 1:2)
+kpitools:::kpi_cut(kpitab, cutpoints)
 }
