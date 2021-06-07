@@ -39,7 +39,7 @@ kpi_fn_max(.data)
 }
 \description{
 These functions are not intended to be run as they are. They are intended to
-be passed as arguments to the \code{kpi} or \code{calc_kpi} functions. They
+be passed as arguments to the \code{kpi} or \code{kpi_calc} functions. They
 summarize the data in the appropriate manner for the type of KPI. For example,
 the \code{kpi_fn_prop} counts the number of cases and total number of observations
 then calculates a proportion. \code{kpi_fn_median} simply calculates the median

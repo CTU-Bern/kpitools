@@ -11,10 +11,11 @@
 #' @importFrom magrittr '%>%'
 #' @importFrom dplyr mutate summarize n
 #' @importFrom rlang .data
+#' @keywords internal
 #'
 #' @examples
 #' kpitab <- mtcars %>%
-#'    kpitools:::calc_kpi("mpg", by = "am",
+#'    kpitools:::kpi_calc("mpg", by = "am",
 #'      kpi_fn = kpi_fn_median, txt = "MPG")
 #' cutpoints <- c(0, 20, 30)
 #' kpitools:::kpi_cut(kpitab, cutpoints, risklabels = c("Low", "High"))
