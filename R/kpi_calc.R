@@ -7,13 +7,14 @@
 #' @param txt textual description of the KPI
 #'
 #' @return a data frame of class \code{kpicalc}
+#' @noRd
 #'
 #' @importFrom dplyr is_grouped_df select rename group_by filter any_of
 #' @importFrom rlang :=
 #' @examples
 #' # data(mtcars)
-#' # mtcars %>% kpitools::calc_kpi("mpg", by = "am", kpi_fn = kpi_fn_median)
-calc_kpi <- function(data,
+#' # mtcars %>% kpitools::kpi_calc("mpg", by = "am", kpi_fn = kpi_fn_median)
+kpi_calc <- function(data,
                      var,
                      by = NULL,
                      kpi_fn,

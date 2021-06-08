@@ -20,6 +20,6 @@ Get the outliers
 \examples{
 # data(mtcars)
 # mtcars \%>\%
-#   calc_kpi("mpg", by = "am", kpi_fn = kpi_fn_median) \%>\%
+#   kpi_calc("mpg", by = "am", kpi_fn = kpi_fn_median) \%>\%
 #   kpi_outlier()
 }
