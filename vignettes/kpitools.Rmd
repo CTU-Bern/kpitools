@@ -182,12 +182,15 @@ p$cyl + theme_kpitools()
 
 Modifications can be made to all plots easily via e.g. `lapply` or `purrr::map`
 
-```{r}
+```{r, message = FALSE}
 p <- purrr::map2(p, names(p), function(x, y){
   x +                                       # extract the ggplot object
     theme_kpitools() +                      # apply the theme
     guides(size = guide_legend(nrow = 1)) + # make other modifications
-    ggtitle(toupper(y))                     # add a title
+    ggtitle(toupper(y)) +                   # add a title
+    scale_size_continuous(                  
+      breaks = c(0,5,10,15,20),             # point sizes for legends
+      limits = c(0,20))                     # limits of the legend
 })
 ```
 
@@ -250,5 +253,35 @@ kpi(data = mtcars,
     risklabels = c("too low", "too high"))
 ```
 
+
+## Individual KPIs to sets of KPIs
+
+Individual KPIs might be useful for a report where the KPIs are looked at one after the other in order. It is common, however to have KPIs reported at one or more levels for that all KPIs for that level are shown together in e.g. a table. `kpitools` provides utilities for this type of report too.
+
+First, we have to make a `kpilist` via the `c` function.
+```{r}
+x_by2 <- (kpi(data = mtcars, 
+             var = "mpg",
+             kpi_fn = kpi_fn_mean,
+             txt = "Milage (MPG)",
+             by = c("cyl", "am")))
+
+kpis <- c(x_by, x_by2)
+```
+
+Next, we can use `kpi_accumulate` to collect all of the KPIs in a given strata together.
+```{r}
+(k <- kpi_accumulate(kpis))
+```
+
+We can access the individual tables as with any list object.
+
+```{r}
+# Overall study
+k$overall
+
+# 8 cylinder cars
+k$cyl$`8`
+```
 
 

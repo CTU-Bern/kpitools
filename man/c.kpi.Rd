@@ -7,7 +7,7 @@
 \method{c}{kpi}(...)
 }
 \arguments{
-\item{...}{\code{kpi} objects}
+\item{...}{\code{kpi}  or \code{kpilist} objects}
 }
 \value{
 \code{kpilist} object

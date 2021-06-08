@@ -8,7 +8,7 @@
 #' @examples
 #' # data(mtcars)
 #' # mtcars %>%
-#' #   calc_kpi("mpg", by = "am", kpi_fn = kpi_fn_median) %>%
+#' #   kpi_calc("mpg", by = "am", kpi_fn = kpi_fn_median) %>%
 #' #   kpi_outlier()
 kpi_outlier <- function(kpitab, n_iqr = 2){
   kpitab %>%
