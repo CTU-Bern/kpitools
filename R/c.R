@@ -1,6 +1,6 @@
 #' Concatenate \code{kpi} objects
 #'
-#' @param ... \code{kpi} objects
+#' @param ... \code{kpi}  or \code{kpilist} objects
 #'
 #' @return \code{kpilist} object
 #' @export
