@@ -7,7 +7,6 @@
 #' @param ... currently ignored
 #'
 #' @return list of dataframes
-#' @export
 #'
 #' @examples
 #' kpi1 <- mtcars %>%
@@ -21,7 +20,7 @@
 #'   kpi(var = "cylgt4", by = c("am", "cyl"), txt = "Cylinders",
 #'       kpi_fn = kpi_fn_perc)
 #' l <- c(kpi1, kpi2, kpi3)
-#' as_data_frames(l, FALSE)
+#' kpitools:::as_data_frames(l, FALSE)
 #'
 as_data_frames <- function(x, keep_kpiname = TRUE, ...){
 
@@ -47,7 +46,7 @@ as_data_frames <- function(x, keep_kpiname = TRUE, ...){
     tmp <- lapply(tabs, "[[", i) %>%
       bind_rows()
 
-    if(!keep_kpiname) tmp <- select(tmp, -kpiname)
+    if(!keep_kpiname) tmp <- select(tmp, -.data$kpiname)
 
     tabs2[[i]] <- tmp
   }

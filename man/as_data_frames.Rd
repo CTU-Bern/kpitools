@@ -33,6 +33,6 @@ kpi3 <- mtcars \%>\%
   kpi(var = "cylgt4", by = c("am", "cyl"), txt = "Cylinders",
       kpi_fn = kpi_fn_perc)
 l <- c(kpi1, kpi2, kpi3)
-as_data_frames(l, FALSE)
+kpitools:::as_data_frames(l, FALSE)
 
 }
