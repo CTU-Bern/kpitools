@@ -24,9 +24,6 @@ low/moderate/high are used}
 
 \item{raw_cut}{add a group variable without applying \code{risklabels}}
 }
-\value{
-
-}
 \description{
 Cut KPI indicators
 }
