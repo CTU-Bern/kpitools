@@ -1,4 +1,4 @@
-<!-- Thanks for submitting a pull request to presize! -->
+<!-- Thanks for submitting a pull request to kpitools! -->
 
 **Summary**
 
