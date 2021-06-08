@@ -7,7 +7,6 @@
 #' @param direction seriousness relative to \code{breakpoints}
 #' @param raw_cut add a group variable without applying \code{risklabels}
 #'
-#' @return
 #' @importFrom magrittr '%>%'
 #' @importFrom dplyr mutate summarize n
 #' @importFrom rlang .data
