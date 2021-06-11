@@ -6,7 +6,12 @@ Authors@R:
            family = "Haynes",
            role = c("aut", "cre"),
            email = "alan.haynes@ctu.unibe.ch",
-           comment = c(ORCID = "0000-0003-1374-081X")))
+           comment = c(ORCID = "0000-0003-1374-081X")),
+           person(given = "Mattia",
+           family = "Branca",
+           role = c("ctb"),
+           email = "mattia.branca@ctu.unibe.ch",
+           comment = c(ORCID = "0000-0002-8063-7882")))
 Description: Assessing performance of clinical trials can assist identify problems earlier in the trial than might be possible without it and help to improve trial quality. Tools for the creating performance indicator reports are however uncommon. 'kpitools' aims to provide tools to create such reports. 
 License: GPL (>= 3)
 Encoding: UTF-8
