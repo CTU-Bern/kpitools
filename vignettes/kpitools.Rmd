@@ -82,6 +82,7 @@ kpi(data = mtcars,
 |`kpi_fn_iqr`       |calculates the interquartile range
 |`kpi_fn_min`       |calculates the minimum
 |`kpi_fn_max`       |calculates the maximum
+|`kpi_fn_missing`   |calculates the percentage of missing values
 
 These functions are passed to `kpi` via the `kpi_fn` argument. 
 
