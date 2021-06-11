@@ -10,7 +10,7 @@
 #' Functions should accept a dataframe with a \code{var} variable and return a
 #' dataframe with \code{stat} (other variables are optional, although an \code{N}
 #' variable allows for compatibility with downstream functions). All provided
-#' functions return \code{stat} and \code{N}, with some also returning \code{n}.
+#' functions return \code{stat}, \code{n_nonmiss} and \code{N}, with some also returning \code{n}.
 #'
 #' See the examples passing custom functions.
 #'
@@ -144,6 +144,17 @@ kpi_fn_max <- function(.data){
               )
 }
 
+#' @rdname kpi_fn_
+#' @name Missing
+#' @export
+kpi_fn_missing <- function(.data){
+
+  .data %>%
+    summarize(N = n()
+      , nm = sum(is.na(.data$var), na.rm=FALSE)
+    ) %>%
+    mutate(stat = nm/.data$N*100)
+}
 
 
 #' Get a list of KPI summary functions provided by \code{kpitools}.
