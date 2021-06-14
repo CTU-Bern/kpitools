@@ -1,13 +1,13 @@
 Package: kpitools
 Title: Tools for creating key performance indicator reports for clinical trial
-Version: 0.0.1.9000
+Version: 0.1.0
 Authors@R: 
     c(person(given = "Alan",
            family = "Haynes",
            role = c("aut", "cre"),
            email = "alan.haynes@ctu.unibe.ch",
            comment = c(ORCID = "0000-0003-1374-081X")),
-           person(given = "Mattia",
+      person(given = "Mattia",
            family = "Branca",
            role = c("ctb"),
            email = "mattia.branca@ctu.unibe.ch",
