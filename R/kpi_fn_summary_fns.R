@@ -153,7 +153,7 @@ kpi_fn_missing <- function(.data){
     summarize(N = n()
       , nm = sum(is.na(.data$var), na.rm=FALSE)
     ) %>%
-    mutate(stat = nm/.data$N*100)
+    mutate(stat = .data$nm/.data$N*100)
 }
 
 

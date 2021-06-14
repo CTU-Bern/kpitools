@@ -8,12 +8,15 @@ through each individual KPI and present all of the info there, but they're
 not ideal if you want all of the KPIs for a given site or country or the
 overall study in a single table. \code{kpi_accumulate} does this conversion}
 \usage{
-kpi_accumulate(kpilist, by = NULL)
+kpi_accumulate(kpilist, by = NULL, split = TRUE)
 }
 \arguments{
 \item{kpilist}{list of KPIs}
 
 \item{by}{which \code{by} variable from the \code{kpi} call to accumulate}
+
+\item{split}{logical. Whether to split the output by the levels of the
+\code{by} variable(s)}
 }
 \description{
 Accumulate kpilists into KPIs per site lists
@@ -40,4 +43,6 @@ kpi_accumulate(l2)
 kpi_accumulate(l2, by = "cyl")
 # only the study/overall level
 kpi_accumulate(l2, by = "overall")
+# no splitting
+kpi_accumulate(l2, split = FALSE)
 }
