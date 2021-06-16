@@ -6,7 +6,7 @@ kpi <- mtcars %>%
 
 test_that("print runs through", {
   expect_error(kpi, NA)
-  expect_error(print(kpi), NA)
+  expect_error(capture_output(print(kpi)), NA)
 
 })
 

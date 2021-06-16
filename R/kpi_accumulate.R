@@ -5,6 +5,8 @@
 #' overall study in a single table. \code{kpi_accumulate} does this conversion
 #' @param kpilist list of KPIs
 #' @param by which \code{by} variable from the \code{kpi} call to accumulate
+#' @param split logical. Whether to split the output by the levels of the
+#'   \code{by} variable(s)
 #' @importFrom purrr map2
 #' @importFrom dplyr bind_rows
 #' @export
@@ -26,8 +28,10 @@
 #' kpi_accumulate(l2, by = "cyl")
 #' # only the study/overall level
 #' kpi_accumulate(l2, by = "overall")
+#' # no splitting
+#' kpi_accumulate(l2, split = FALSE)
 # kpilist <- l2
-kpi_accumulate <- function(kpilist, by = NULL){
+kpi_accumulate <- function(kpilist, by = NULL, split = TRUE){
 
   # if(length(by) > 1) stop("'single'")
   bys <- sapply(kpilist, names) %>%
@@ -52,7 +56,8 @@ kpi_accumulate <- function(kpilist, by = NULL){
     if(y == "overall"){
       out <- x
     } else {
-      out <- split(x, x[[y]])
+      if(!split) out <- x
+      if(split) out <- split(x, x[[y]])
     }
     out
   })
