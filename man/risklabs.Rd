@@ -2,7 +2,7 @@
 % Please edit documentation in R/kpi_cut.R
 \name{risklabs}
 \alias{risklabs}
-\title{Labels for KPIs with cutoffs}
+\title{Labels and colors for KPIs with cutoffs}
 \usage{
 risklabs(x)
 }
@@ -13,8 +13,9 @@ risklabs(x)
 string of \code{length(x) - 1} with suitable labels.
 }
 \description{
-Labels for KPIs with cutoffs
+Labels and colors for KPIs with cutoffs
 }
 \examples{
 risklabs(1:4)
+riskcols(1:4)
 }

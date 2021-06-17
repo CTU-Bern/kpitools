@@ -7,6 +7,7 @@ kpi_by <- function(data
                    , n_iqr = 2
                    , breakpoints = NULL
                    , risklabels = NULL
+                   , riskcolors = NULL
                    , direction = c("increasing", "decreasing")
                    , raw_cut = FALSE
 ){
@@ -26,6 +27,7 @@ kpi_by <- function(data
     out$calc <- kpi_cut(out$calc
                         , breakpoints = breakpoints
                         , risklabels = risklabels
+                        , riskcolors = riskcolors
                         , direction = direction
                         , raw_cut = raw_cut
     )

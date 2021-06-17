@@ -4,6 +4,8 @@
 #' @param breakpoints cut points (if KPIs use a traffic light system)
 #' @param risklabels labels for the cut points. By default, variations on
 #' low/moderate/high are used
+#' @param riskcolors colors for the cut points. By default, variations on
+#' green/yellow/red are used
 #' @param direction seriousness relative to \code{breakpoints}
 #' @param raw_cut add a group variable without applying \code{risklabels}
 #'
@@ -20,10 +22,12 @@
 #' kpitools:::kpi_cut(kpitab, cutpoints, risklabels = c("Low", "High"))
 #' kpitools:::kpi_cut(kpitab, cutpoints, risklabels = 1:2)
 #' kpitools:::kpi_cut(kpitab, cutpoints)
+#' kpitools:::kpi_cut(kpitab, cutpoints, riskcolors = c("pink","blue"), direction="decreasing")
 
 kpi_cut <- function(kpitab
                     , breakpoints
                     , risklabels = risklabs(breakpoints)
+                    , riskcolors = riskcols(breakpoints)
                     , direction = c("increasing", "decreasing")
                     , raw_cut = FALSE
                     ){
@@ -34,12 +38,20 @@ kpi_cut <- function(kpitab
     if(length(risklabels) != (length(breakpoints) - 1)) stop("risklabels should have one less value than cutpoints")
   }
 
+  if(!is.null(riskcolors)){
+    if(length(riskcolors) != (length(breakpoints) - 1)) stop("riskcolors should have one less value than cutpoints")
+  }
+
   if(direction == "decreasing") risklabels <- rev(risklabels)
 
   out <- kpitab %>% mutate(
     risk = cut(.data$stat
                , breaks = breakpoints
                , labels = risklabels
+    ),
+    cols = cut(.data$stat
+               , breaks = breakpoints
+               , labels = riskcolors
     )
   )
 
@@ -55,7 +67,7 @@ kpi_cut <- function(kpitab
 }
 
 
-#' Labels for KPIs with cutoffs
+#' Labels and colors for KPIs with cutoffs
 #'
 #' @param x breakpoints
 #'
@@ -64,6 +76,7 @@ kpi_cut <- function(kpitab
 #'
 #' @examples
 #' risklabs(1:4)
+#' riskcols(1:4)
 risklabs <- function(x){
   if (!is.null(x)){
     if (length(x) > 6) stop("breakpoints must be defined manually for more than 5 groups")
@@ -77,4 +90,16 @@ risklabs <- function(x){
   }
 }
 
+riskcols <- function(x){
+  if (!is.null(x)){
+    if (length(x) > 6) stop("breakpoints/colors must be defined manually for more than 5 groups")
+
+    ops <- list("none",
+                c("green", "red"),
+                c("green", "yellow", "red"),
+                c("greend", "yellow", "orange", "red"),
+                c("green", "yellow", "orange", "red", "violet"))
+    ops[[length(x)-1]]
+  }
+}
 
