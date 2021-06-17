@@ -67,7 +67,7 @@ kpi_cut <- function(kpitab
 }
 
 
-#' Labels and colors for KPIs with cutoffs
+#' Labels for KPIs with cutoffs
 #'
 #' @param x breakpoints
 #'
@@ -76,7 +76,6 @@ kpi_cut <- function(kpitab
 #'
 #' @examples
 #' risklabs(1:4)
-#' riskcols(1:4)
 risklabs <- function(x){
   if (!is.null(x)){
     if (length(x) > 6) stop("breakpoints must be defined manually for more than 5 groups")
@@ -90,6 +89,15 @@ risklabs <- function(x){
   }
 }
 
+#' Colors for KPIs cutoffs
+#'
+#' @param x breakpoints
+#'
+#' @return string of \code{length(x) - 1} with suitable colors.
+#' @export
+#'
+#' @examples
+#' riskcols(1:4)
 riskcols <- function(x){
   if (!is.null(x)){
     if (length(x) > 6) stop("breakpoints/colors must be defined manually for more than 5 groups")
