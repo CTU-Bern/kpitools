@@ -3,7 +3,7 @@
 kpitools
 ========
 
-[![](https://img.shields.io/badge/dev%20version-0.1.0-blue.svg)](https://github.com/CTU-Bern/kpitools)
+[![](https://img.shields.io/badge/dev%20version-0.1.1-blue.svg)](https://github.com/CTU-Bern/kpitools)
 [![R-CMD-fullcheck](https://github.com/CTU-Bern/kpitools/actions/workflows/R-CMD-full.yaml/badge.svg)](https://github.com/CTU-Bern/kpitools/actions/workflows/R-CMD-full.yaml)
 
 Tools for creating key performance indicator (KPI) reports.
