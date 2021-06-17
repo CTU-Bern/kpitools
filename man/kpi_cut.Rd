@@ -21,6 +21,9 @@ kpi_cut(
 \item{risklabels}{labels for the cut points. By default, variations on
 low/moderate/high are used}
 
+\item{riskcolors}{colors for the cut points. By default, variations on
+green/yellow/red are used}
+
 \item{direction}{seriousness relative to \code{breakpoints}}
 
 \item{raw_cut}{add a group variable without applying \code{risklabels}}
