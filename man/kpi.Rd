@@ -13,6 +13,7 @@ kpi(
   n_iqr = 2,
   breakpoints = NULL,
   risklabels = risklabs(breakpoints),
+  riskcolors = riskcols(breakpoints),
   direction = c("increasing", "decreasing"),
   raw_cut = FALSE
 )
@@ -35,6 +36,9 @@ kpi(
 \item{risklabels}{labels for the cut points. By default, variations on
 low/moderate/high are used}
 
+\item{riskcolors}{colors for the cut points. By default, variations on
+green/yellow/red are used}
+
 \item{direction}{seriousness relative to \code{breakpoints}}
 
 \item{raw_cut}{add a group variable without applying \code{risklabels}}
@@ -46,7 +50,7 @@ a list with either 1 or (length(by) + 1) lists.
 Create KPI tables
 }
 \examples{
-kpi <- mtcars \%>\%
+kpi_test <- mtcars \%>\%
   mutate(cylgt4 = cyl > 4) \%>\%
   kpi(var = "mpg",
       breakpoints = c(0, 22, 50),

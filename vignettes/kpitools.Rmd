@@ -236,7 +236,7 @@ kpi(data = mtcars,
     direction = "decreasing") 
 ```
 
-By default, the number of breakpoints is used to create variations on high to low via the `risklabs` function. For instance, giving three to six values as breakpoints produces the following sets of labels. For more than 5 groups (six breakpoints), labels must be defined manually.
+By default, the number of breakpoints is used to create variations on high to low via the `risklabs` function. For instance, giving three to six values as breakpoints produces the following sets of labels. For more than 5 groups (six breakpoints), labels must be defined manually. Same concept applies to the `riskcols` function to assign a color to each risk level. 
 
 ```{r}
 risklabs(c(0, 20, 30))
@@ -245,7 +245,7 @@ risklabs(c(0, 20, 30, 40, 50))
 risklabs(c(0, 20, 30, 40, 50, 60))
 ```
 
-It's simple to override these labels with the `risklabels` argument (be careful combining `risklabels` and `direction` arguments as the label order will be inverted). 
+It's simple to override these labels with the `risklabels` argument (be careful combining `risklabels` and/or `riskcolors` with the `direction` arguments as the label order will be inverted). 
 
 ```{r}
 kpi(data = mtcars, 
@@ -253,7 +253,8 @@ kpi(data = mtcars,
     txt = "Milage per gallon",
     by = "cyl",
     breakpoints = c(0, 20, 30), 
-    risklabels = c("too low", "too high"))
+    risklabels = c("too low", "too high"),
+    riskcolors = c("pink","blue"))
 ```
 
 

@@ -8,6 +8,7 @@ kpi_cut(
   kpitab,
   breakpoints,
   risklabels = risklabs(breakpoints),
+  riskcolors = riskcols(breakpoints),
   direction = c("increasing", "decreasing"),
   raw_cut = FALSE
 )
@@ -19,6 +20,9 @@ kpi_cut(
 
 \item{risklabels}{labels for the cut points. By default, variations on
 low/moderate/high are used}
+
+\item{riskcolors}{colors for the cut points. By default, variations on
+green/yellow/red are used}
 
 \item{direction}{seriousness relative to \code{breakpoints}}
 
@@ -35,5 +39,6 @@ cutpoints <- c(0, 20, 30)
 kpitools:::kpi_cut(kpitab, cutpoints, risklabels = c("Low", "High"))
 kpitools:::kpi_cut(kpitab, cutpoints, risklabels = 1:2)
 kpitools:::kpi_cut(kpitab, cutpoints)
+kpitools:::kpi_cut(kpitab, cutpoints, riskcolors = c("pink","blue"), direction="decreasing")
 }
 \keyword{internal}

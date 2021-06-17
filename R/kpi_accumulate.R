@@ -13,15 +13,15 @@
 #' @examples
 #' kpi1 <- mtcars %>%
 #'   kpi(var = "mpg", by = c("am", "cyl"), txt = "MPG",
-#'       kpi_fn = kpi_fn_median)
+#'       kpi_fn = kpi_fn_median, breakpoints = c(0, 20, 30, 50))
 #' kpi2 <- mtcars %>%
 #'   kpi(var = "drat", by = c("am", "cyl"), txt = "DRAT",
-#'       kpi_fn = kpi_fn_median)
+#'       kpi_fn = kpi_fn_median, breakpoints = c(0, 3, 4, 50))
 #' l <- c(kpi1, kpi2)
 #' kpi3 <- mtcars %>%
 #'   mutate(cylgt4 = cyl > 4) %>%
 #'   kpi(var = "cylgt4", by = c("am", "cyl"), txt = "Cylinders",
-#'       kpi_fn = kpi_fn_perc)
+#'       kpi_fn = kpi_fn_perc, , breakpoints = c(0, 30, 50, 100))
 #' l2 <- c(l, kpi3)
 #' kpi_accumulate(l2)
 #' # only the cyl level

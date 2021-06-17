@@ -11,7 +11,7 @@
 #' @export
 #'
 #' @examples
-#' kpi <- mtcars %>%
+#' kpi_test <- mtcars %>%
 #'   mutate(cylgt4 = cyl > 4) %>%
 #'   kpi(var = "mpg",
 #'       breakpoints = c(0, 22, 50),
@@ -26,6 +26,7 @@ kpi <- function(data
                 , n_iqr = 2
                 , breakpoints = NULL
                 , risklabels = risklabs(breakpoints)
+                , riskcolors = riskcols(breakpoints)
                 , direction = c("increasing", "decreasing")
                 , raw_cut = FALSE
                 ){
@@ -45,6 +46,7 @@ kpi <- function(data
                               , kpitype = kpitype
                               , breakpoints = breakpoints
                               , risklabels = risklabels
+                              , riskcolors = riskcolors
                               )
               )
   out$overall <- kpi_by(data
@@ -54,6 +56,7 @@ kpi <- function(data
                         , n_iqr = 2
                         , breakpoints = breakpoints
                         , risklabels = risklabels
+                        , riskcolors = riskcolors
                         , direction = direction
                         , raw_cut = raw_cut
                         )
@@ -71,6 +74,7 @@ kpi <- function(data
                            , txt = txt
                            , breakpoints = breakpoints
                            , risklabels = risklabels
+                           , riskcolors = riskcolors
                            , direction = direction
                            , raw_cut = raw_cut
                            )
