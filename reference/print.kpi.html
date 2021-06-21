@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kpitools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -89,6 +89,9 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -150,20 +153,20 @@
 <span class='r-in'>      kpi_fn <span class='op'>=</span> <span class='va'>kpi_fn_median</span><span class='op'>)</span></span>
 <span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>kpi</span>, table <span class='op'>=</span> <span class='cn'>TRUE</span>, outlier <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Study level:</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  txt  N stat risk</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  MPG 32 19.2  low</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  txt  N n_nonmiss stat risk  cols</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  MPG 32        32 19.2  low green</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Grouped by am:</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  txt am  N stat risk</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  MPG  0 19 17.3  low</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  MPG  1 13 22.8 high</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  txt am  N n_nonmiss stat risk  cols</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  MPG  0 19        19 17.3  low green</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  MPG  1 13        13 22.8 high   red</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Grouped by cyl:</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  txt cyl  N stat risk</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  MPG   4 11 26.0 high</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  MPG   6  7 19.7  low</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  MPG   8 14 15.2  low</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  txt cyl  N n_nonmiss stat risk  cols</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  MPG   4 11        11 26.0 high   red</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  MPG   6  7         7 19.7  low green</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  MPG   8 14        14 15.2  low green</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 </pre>
