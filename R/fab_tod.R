@@ -15,7 +15,6 @@
 #' @param col_poly colour to use for the region indicating possible fabrication
 #' @param x_poly x coordinates for the start and end of the region indicating possible fabrication
 #' @param col_bars colour to use for bars indicating counts
-#' @param ... options passed to facet_wrap (see examples)
 #' @details Due to a limitation of faceting plots with polar coordinates, faceted
 #' plots all have the same y coordinate (equivalent to fixed axes). To free the
 #' coordinate system, use the list output (default) and wrap them together using

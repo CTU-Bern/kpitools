@@ -32,8 +32,6 @@ fab_tod(
 \item{x_poly}{x coordinates for the start and end of the region indicating possible fabrication}
 
 \item{col_bars}{colour to use for bars indicating counts}
-
-\item{...}{options passed to facet_wrap (see examples)}
 }
 \value{
 list or ggplot2 object
