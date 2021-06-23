@@ -1,0 +1,102 @@
+---
+title: "Detecting data fabrication with `kpitools`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Detecting data fabrication with `kpitools`}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>", 
+  fig.width = 6
+  
+)
+```
+
+Beside the KPI aspect, `kpitools` also provides a few tools for detecting data fabrication. 
+
+```{r setup, message=FALSE}
+library(kpitools)
+```
+
+## Day of week
+
+In clinical trials, it may be odd for randomizations and visits to occur at the 
+weekend. This depends on the local customs of course, and the trial itself. For 
+example, it might be reasonable to expect a trial in an emergency department to 
+recruit at the weekend, while a trial in a department that does not schedule 
+appointments would not. As such, depicting the day of week that participants have
+visits may be useful.
+
+
+To demonstrate, we generate some data, where `x` might be a randomization date or
+a visit date or similar. 
+
+```{r}
+set.seed(234)
+dat <- data.frame(
+  date = lubridate::ymd("2020-05-01") + sample(-20:20, 40, TRUE),
+  datetime = lubridate::ymd_h("2020-05-01 14") + 60^2*sample(0:20, 40, TRUE),
+  by = c(rep("Site 1", 10), rep("Site 2", 30)) 
+)
+```
+
+```{r}
+dat %>% fab_dow("date")
+```
+
+
+
+As with the KPI functions, the fabrication functions also allow for stratification
+by given variables. By default, a faceted plot is returned, using the same scale 
+for each subplot.
+
+```{r}
+dat %>% fab_dow("date", "by")
+```
+
+We can use plot-specific scales either via the scales option:
+```{r, eval=FALSE}
+dat %>% fab_dow("date", "by", scales = "free_x")
+```
+
+or by returning a list of plots, to which themes or other modifications could 
+be applied and then be wrapped with e.g. `patchwork`:
+```{r}
+dat %>% fab_dow("date", "by", output = "list") %>% 
+  purrr::map2(.y = names(.), ~ .x + ggtitle(.y) + theme_kpitools()) %>% 
+  patchwork::wrap_plots()
+```
+
+(modifications can be made regardless of the output type)
+
+## Time of day
+
+Similarly, we may also be surprised if visits (or randomizations or ...) 
+occur at night.
+
+```{r}
+dat %>% fab_tod("datetime")
+```
+
+Again, specification of a `by` variable gives the values per level of the `by` 
+variable. By default, this returns a list of objects, which could be wrapped using 
+e.g. the `patchwork` package.
+
+```{r}
+dat %>% fab_tod("datetime", "by") %>% 
+  patchwork::wrap_plots()
+```
+
+Plots can also be faceted, with the disadvantage that all axes are then on the same
+scale.
+
+```{r}
+dat %>% fab_tod("datetime", "by", output = "facet")
+```
+
