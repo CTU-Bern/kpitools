@@ -38,7 +38,8 @@ kpi <- function(data
   kpitype <- as.character(as.list(match.call())$kpi_fn)
   kpitype <- sub("^kpi_fn_", "", kpitype)
 
-
+  dat <- data.frame(var = data[, var])
+  if(!is.null(by)) dat <- cbind(dat, data[, by])
   # print("start")
   out <- list(settings = list(var = var
                               , by = by
@@ -47,6 +48,8 @@ kpi <- function(data
                               , breakpoints = breakpoints
                               , risklabels = risklabels
                               , riskcolors = riskcolors
+                              , direction = direction
+                              , data = dat
                               )
               )
   out$overall <- kpi_by(data
