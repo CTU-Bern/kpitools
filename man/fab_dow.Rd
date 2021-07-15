@@ -10,6 +10,7 @@ fab_dow(
   by = NULL,
   dow_fmt = "\%a",
   output = c("facet", "list"),
+  col = "grey",
   ...
 )
 }
@@ -25,6 +26,8 @@ fab_dow(
 
 \item{output}{output format \code{facet} combines figures via ggplot2::facet_wrap,
 \code{list} returns a list of ggplot2 plots}
+
+\item{col}{colour to use for bars}
 
 \item{...}{options passed to facet_wrap (see examples)}
 }
@@ -48,6 +51,8 @@ dat \%>\% fab_dow("x")
 dat \%>\% fab_dow("x", "by")
 # free x scale
 dat \%>\% fab_dow("x", "by", scales = "free_x")
+# different colour bars
+dat \%>\% fab_dow("x", fill = "orange")
 #list of plots
 dat \%>\% fab_dow("x", "by", output = "list")
 
