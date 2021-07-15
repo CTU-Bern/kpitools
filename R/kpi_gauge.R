@@ -1,5 +1,7 @@
 #' Depict KPIs as gauges
 #'
+#' THIS IS EXPERIMENTAL - expect changes/bugs
+#'
 #' @param kpi \code{kpi} object
 #' @param level which level to depict (e.g. \code{overall}, or one of the \code{by} variables)
 #' @param focus if using a \code{by} variable, which 'site' to make the focus
