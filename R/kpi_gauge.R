@@ -9,7 +9,6 @@
 #' @param cont_colours for continuous scales, a set of colours to use for the ramp
 #'
 #' @return \code{ggplot2} object
-#' @export
 #'
 #' @examples
 #' mtcars %>%
@@ -131,6 +130,8 @@ kpi_gauge <- function(kpi
 
 }
 
+
+# helpers ----
 
 norm <- function(x, floor = 0, ceiling = 1){
   ((ceiling - floor) * (x - min(x))) / (max(x) - min(x)) + floor
