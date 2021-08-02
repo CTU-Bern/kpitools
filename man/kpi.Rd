@@ -15,7 +15,8 @@ kpi(
   risklabels = risklabs(breakpoints),
   riskcolors = riskcols(breakpoints),
   direction = c("increasing", "decreasing"),
-  raw_cut = FALSE
+  raw_cut = FALSE,
+  keep_data = FALSE
 )
 }
 \arguments{
@@ -42,6 +43,8 @@ green/yellow/red are used}
 \item{direction}{seriousness relative to \code{breakpoints}}
 
 \item{raw_cut}{add a group variable without applying \code{risklabels}}
+
+\item{keep_data}{keep raw data or not}
 }
 \value{
 a list with either 1 or (length(by) + 1) lists.

@@ -4,6 +4,7 @@
 #' @param by optional variable(s) to group over
 #' @param kpi_fn summary function
 #' @param txt a descriptive text
+#' @param keep_data keep raw data or not
 #' @inheritParams kpi_cut
 #' @inheritParams kpi_outlier
 #'
