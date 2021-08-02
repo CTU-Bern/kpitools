@@ -4,7 +4,7 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# kpitools
+# kpitools <img src='man/figures/sticker.png' align="right" height="200">
 
 `r badger::badge_custom("dev version", as.character(packageVersion("kpitools")), "blue", "https://github.com/CTU-Bern/kpitools")`
 [![R-CMD-fullcheck](https://github.com/CTU-Bern/kpitools/actions/workflows/R-CMD-full.yaml/badge.svg)](https://github.com/CTU-Bern/kpitools/actions/workflows/R-CMD-full.yaml)
