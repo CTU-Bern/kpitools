@@ -29,6 +29,7 @@ kpi <- function(data
                 , riskcolors = riskcols(breakpoints)
                 , direction = c("increasing", "decreasing")
                 , raw_cut = FALSE
+                , keep_data = FALSE
                 ){
 
   direction <- match.arg(direction)
@@ -38,8 +39,12 @@ kpi <- function(data
   kpitype <- as.character(as.list(match.call())$kpi_fn)
   kpitype <- sub("^kpi_fn_", "", kpitype)
 
-  dat <- data.frame(var = data[, var])
-  if(!is.null(by)) dat <- cbind(dat, data[, by])
+  if(keep_data){
+    dat <- data.frame(var = data[, var])
+    if(!is.null(by)) dat <- cbind(dat, data[, by])
+  } else {
+    dat <- NULL
+  }
   # print("start")
   out <- list(settings = list(var = var
                               , by = by
