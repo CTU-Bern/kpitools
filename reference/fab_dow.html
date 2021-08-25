@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get the outliers — kpi_outlier • kpitools</title>
+<title>Day of week figure(s) — fab_dow • kpitools</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,12 @@
 
 
 
-<meta property="og:title" content="Get the outliers — kpi_outlier" />
-<meta property="og:description" content="Get the outliers" />
+<meta property="og:title" content="Day of week figure(s) — fab_dow" />
+<meta property="og:description" content="In a normal setting it may be that observations that occur at the weekend are
+indicative of data fabrication. fab_dow (short for fabrication, day of
+week), produces a plot that may help to identify problems. Customs vary in
+different countries, so that should be accounted for when interpreting these
+figures." />
 
 
 
@@ -121,39 +125,77 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get the outliers</h1>
+    <h1>Day of week figure(s)</h1>
     
-    <div class="hidden name"><code>kpi_outlier.Rd</code></div>
+    <div class="hidden name"><code>fab_dow.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get the outliers</p>
+    <p>In a normal setting it may be that observations that occur at the weekend are
+indicative of data fabrication. <code>fab_dow</code> (short for fabrication, day of
+week), produces a plot that may help to identify problems. Customs vary in
+different countries, so that should be accounted for when interpreting these
+figures.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>kpi_outlier</span><span class='op'>(</span><span class='va'>kpitab</span>, n_iqr <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>fab_dow</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  <span class='va'>var</span>,
+  by <span class='op'>=</span> <span class='cn'>NULL</span>,
+  dow_fmt <span class='op'>=</span> <span class='st'>"%a"</span>,
+  output <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"facet"</span>, <span class='st'>"list"</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>kpitab</th>
-      <td><p>result from calc_kpi</p></td>
+      <th>data</th>
+      <td><p>cdata frame containing <code>var</code> (and, optionally, <code>by</code>) variable(s)</p></td>
     </tr>
     <tr>
-      <th>n_iqr</th>
-      <td><p>number of IQRs below/above the lower/upper quartiles that should be considered outliers</p></td>
+      <th>var</th>
+      <td><p>string. Name of variable containing relevant dates or datetimes
+(will be coerced to date via <code>as.Date</code>)</p></td>
+    </tr>
+    <tr>
+      <th>by</th>
+      <td><p>string. Name of variable denoting grouping</p></td>
+    </tr>
+    <tr>
+      <th>dow_fmt</th>
+      <td><p>format for day of week</p></td>
+    </tr>
+    <tr>
+      <th>output</th>
+      <td><p>output format <code>facet</code> combines figures via ggplot2::facet_wrap,
+<code>list</code> returns a list of ggplot2 plots</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>options passed to facet_wrap (see examples)</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>kpitab</code> with just the outliers</p>
+    <p>list or ggplot2 object</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># data(mtcars)</span>
-<span class='co'># mtcars %&gt;%</span>
-<span class='co'>#   kpi_calc("mpg", by = "am", kpi_fn = kpi_fn_median) %&gt;%</span>
-<span class='co'>#   kpi_outlier()</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>234</span><span class='op'>)</span>
+<span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
+  x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>20</span><span class='op'>:</span><span class='fl'>19</span>, <span class='fl'>40</span>, <span class='cn'>TRUE</span><span class='op'>)</span>,
+  by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>10</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>30</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>)</span>
+<span class='va'>dat</span> <span class='op'>%&gt;%</span> <span class='fu'>fab_dow</span><span class='op'>(</span><span class='st'>"x"</span><span class='op'>)</span>
+</div><div class='img'><img src='fab_dow-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='va'>dat</span> <span class='op'>%&gt;%</span> <span class='fu'>fab_dow</span><span class='op'>(</span><span class='st'>"x"</span>, <span class='st'>"by"</span><span class='op'>)</span>
+</div><div class='img'><img src='fab_dow-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># free x scale</span>
+<span class='va'>dat</span> <span class='op'>%&gt;%</span> <span class='fu'>fab_dow</span><span class='op'>(</span><span class='st'>"x"</span>, <span class='st'>"by"</span>, scales <span class='op'>=</span> <span class='st'>"free_x"</span><span class='op'>)</span>
+</div><div class='img'><img src='fab_dow-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'>#list of plots</span>
+<span class='va'>dat</span> <span class='op'>%&gt;%</span> <span class='fu'>fab_dow</span><span class='op'>(</span><span class='st'>"x"</span>, <span class='st'>"by"</span>, output <span class='op'>=</span> <span class='st'>"list"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $`1`</div><div class='img'><img src='fab_dow-4.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; $`2`</div><div class='img'><img src='fab_dow-5.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">kpitools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -48,6 +48,18 @@
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/fabrication.html">Detecting data fabrication with `kpitools`</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="news/index.html">Changelog</a>
@@ -76,31 +88,37 @@
 <h1 class="hasAnchor">
 <a href="#example-usage" class="anchor"></a>Example usage</h1>
 <p>The package can be installed from <a href="https://github.com/CTU-Bern/kpitools">github</a> via the <code>remotes</code> package</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># install.packages("remotes")</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"CTU-Bern/kpitools"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"CTU-Bern/kpitools"</span><span class="op">)</span></code></pre></div>
 <p>Note that <code>remotes</code> treats any warnings (e.g. that a certain package was built under a different version of R) as errors. If you see such an error, run the following line and try again:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">Sys.setenv</span>(<span class="dt">R_REMOTES_NO_ERRORS_FROM_WARNINGS =</span> <span class="st">"true"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span><span class="op">(</span>R_REMOTES_NO_ERRORS_FROM_WARNINGS <span class="op">=</span> <span class="st">"true"</span><span class="op">)</span></code></pre></div>
 <p>And loaded via</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">library</span>(kpitools)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">kpitools</span><span class="op">)</span></code></pre></div>
 <p>The main function is the <code>kpi</code> function. A dataframe is passed to it together with the <code>var</code>iable that is of interest for the current KPI. A summary function also needs to be passed which determines how the KPI is calculated.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">data</span>(mtcars)</span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a>mtcars<span class="op">$</span>highmpg &lt;-<span class="st"> </span>mtcars<span class="op">$</span>mpg <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a></span>
-<span id="cb4-5"><a href="#cb4-5"></a>kpis &lt;-<span class="st"> </span>(mtcars <span class="op">%&gt;%</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="st">  </span><span class="kw">kpi</span>(<span class="dt">var =</span> <span class="st">"highmpg"</span>,                          <span class="co"># variable to be summarized (focus of the KPI)  </span></span>
-<span id="cb4-7"><a href="#cb4-7"></a>      <span class="dt">kpi_fn =</span> kpi_fn_perc,                     <span class="co"># summary function   </span></span>
-<span id="cb4-8"><a href="#cb4-8"></a>      <span class="dt">txt =</span> <span class="st">"Percentage MPG &gt; 20"</span>,              <span class="co"># (optional) nicer text to add to tables </span></span>
-<span id="cb4-9"><a href="#cb4-9"></a>      <span class="dt">by =</span> <span class="st">"cyl"</span>,                               <span class="co"># (optional) stratifying variable </span></span>
-<span id="cb4-10"><a href="#cb4-10"></a>      <span class="dt">breakpoints =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">33.3</span>,<span class="fl">66.6</span>,<span class="dv">100</span>),         <span class="co"># (optional) cutoff points </span></span>
-<span id="cb4-11"><a href="#cb4-11"></a>      <span class="dt">risklabels =</span> <span class="kw">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>))) <span class="co"># (optional) labels for the cutoff points</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span>
+
+<span class="va">mtcars</span><span class="op">$</span><span class="va">highmpg</span> <span class="op">&lt;-</span> <span class="va">mtcars</span><span class="op">$</span><span class="va">mpg</span> <span class="op">&gt;</span> <span class="fl">20</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">kpis</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">mtcars</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="reference/kpi.html">kpi</a></span><span class="op">(</span>var <span class="op">=</span> <span class="st">"highmpg"</span>,                          <span class="co"># variable to be summarized (focus of the KPI)  </span>
+      kpi_fn <span class="op">=</span> <span class="va">kpi_fn_perc</span>,                     <span class="co"># summary function   </span>
+      txt <span class="op">=</span> <span class="st">"Percentage MPG &gt; 20"</span>,              <span class="co"># (optional) nicer text to add to tables </span>
+      by <span class="op">=</span> <span class="st">"cyl"</span>,                               <span class="co"># (optional) stratifying variable </span>
+      breakpoints <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">33.3</span>,<span class="fl">66.6</span>,<span class="fl">100</span><span class="op">)</span>,         <span class="co"># (optional) cutoff points </span>
+      risklabels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="co"># (optional) labels for the cutoff points</span></code></pre></div>
 <p>There is a plot method for the output from <code>kpi</code> which returns a list of <code>ggplot2</code> objects.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>plot &lt;-<span class="st"> </span><span class="kw">plot</span>(kpis)</span>
-<span id="cb5-2"><a href="#cb5-2"></a>plot<span class="op">$</span>cyl <span class="op">+</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="st">  </span><span class="kw">theme_kpitools</span>()</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-4-1.png"></p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">kpis</span><span class="op">)</span>
+<span class="va">plot</span><span class="op">$</span><span class="va">cyl</span> <span class="op">+</span>
+  <span class="fu"><a href="reference/theme_kpitools.html">theme_kpitools</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-4-1.png"><!-- --></p>
 <p>For further details, see the vignette:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">vignette</span>(<span class="st">"kpitools"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html">vignette</a></span><span class="op">(</span><span class="st">"kpitools"</span><span class="op">)</span></code></pre></div>
 </div>
 
   </div>
@@ -124,7 +142,7 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/CTU-Bern/kpitools"><img src="https://img.shields.io/badge/dev%20version-0.1.1-blue.svg"></a></li>
+<li><a href="https://github.com/CTU-Bern/kpitools"><img src="https://img.shields.io/badge/dev%20version-0.2.0-blue.svg"></a></li>
 <li><a href="https://github.com/CTU-Bern/kpitools/actions/workflows/R-CMD-full.yaml"><img src="https://github.com/CTU-Bern/kpitools/actions/workflows/R-CMD-full.yaml/badge.svg" alt="R-CMD-fullcheck"></a></li>
 </ul>
 </div>

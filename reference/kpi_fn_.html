@@ -77,7 +77,7 @@ of the observations." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kpitools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -94,6 +94,18 @@ of the observations." />
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/fabrication.html">Detecting data fabrication with `kpitools`</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -164,62 +176,51 @@ functions return <code>stat</code>, <code>n_nonmiss</code> and <code>N</code>, w
 <p>See the examples passing custom functions.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='r-in'><span class='co'># mean</span></span>
-<span class='r-in'><span class='fu'><a href='kpi.html'>kpi</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='st'>"mpg"</span>, kpi_fn <span class='op'>=</span> <span class='va'>kpi_fn_mean</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> Study level:</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  txt  N n_nonmiss     stat</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  mpg 32        32 20.09062</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
-<span class='r-in'><span class='co'># median</span></span>
-<span class='r-in'><span class='fu'><a href='kpi.html'>kpi</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='st'>"mpg"</span>, kpi_fn <span class='op'>=</span> <span class='va'>kpi_fn_median</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> Study level:</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  txt  N n_nonmiss stat</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  mpg 32        32 19.2</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
-<span class='r-in'><span class='co'># interquartile range</span></span>
-<span class='r-in'><span class='fu'><a href='kpi.html'>kpi</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='st'>"mpg"</span>, kpi_fn <span class='op'>=</span> <span class='va'>kpi_fn_iqr</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> Study level:</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  txt  N n_nonmiss  stat</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  mpg 32        32 7.375</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
-<span class='r-in'><span class='co'># minimum</span></span>
-<span class='r-in'><span class='fu'><a href='kpi.html'>kpi</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='st'>"mpg"</span>, kpi_fn <span class='op'>=</span> <span class='va'>kpi_fn_min</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> Study level:</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  txt  N n_nonmiss stat</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  mpg 32        32 10.4</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
-<span class='r-in'><span class='co'># maximum</span></span>
-<span class='r-in'><span class='fu'><a href='kpi.html'>kpi</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='st'>"mpg"</span>, kpi_fn <span class='op'>=</span> <span class='va'>kpi_fn_max</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> Study level:</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  txt  N n_nonmiss stat</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  mpg 32        32 33.9</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
-<span class='r-in'><span class='co'># proportion</span></span>
-<span class='r-in'><span class='fu'><a href='kpi.html'>kpi</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='st'>"am"</span>, kpi_fn <span class='op'>=</span> <span class='va'>kpi_fn_prop</span><span class='op'>)</span></span>
-<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>'kpi_fn_prop' takes a sum of 'var'. It is intended for 0/1 or logical variables</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> Study level:</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  txt  n  N n_nonmiss    stat</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   am 13 32        32 0.40625</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
-<span class='r-in'><span class='co'># percentage</span></span>
-<span class='r-in'><span class='fu'><a href='kpi.html'>kpi</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='st'>"am"</span>, kpi_fn <span class='op'>=</span> <span class='va'>kpi_fn_perc</span><span class='op'>)</span></span>
-<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>'kpi_fn_perc' takes a sum of 'var'. It is intended for 0/1 or logical variables</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> Study level:</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  txt  n  N n_nonmiss   stat</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   am 13 32        32 40.625</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
-<span class='r-in'><span class='co'># number/sum</span></span>
-<span class='r-in'><span class='fu'><a href='kpi.html'>kpi</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='st'>"am"</span>, kpi_fn <span class='op'>=</span> <span class='va'>kpi_fn_n</span><span class='op'>)</span></span>
-<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>'kpi_fn_n' takes a sum of 'var'. It is intended for 0/1 or logical variables</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> Study level:</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  txt stat  N n_nonmiss</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>   am   13 32        32</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
-<span class='r-in'></span>
-<span class='r-in'></span>
-<span class='r-in'></span>
-<span class='r-in'></span>
-</pre>
+    <pre class="examples"><div class='input'><span class='co'># mean</span>
+<span class='fu'><a href='kpi.html'>kpi</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='st'>"mpg"</span>, kpi_fn <span class='op'>=</span> <span class='va'>kpi_fn_mean</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Study level:
+#&gt;  txt  N n_nonmiss     stat
+#&gt;  mpg 32        32 20.09062
+#&gt; </div><div class='input'><span class='co'># median</span>
+<span class='fu'><a href='kpi.html'>kpi</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='st'>"mpg"</span>, kpi_fn <span class='op'>=</span> <span class='va'>kpi_fn_median</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Study level:
+#&gt;  txt  N n_nonmiss stat
+#&gt;  mpg 32        32 19.2
+#&gt; </div><div class='input'><span class='co'># interquartile range</span>
+<span class='fu'><a href='kpi.html'>kpi</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='st'>"mpg"</span>, kpi_fn <span class='op'>=</span> <span class='va'>kpi_fn_iqr</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Study level:
+#&gt;  txt  N n_nonmiss  stat
+#&gt;  mpg 32        32 7.375
+#&gt; </div><div class='input'><span class='co'># minimum</span>
+<span class='fu'><a href='kpi.html'>kpi</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='st'>"mpg"</span>, kpi_fn <span class='op'>=</span> <span class='va'>kpi_fn_min</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Study level:
+#&gt;  txt  N n_nonmiss stat
+#&gt;  mpg 32        32 10.4
+#&gt; </div><div class='input'><span class='co'># maximum</span>
+<span class='fu'><a href='kpi.html'>kpi</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='st'>"mpg"</span>, kpi_fn <span class='op'>=</span> <span class='va'>kpi_fn_max</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Study level:
+#&gt;  txt  N n_nonmiss stat
+#&gt;  mpg 32        32 33.9
+#&gt; </div><div class='input'><span class='co'># proportion</span>
+<span class='fu'><a href='kpi.html'>kpi</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='st'>"am"</span>, kpi_fn <span class='op'>=</span> <span class='va'>kpi_fn_prop</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: 'kpi_fn_prop' takes a sum of 'var'. It is intended for 0/1 or logical variables</span></div><div class='output co'>#&gt; Study level:
+#&gt;  txt  n  N n_nonmiss    stat
+#&gt;   am 13 32        32 0.40625
+#&gt; </div><div class='input'><span class='co'># percentage</span>
+<span class='fu'><a href='kpi.html'>kpi</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='st'>"am"</span>, kpi_fn <span class='op'>=</span> <span class='va'>kpi_fn_perc</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: 'kpi_fn_perc' takes a sum of 'var'. It is intended for 0/1 or logical variables</span></div><div class='output co'>#&gt; Study level:
+#&gt;  txt  n  N n_nonmiss   stat
+#&gt;   am 13 32        32 40.625
+#&gt; </div><div class='input'><span class='co'># number/sum</span>
+<span class='fu'><a href='kpi.html'>kpi</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='st'>"am"</span>, kpi_fn <span class='op'>=</span> <span class='va'>kpi_fn_n</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: 'kpi_fn_n' takes a sum of 'var'. It is intended for 0/1 or logical variables</span></div><div class='output co'>#&gt; Study level:
+#&gt;  txt stat  N n_nonmiss
+#&gt;   am   13 32        32
+#&gt; </div><div class='input'>
+
+
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
