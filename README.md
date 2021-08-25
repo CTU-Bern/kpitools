@@ -10,20 +10,10 @@ Tools for creating key performance indicator (KPI) reports.
 
 # Example usage
 
-The package can be installed from
-[github](https://github.com/CTU-Bern/kpitools) via the `remotes` package
+The package can be installed from the CTU Bern universe via
 
 ``` r
-# install.packages("remotes")
-remotes::install_github("CTU-Bern/kpitools")
-```
-
-Note that `remotes` treats any warnings (e.g. that a certain package was
-built under a different version of R) as errors. If you see such an
-error, run the following line and try again:
-
-``` r
-Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS = "true")
+install.packages('kpitools', repos = 'https://ctu-bern.r-universe.dev')
 ```
 
 And loaded via
