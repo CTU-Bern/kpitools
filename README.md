@@ -59,3 +59,9 @@ For further details, see the vignette:
 ``` r
 vignette("kpitools")
 ```
+
+### Acknowledgements
+
+The package logo was created with
+[`ggplot2`](https://ggplot2.tidyverse.org/) and
+[`hexSticker`](https://github.com/GuangchuangYu/hexSticker).
