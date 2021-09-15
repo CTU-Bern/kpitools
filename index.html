@@ -84,29 +84,30 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-
 <div id="kpitools-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#kpitools-" class="anchor"></a>kpitools <img src="reference/figures/logo.png" align="right" height="200">
+<a href="#kpitools-" class="anchor"></a>kpitools <a href="https://ctu-bern.github.io/kpitools"><img src="reference/figures/logo.png" align="right" height="200"></a>
 </h1></div>
-
-<p>Tools for creating key performance indicator (KPI) reports.</p>
-</div>
-<div id="example-usage" class="section level1">
-<h1 class="hasAnchor">
-<a href="#example-usage" class="anchor"></a>Example usage</h1>
+<p><a href="https://github.com/CTU-Bern/kpitools"><img src="https://img.shields.io/badge/dev%20version-0.2.0-blue.svg"></a> <a href="https://github.com/CTU-Bern/kpitools/actions/workflows/R-CMD-full.yaml"><img src="https://github.com/CTU-Bern/kpitools/actions/workflows/R-CMD-full.yaml/badge.svg" alt="R-CMD-fullcheck"></a> @@ -21,11 +21,23 @@ Tools for creating key performance indicator (KPI) reports.</p>
 <p>The package can be installed from the CTU Bern universe via</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'kpitools'</span>, repos <span class="op">=</span> <span class="st">'https://ctu-bern.r-universe.dev'</span><span class="op">)</span></code></pre></div>
-<p>And loaded via</p>
+<p>The package can also be installed from <a href="https://github.com/CTU-Bern/kpitools">github</a> via the <code>remotes</code> package</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"CTU-Bern/kpitools"</span><span class="op">)</span></code></pre></div>
+<p>Note that <code>remotes</code> treats any warnings (e.g. that a certain package was built under a different version of R) as errors. If you see such an error, run the following line and try again:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html">Sys.setenv</a></span><span class="op">(</span>R_REMOTES_NO_ERRORS_FROM_WARNINGS <span class="op">=</span> <span class="st">"true"</span><span class="op">)</span></code></pre></div>
+<p>The package is loaded, as usual, via</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">kpitools</span><span class="op">)</span></code></pre></div>
 <p>The main function is the <code>kpi</code> function. A dataframe is passed to it together with the <code>var</code>iable that is of interest for the current KPI. A summary function also needs to be passed which determines how the KPI is calculated.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span>
 
 <span class="va">mtcars</span><span class="op">$</span><span class="va">highmpg</span> <span class="op">&lt;-</span> <span class="va">mtcars</span><span class="op">$</span><span class="va">mpg</span> <span class="op">&gt;</span> <span class="fl">20</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">kpis</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">mtcars</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="reference/kpi.html">kpi</a></span><span class="op">(</span>var <span class="op">=</span> <span class="st">"highmpg"</span>,                          <span class="co"># variable to be summarized (focus of the KPI)  </span>
       kpi_fn <span class="op">=</span> <span class="va">kpi_fn_perc</span>,                     <span class="co"># summary function   </span>
@@ -115,13 +116,13 @@
       breakpoints <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">33.3</span>,<span class="fl">66.6</span>,<span class="fl">100</span><span class="op">)</span>,         <span class="co"># (optional) cutoff points </span>
       risklabels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="co"># (optional) labels for the cutoff points</span></code></pre></div>
 <p>There is a plot method for the output from <code>kpi</code> which returns a list of <code>ggplot2</code> objects.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">kpis</span><span class="op">)</span>
 <span class="va">plot</span><span class="op">$</span><span class="va">cyl</span> <span class="op">+</span>
   <span class="fu"><a href="reference/theme_kpitools.html">theme_kpitools</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-4-1.png"><!-- --></p>
+<p><img src="README_files/figure-gfm/unnamed-chunk-4-1.png"><!-- --></p>
 <p>For further details, see the vignette:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html">vignette</a></span><span class="op">(</span><span class="st">"kpitools"</span><span class="op">)</span></code></pre></div>
 <div id="acknowledgements" class="section level3">
 <h3 class="hasAnchor">
@@ -129,7 +130,6 @@
 <p>The package logo was created with <a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a> and <a href="https://github.com/GuangchuangYu/hexSticker"><code>hexSticker</code></a>.</p>
 </div>
 </div>
-
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -143,24 +143,17 @@
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Alan Haynes <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-1374-081X" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Alan G. Haynes <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-1374-081X" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li><a href="authors.html">All authors...</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://github.com/CTU-Bern/kpitools"><img src="https://img.shields.io/badge/dev%20version-0.2.0-blue.svg"></a></li>
-<li><a href="https://github.com/CTU-Bern/kpitools/actions/workflows/R-CMD-full.yaml"><img src="https://github.com/CTU-Bern/kpitools/actions/workflows/R-CMD-full.yaml/badge.svg" alt="R-CMD-fullcheck"></a></li>
-</ul>
-</div>
-</div>
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Alan Haynes.</p>
+  <p>Developed by Alan G. Haynes.</p>
 </div>
 
 <div class="pkgdown">
