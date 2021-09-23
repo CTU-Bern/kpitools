@@ -5,8 +5,8 @@
 
 [![](https://img.shields.io/badge/dev%20version-0.2.0-blue.svg)](https://github.com/CTU-Bern/kpitools)
 [![R-CMD-fullcheck](https://github.com/CTU-Bern/kpitools/actions/workflows/R-CMD-full.yaml/badge.svg)](https://github.com/CTU-Bern/kpitools/actions/workflows/R-CMD-full.yaml)
-@@ -21,11 +21,23 @@ Tools for creating key performance indicator (KPI)
-reports.
+
+Tools for creating key performance indicator (KPI) reports.
 
 The package can be installed from the CTU Bern universe via
 
