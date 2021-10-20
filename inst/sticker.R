@@ -89,7 +89,7 @@ g <- gg.gauge(pos = 10, determinent = "") + theme_void()
 
 s <- sticker(g, package="",
              s_x=1, s_y=1.15, s_width=1.6, s_height=2,
-             filename="man/figures/sticker.png",
+             filename="man/figures/logo.png",
              h_fill = colorRampPalette(c("white", CTUtemplate::unibeRed()))(6)[3],
              h_color = CTUtemplate::unibeRed(),
              h_size = 2,
