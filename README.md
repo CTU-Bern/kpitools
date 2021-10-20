@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# kpitools <img src='man/figures/logo.png' align="right" height="200">
+# kpitools [<img src='man/figures/logo.png' align="right" height="200">](https://ctu-bern.github.io/kpitools)
 
 [![](https://img.shields.io/badge/dev%20version-0.2.0-blue.svg)](https://github.com/CTU-Bern/kpitools)
 [![R-CMD-fullcheck](https://github.com/CTU-Bern/kpitools/actions/workflows/R-CMD-full.yaml/badge.svg)](https://github.com/CTU-Bern/kpitools/actions/workflows/R-CMD-full.yaml)
@@ -16,7 +16,23 @@ The package can be installed from the CTU Bern universe via
 install.packages('kpitools', repos = 'https://ctu-bern.r-universe.dev')
 ```
 
-And loaded via
+The package can also be installed from
+[github](https://github.com/CTU-Bern/kpitools) via the `remotes` package
+
+``` r
+# install.packages("remotes")
+remotes::install_github("CTU-Bern/kpitools")
+```
+
+Note that `remotes` treats any warnings (e.g. that a certain package was
+built under a different version of R) as errors. If you see such an
+error, run the following line and try again:
+
+``` r
+Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS = "true")
+```
+
+The package is loaded, as usual, via
 
 ``` r
 library(kpitools)
@@ -59,3 +75,9 @@ For further details, see the vignette:
 ``` r
 vignette("kpitools")
 ```
+
+### Acknowledgements
+
+The package logo was created with
+[`ggplot2`](https://ggplot2.tidyverse.org/) and
+[`hexSticker`](https://github.com/GuangchuangYu/hexSticker).
