@@ -50,7 +50,7 @@ c.kpi <- function(...){
     }
   }
 
-  class(out) <- c("kpilist", "list")
+  class(out) <- c("kpilist", class(out))
   out
 }
 #' @export
