@@ -8,8 +8,6 @@
 
 Tools for creating key performance indicator (KPI) reports.
 
-# Example usage
-
 The package can be installed from the CTU Bern universe via
 
 ``` r
@@ -68,7 +66,7 @@ plot$cyl +
   theme_kpitools()
 ```
 
-![](man/figures/README-unnamed-chunk-4-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 For further details, see the vignette:
 
