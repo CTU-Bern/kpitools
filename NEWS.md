@@ -3,7 +3,6 @@
 * Addition of as.kpilist function
 * Option to change the colour of bars in `fab_dow`
 * Option (`keep_data`) to retain original data in the kpi object (located x$data)
-* Addition of an experimental gauge function (`kpi_gauge`, not yet exported)
 
 # kpitools 0.2.0
 
