@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create KPI tables — kpi • kpitools</title>
+<title>Convert a list to a kpilist — as.kpilist • kpitools</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Create KPI tables — kpi" />
-<meta property="og:description" content="Create KPI tables" />
+<meta property="og:title" content="Convert a list to a kpilist — as.kpilist" />
+<meta property="og:description" content="Convert a list to a kpilist" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -129,97 +129,97 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create KPI tables</h1>
+    <h1>Convert a list to a kpilist</h1>
     
-    <div class="hidden name"><code>kpi.Rd</code></div>
+    <div class="hidden name"><code>as.kpilist.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create KPI tables</p>
+    <p>Convert a list to a kpilist</p>
     </div>
 
-    <pre class="usage"><span class='fu'>kpi</span><span class='op'>(</span>
-  <span class='va'>data</span>,
-  <span class='va'>var</span>,
-  by <span class='op'>=</span> <span class='cn'>NULL</span>,
-  kpi_fn <span class='op'>=</span> <span class='va'>kpi_fn_mean</span>,
-  txt <span class='op'>=</span> <span class='st'>""</span>,
-  n_iqr <span class='op'>=</span> <span class='fl'>2</span>,
-  breakpoints <span class='op'>=</span> <span class='cn'>NULL</span>,
-  risklabels <span class='op'>=</span> <span class='fu'><a href='risklabs.html'>risklabs</a></span><span class='op'>(</span><span class='va'>breakpoints</span><span class='op'>)</span>,
-  riskcolors <span class='op'>=</span> <span class='fu'><a href='riskcols.html'>riskcols</a></span><span class='op'>(</span><span class='va'>breakpoints</span><span class='op'>)</span>,
-  direction <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"increasing"</span>, <span class='st'>"decreasing"</span><span class='op'>)</span>,
-  raw_cut <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  keep_data <span class='op'>=</span> <span class='cn'>FALSE</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>as.kpilist</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>a data frame</p></td>
-    </tr>
-    <tr>
-      <th>var</th>
-      <td><p>the variable to summarize</p></td>
-    </tr>
-    <tr>
-      <th>by</th>
-      <td><p>optional variable(s) to group over</p></td>
-    </tr>
-    <tr>
-      <th>kpi_fn</th>
-      <td><p>summary function</p></td>
-    </tr>
-    <tr>
-      <th>txt</th>
-      <td><p>a descriptive text</p></td>
-    </tr>
-    <tr>
-      <th>n_iqr</th>
-      <td><p>number of IQRs below/above the lower/upper quartiles that should be considered outliers</p></td>
-    </tr>
-    <tr>
-      <th>breakpoints</th>
-      <td><p>cut points (if KPIs use a traffic light system)</p></td>
-    </tr>
-    <tr>
-      <th>risklabels</th>
-      <td><p>labels for the cut points. By default, variations on
-low/moderate/high are used</p></td>
-    </tr>
-    <tr>
-      <th>riskcolors</th>
-      <td><p>colors for the cut points. By default, variations on
-green/yellow/red are used</p></td>
-    </tr>
-    <tr>
-      <th>direction</th>
-      <td><p>seriousness relative to <code>breakpoints</code></p></td>
-    </tr>
-    <tr>
-      <th>raw_cut</th>
-      <td><p>add a group variable without applying <code>risklabels</code></p></td>
-    </tr>
-    <tr>
-      <th>keep_data</th>
-      <td><p>keep raw data or not</p></td>
+      <th>x</th>
+      <td><p>list of kpi objects</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a list with either 1 or (length(by) + 1) lists.</p>
+    <p>a kpilist</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>kpi_test</span> <span class='op'>&lt;-</span> <span class='va'>mtcars</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>mutate</span><span class='op'>(</span>cylgt4 <span class='op'>=</span> <span class='va'>cyl</span> <span class='op'>&gt;</span> <span class='fl'>4</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>kpi</span><span class='op'>(</span>var <span class='op'>=</span> <span class='st'>"mpg"</span>,
-      breakpoints <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>22</span>, <span class='fl'>50</span><span class='op'>)</span>,
-      by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"am"</span>, <span class='st'>"cyl"</span><span class='op'>)</span>,
-      txt <span class='op'>=</span> <span class='st'>"MPG"</span>,
-      kpi_fn <span class='op'>=</span> <span class='va'>kpi_fn_median</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='va'>l</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"drat"</span>, <span class='st'>"hp"</span>, <span class='st'>"qsec"</span><span class='op'>)</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>{</span>
+ <span class='fu'><a href='kpi.html'>kpi</a></span><span class='op'>(</span><span class='va'>mtcars</span>,
+     var <span class='op'>=</span> <span class='va'>x</span>,
+     by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"am"</span>, <span class='st'>"cyl"</span><span class='op'>)</span>,
+     kpi_fn <span class='op'>=</span> <span class='va'>kpi_fn_median</span><span class='op'>)</span>
+<span class='op'>}</span><span class='op'>)</span>
+<span class='fu'>as.kpilist</span><span class='op'>(</span><span class='va'>l</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $drat__median
+#&gt; Study level:
+#&gt;   txt  N n_nonmiss  stat
+#&gt;  drat 32        32 3.695
+#&gt; 
+#&gt; Grouped by am:
+#&gt;   txt am  N n_nonmiss stat
+#&gt;  drat  0 19        19 3.15
+#&gt;  drat  1 13        13 4.08
+#&gt; 
+#&gt; No outliers
+#&gt; Grouped by cyl:
+#&gt;   txt cyl  N n_nonmiss  stat
+#&gt;  drat   4 11        11 4.080
+#&gt;  drat   6  7         7 3.900
+#&gt;  drat   8 14        14 3.115
+#&gt; 
+#&gt; No outliers
+#&gt; 
+#&gt; $hp__median
+#&gt; Study level:
+#&gt;  txt  N n_nonmiss stat
+#&gt;   hp 32        32  123
+#&gt; 
+#&gt; Grouped by am:
+#&gt;  txt am  N n_nonmiss stat
+#&gt;   hp  0 19        19  175
+#&gt;   hp  1 13        13  109
+#&gt; 
+#&gt; No outliers
+#&gt; Grouped by cyl:
+#&gt;  txt cyl  N n_nonmiss  stat
+#&gt;   hp   4 11        11  91.0
+#&gt;   hp   6  7         7 110.0
+#&gt;   hp   8 14        14 192.5
+#&gt; 
+#&gt; No outliers
+#&gt; 
+#&gt; $qsec__median
+#&gt; Study level:
+#&gt;   txt  N n_nonmiss  stat
+#&gt;  qsec 32        32 17.71
+#&gt; 
+#&gt; Grouped by am:
+#&gt;   txt am  N n_nonmiss  stat
+#&gt;  qsec  0 19        19 17.82
+#&gt;  qsec  1 13        13 17.02
+#&gt; 
+#&gt; No outliers
+#&gt; Grouped by cyl:
+#&gt;   txt cyl  N n_nonmiss   stat
+#&gt;  qsec   4 11        11 18.900
+#&gt;  qsec   6  7         7 18.300
+#&gt;  qsec   8 14        14 17.175
+#&gt; 
+#&gt; No outliers
+#&gt; 
+#&gt; attr(,"class")
+#&gt; [1] "kpilist" "list"   </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
