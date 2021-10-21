@@ -4,6 +4,7 @@
 #' @param by optional variable(s) to group over
 #' @param kpi_fn summary function
 #' @param txt a descriptive text
+#' @param keep_data keep raw data or not
 #' @inheritParams kpi_cut
 #' @inheritParams kpi_outlier
 #'
@@ -29,6 +30,7 @@ kpi <- function(data
                 , riskcolors = riskcols(breakpoints)
                 , direction = c("increasing", "decreasing")
                 , raw_cut = FALSE
+                , keep_data = FALSE
                 ){
 
   direction <- match.arg(direction)
@@ -38,7 +40,12 @@ kpi <- function(data
   kpitype <- as.character(as.list(match.call())$kpi_fn)
   kpitype <- sub("^kpi_fn_", "", kpitype)
 
-
+  if(keep_data){
+    dat <- data.frame(var = data[, var])
+    if(!is.null(by)) dat <- cbind(dat, data[, by])
+  } else {
+    dat <- NULL
+  }
   # print("start")
   out <- list(settings = list(var = var
                               , by = by
@@ -47,6 +54,8 @@ kpi <- function(data
                               , breakpoints = breakpoints
                               , risklabels = risklabels
                               , riskcolors = riskcolors
+                              , direction = direction
+                              , data = dat
                               )
               )
   out$overall <- kpi_by(data
