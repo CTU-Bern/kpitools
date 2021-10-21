@@ -84,7 +84,7 @@ figures." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kpitools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -153,6 +153,7 @@ figures.</p>
   dow_fmt <span class='op'>=</span> <span class='st'>"%a"</span>,
   output <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"facet"</span>, <span class='st'>"list"</span><span class='op'>)</span>,
   col <span class='op'>=</span> <span class='st'>"grey"</span>,
+  fill <span class='op'>=</span> <span class='st'>"grey"</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -183,7 +184,11 @@ figures.</p>
     </tr>
     <tr>
       <th>col</th>
-      <td><p>colour to use for bars</p></td>
+      <td><p>colour to use for bar lines</p></td>
+    </tr>
+    <tr>
+      <th>fill</th>
+      <td><p>colour to use for bar fill</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -207,10 +212,12 @@ figures.</p>
 <span class='va'>dat</span> <span class='op'>%&gt;%</span> <span class='fu'>fab_dow</span><span class='op'>(</span><span class='st'>"x"</span>, <span class='st'>"by"</span>, scales <span class='op'>=</span> <span class='st'>"free_x"</span><span class='op'>)</span>
 </div><div class='img'><img src='fab_dow-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># different colour bars</span>
 <span class='va'>dat</span> <span class='op'>%&gt;%</span> <span class='fu'>fab_dow</span><span class='op'>(</span><span class='st'>"x"</span>, fill <span class='op'>=</span> <span class='st'>"orange"</span><span class='op'>)</span>
-</div><div class='img'><img src='fab_dow-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'>#list of plots</span>
+</div><div class='img'><img src='fab_dow-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># list of plots</span>
 <span class='va'>dat</span> <span class='op'>%&gt;%</span> <span class='fu'>fab_dow</span><span class='op'>(</span><span class='st'>"x"</span>, <span class='st'>"by"</span>, output <span class='op'>=</span> <span class='st'>"list"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $`1`</div><div class='img'><img src='fab_dow-5.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
-#&gt; $`2`</div><div class='img'><img src='fab_dow-6.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; </div><div class='input'>
+#&gt; $`2`</div><div class='img'><img src='fab_dow-6.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; </div><div class='input'><span class='co'># change colours</span>
+<span class='va'>dat</span> <span class='op'>%&gt;%</span> <span class='fu'>fab_dow</span><span class='op'>(</span><span class='st'>"x"</span>, col <span class='op'>=</span> <span class='st'>"purple"</span>, fill <span class='op'>=</span> <span class='st'>"pink"</span><span class='op'>)</span>
+</div><div class='img'><img src='fab_dow-7.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
