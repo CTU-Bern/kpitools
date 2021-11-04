@@ -1,3 +1,7 @@
+# `kpitools` 0.2.3
+
+* BUG FIX - `fab_tod` failed if `by` was not literally "`by`"
+
 # `kpitools` 0.2.2
 
 * Option to change the fill of bars in `fab_dow`

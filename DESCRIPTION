@@ -1,6 +1,6 @@
 Package: kpitools
 Title: Tools for creating key performance indicator reports for clinical trial
-Version: 0.2.2
+Version: 0.2.3
 Authors@R: 
     c(person(given = "Alan G.",
            family = "Haynes",
