@@ -101,7 +101,7 @@ fab_tod <- function(data,
       theme(panel.grid.major.y = element_line())
   }
 
-  if(length(unique(tmp[, by])) > 1){
+  if(length(unique(tmp$by)) > 1){
     if(output == "facet"){
       out <- fn(dat, polygon_dat) +
         facet_wrap(~ by)
