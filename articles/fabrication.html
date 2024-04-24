@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -53,7 +53,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -78,10 +78,11 @@
 
       
 
-      </header><script src="fabrication_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Detecting data fabrication with <code>kpitools</code>
+      <h1 data-toc-skip>Detecting data fabrication with
+<code>kpitools</code>
 </h1>
             
       
@@ -92,54 +93,71 @@
 
     
     
-<p>Beside the KPI aspect, <code>kpitools</code> also provides a few tools for detecting data fabrication.</p>
+<p>Beside the KPI aspect, <code>kpitools</code> also provides a few
+tools for detecting data fabrication.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">kpitools</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">kpitools</span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="day-of-week">Day of week<a class="anchor" aria-label="anchor" href="#day-of-week"></a>
 </h2>
-<p>In clinical trials, it may be odd for randomizations and visits to occur at the weekend. This depends on the local customs of course, and the trial itself. For example, it might be reasonable to expect a trial in an emergency department to recruit at the weekend, while a trial in a department that does not schedule appointments would not. As such, depicting the day of week that participants have visits may be useful.</p>
-<p>To demonstrate, we generate some data, where <code>x</code> might be a randomization date or a visit date or similar.</p>
+<p>In clinical trials, it may be odd for randomizations and visits to
+occur at the weekend. This depends on the local customs of course, and
+the trial itself. For example, it might be reasonable to expect a trial
+in an emergency department to recruit at the weekend, while a trial in a
+department that does not schedule appointments would not. As such,
+depicting the day of week that participants have visits may be
+useful.</p>
+<p>To demonstrate, we generate some data, where <code>x</code> might be
+a randomization date or a visit date or similar.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">234</span><span class="op">)</span>
-<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>
-  date <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html" class="external-link">ymd</a></span><span class="op">(</span><span class="st">"2020-05-01"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">40</span>, <span class="cn">TRUE</span><span class="op">)</span>,
-  datetime <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd_hms.html" class="external-link">ymd_h</a></span><span class="op">(</span><span class="st">"2020-05-01 14"</span><span class="op">)</span> <span class="op">+</span> <span class="fl">60</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">40</span>, <span class="cn">TRUE</span><span class="op">)</span>,
-  by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Site 1"</span>, <span class="fl">10</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Site 2"</span>, <span class="fl">30</span><span class="op">)</span><span class="op">)</span> 
-<span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">234</span><span class="op">)</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  date <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd.html" class="external-link">ymd</a></span><span class="op">(</span><span class="st">"2020-05-01"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="op">-</span><span class="fl">20</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">40</span>, <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  datetime <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/ymd_hms.html" class="external-link">ymd_h</a></span><span class="op">(</span><span class="st">"2020-05-01 14"</span><span class="op">)</span> <span class="op">+</span> <span class="fl">60</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">40</span>, <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Site 1"</span>, <span class="fl">10</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Site 2"</span>, <span class="fl">30</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/fab_dow.html">fab_dow</a></span><span class="op">(</span><span class="st">"date"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/fab_dow.html">fab_dow</a></span><span class="op">(</span><span class="st">"date"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="fabrication_files/figure-html/unnamed-chunk-3-1.png" width="576"></p>
-<p>As with the KPI functions, the fabrication functions also allow for stratification by given variables. By default, a faceted plot is returned, using the same scale for each subplot.</p>
+<p>As with the KPI functions, the fabrication functions also allow for
+stratification by given variables. By default, a faceted plot is
+returned, using the same scale for each subplot.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/fab_dow.html">fab_dow</a></span><span class="op">(</span><span class="st">"date"</span>, <span class="st">"by"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/fab_dow.html">fab_dow</a></span><span class="op">(</span><span class="st">"date"</span>, <span class="st">"by"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="fabrication_files/figure-html/unnamed-chunk-4-1.png" width="576"></p>
 <p>We can use plot-specific scales either via the scales option:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/fab_dow.html">fab_dow</a></span><span class="op">(</span><span class="st">"date"</span>, <span class="st">"by"</span>, scales <span class="op">=</span> <span class="st">"free_x"</span><span class="op">)</span></code></pre></div>
-<p>or by returning a list of plots, to which themes or other modifications could be applied and then be wrapped with e.g. <code>patchwork</code>:</p>
+<code class="sourceCode R"><span><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/fab_dow.html">fab_dow</a></span><span class="op">(</span><span class="st">"date"</span>, <span class="st">"by"</span>, scales <span class="op">=</span> <span class="st">"free_x"</span><span class="op">)</span></span></code></pre></div>
+<p>or by returning a list of plots, to which themes or other
+modifications could be applied and then be wrapped with
+e.g. <code>patchwork</code>:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/fab_dow.html">fab_dow</a></span><span class="op">(</span><span class="st">"date"</span>, <span class="st">"by"</span>, output <span class="op">=</span> <span class="st">"list"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">map2</a></span><span class="op">(</span>.y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span>, <span class="op">~</span> <span class="va">.x</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="va">.y</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../reference/theme_kpitools.html">theme_kpitools</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu">patchwork</span><span class="fu">::</span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html" class="external-link">wrap_plots</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/fab_dow.html">fab_dow</a></span><span class="op">(</span><span class="st">"date"</span>, <span class="st">"by"</span>, output <span class="op">=</span> <span class="st">"list"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">map2</a></span><span class="op">(</span>.y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span>, <span class="op">~</span> <span class="va">.x</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="va">.y</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../reference/theme_kpitools.html">theme_kpitools</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu">patchwork</span><span class="fu">::</span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html" class="external-link">wrap_plots</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="fabrication_files/figure-html/unnamed-chunk-6-1.png" width="576"></p>
 <p>(modifications can be made regardless of the output type)</p>
 </div>
 <div class="section level2">
 <h2 id="time-of-day">Time of day<a class="anchor" aria-label="anchor" href="#time-of-day"></a>
 </h2>
-<p>Similarly, we may also be surprised if visits (or randomizations or …) occur at night.</p>
+<p>Similarly, we may also be surprised if visits (or randomizations or
+…) occur at night.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/fab_tod.html">fab_tod</a></span><span class="op">(</span><span class="st">"datetime"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/fab_tod.html">fab_tod</a></span><span class="op">(</span><span class="st">"datetime"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="fabrication_files/figure-html/unnamed-chunk-7-1.png" width="576"></p>
-<p>Again, specification of a <code>by</code> variable gives the values per level of the <code>by</code> variable. By default, this returns a list of objects, which could be wrapped using e.g. the <code>patchwork</code> package.</p>
+<p>Again, specification of a <code>by</code> variable gives the values
+per level of the <code>by</code> variable. By default, this returns a
+list of objects, which could be wrapped using e.g. the
+<code>patchwork</code> package.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/fab_tod.html">fab_tod</a></span><span class="op">(</span><span class="st">"datetime"</span>, <span class="st">"by"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu">patchwork</span><span class="fu">::</span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html" class="external-link">wrap_plots</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/fab_tod.html">fab_tod</a></span><span class="op">(</span><span class="st">"datetime"</span>, <span class="st">"by"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu">patchwork</span><span class="fu">::</span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html" class="external-link">wrap_plots</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="fabrication_files/figure-html/unnamed-chunk-8-1.png" width="576"></p>
-<p>Plots can also be faceted, with the disadvantage that all axes are then on the same scale.</p>
+<p>Plots can also be faceted, with the disadvantage that all axes are
+then on the same scale.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/fab_tod.html">fab_tod</a></span><span class="op">(</span><span class="st">"datetime"</span>, <span class="st">"by"</span>, output <span class="op">=</span> <span class="st">"facet"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/fab_tod.html">fab_tod</a></span><span class="op">(</span><span class="st">"datetime"</span>, <span class="st">"by"</span>, output <span class="op">=</span> <span class="st">"facet"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="fabrication_files/figure-html/unnamed-chunk-9-1.png" width="576"></p>
 </div>
   </div>
@@ -161,7 +179,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
       </footer>
