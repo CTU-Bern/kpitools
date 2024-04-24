@@ -11,7 +11,7 @@ Tools for creating key performance indicator (KPI) reports.
 The package can be installed from the CTU Bern universe via
 
 ``` r
-install.packages('kpitools', repos = 'https://ctu-bern.r-universe.dev')
+install.packages('kpitools', repos = c('https://ctu-bern.r-universe.dev', 'https://cloud.r-project.org'))
 ```
 
 The package can also be installed from
