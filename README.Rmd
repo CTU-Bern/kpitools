@@ -2,6 +2,11 @@
 output: github_document
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      fig.path = "man/figures/README-")
+```
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # kpitools [<img src='man/figures/logo.png' align="right" width="200">](https://ctu-bern.github.io/kpitools)
