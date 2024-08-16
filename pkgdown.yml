@@ -1,8 +1,7 @@
 pandoc: 3.1.11
-pkgdown: 2.0.9
+pkgdown: 2.1.0
 pkgdown_sha: ~
 articles:
   fabrication: fabrication.html
   kpitools: kpitools.html
-last_built: 2024-04-24T09:59Z
-
+last_built: 2024-08-16T09:15Z
