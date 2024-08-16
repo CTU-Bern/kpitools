@@ -66,7 +66,7 @@ plot$cyl +
   theme_kpitools()
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](man/figures/README-unnamed-chunk-4-1.png)<!-- -->
 
 For further details, see the vignette:
 
