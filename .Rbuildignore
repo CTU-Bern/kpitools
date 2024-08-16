@@ -4,3 +4,6 @@
 ^R/kpi_fn.R$
 ^.github$
 ^README
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
