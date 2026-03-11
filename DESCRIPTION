@@ -5,19 +5,20 @@ Authors@R:
     c(person(given = "Alan G.",
            family = "Haynes",
            role = c("aut", "cre"),
-           email = "alan.haynes@ctu.unibe.ch",
+           email = "alan.haynes@unibe.ch",
            comment = c(ORCID = "0000-0003-1374-081X")),
       person(given = "Mattia",
            family = "Branca",
            role = c("ctb"),
-           email = "mattia.branca@ctu.unibe.ch",
            comment = c(ORCID = "0000-0002-8063-7882")))
-Description: Assessing performance of clinical trials can assist identify problems earlier in the trial than might be possible without it and help to improve trial quality. Tools for the creating performance indicator reports are however uncommon. 'kpitools' aims to provide tools to create such reports. 
+Description: Assessing performance of clinical trials can assist identify problems earlier in the trial than might be possible without it and help to improve trial quality. Tools for the creating performance indicator reports are however uncommon. 'kpitools' aims to provide tools to create such reports.
+URL: https://github.com/dcr-unibe-ch/kpitools, https://dcr-unibe-ch.github.io/kpitools/
+BugReports: https://github.com/dcr-unibe-ch/kpitools/issues
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: false
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.3.3
 Suggests: 
     knitr,
     lubridate,
