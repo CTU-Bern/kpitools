@@ -1,25 +1,26 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# kpitools [<img src='man/figures/logo.png' align="right" width="200">](https://ctu-bern.github.io/kpitools)
+# kpitools [<img src='man/figures/logo.png' align="right" width="200">](https://dcr-unibe-ch.github.io/kpitools)
 
-[![](https://img.shields.io/badge/dev%20version-0.2.3-blue.svg)](https://github.com/CTU-Bern/kpitools)
-[![R-CMD-fullcheck](https://github.com/CTU-Bern/kpitools/actions/workflows/R-CMD-full.yaml/badge.svg)](https://github.com/CTU-Bern/kpitools/actions/workflows/R-CMD-full.yaml)
+[![](https://img.shields.io/badge/dev%20version-0.2.3-blue.svg)](https://github.com/dcr-unibe-ch/kpitools)
+[![R-CMD-fullcheck](https://github.com/dcr-unibe-ch/kpitools/actions/workflows/R-CMD-full.yaml/badge.svg)](https://github.com/dcr-unibe-ch/kpitools/actions/workflows/R-CMD-full.yaml)
 
 Tools for creating key performance indicator (KPI) reports.
 
 The package can be installed from the CTU Bern universe via
 
 ``` r
-install.packages('kpitools', repos = c('https://ctu-bern.r-universe.dev', 'https://cloud.r-project.org'))
+install.packages('kpitools', repos = c('https://dcr-unibe-ch.r-universe.dev', 'https://cloud.r-project.org'))
 ```
 
 The package can also be installed from
-[github](https://github.com/CTU-Bern/kpitools) via the `remotes` package
+[github](https://github.com/dcr-unibe-ch/kpitools) via the `remotes`
+package
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("CTU-Bern/kpitools")
+remotes::install_github("dcr-unibe-ch/kpitools")
 ```
 
 Note that `remotes` treats any warnings (e.g. that a certain package was
