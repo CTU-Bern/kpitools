@@ -6,16 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Detecting data fabrication with `kpitools` • kpitools</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Detecting data fabrication with `kpitools`">
 </head>
 <body>
@@ -49,6 +48,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/dcr-unibe-ch/kpitools/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -64,7 +64,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Detecting data fabrication with `kpitools`</h1>
             
       
-
+      <small class="dont-index">Source: <a href="https://github.com/dcr-unibe-ch/kpitools/blob/main/vignettes/fabrication.Rmd" class="external-link"><code>vignettes/fabrication.Rmd</code></a></small>
       <div class="d-none name"><code>fabrication.Rmd</code></div>
     </div>
 
@@ -73,7 +73,7 @@
 <p>Beside the KPI aspect, <code>kpitools</code> also provides a few
 tools for detecting data fabrication.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">kpitools</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dcr-unibe-ch/kpitools" class="external-link">kpitools</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="day-of-week">Day of week<a class="anchor" aria-label="anchor" href="#day-of-week"></a>
 </h2>
@@ -95,13 +95,13 @@ a randomization date or a visit date or similar.</p>
 <span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/fab_dow.html">fab_dow</a></span><span class="op">(</span><span class="st">"date"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="fabrication_files/figure-html/unnamed-chunk-3-1.png" width="576"></p>
+<p><img src="fabrication_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="" width="576"></p>
 <p>As with the KPI functions, the fabrication functions also allow for
 stratification by given variables. By default, a faceted plot is
 returned, using the same scale for each subplot.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/fab_dow.html">fab_dow</a></span><span class="op">(</span><span class="st">"date"</span>, <span class="st">"by"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="fabrication_files/figure-html/unnamed-chunk-4-1.png" width="576"></p>
+<p><img src="fabrication_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="576"></p>
 <p>We can use plot-specific scales either via the scales option:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/fab_dow.html">fab_dow</a></span><span class="op">(</span><span class="st">"date"</span>, <span class="st">"by"</span>, scales <span class="op">=</span> <span class="st">"free_x"</span><span class="op">)</span></span></code></pre></div>
@@ -112,7 +112,7 @@ e.g. <code>patchwork</code>:</p>
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/fab_dow.html">fab_dow</a></span><span class="op">(</span><span class="st">"date"</span>, <span class="st">"by"</span>, output <span class="op">=</span> <span class="st">"list"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">map2</a></span><span class="op">(</span>.y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span>, <span class="op">~</span> <span class="va">.x</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="va">.y</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="../reference/theme_kpitools.html">theme_kpitools</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu">patchwork</span><span class="fu">::</span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html" class="external-link">wrap_plots</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="fabrication_files/figure-html/unnamed-chunk-6-1.png" width="576"></p>
+<p><img src="fabrication_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="" width="576"></p>
 <p>(modifications can be made regardless of the output type)</p>
 </div>
 <div class="section level2">
@@ -122,7 +122,7 @@ e.g. <code>patchwork</code>:</p>
 …) occur at night.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/fab_tod.html">fab_tod</a></span><span class="op">(</span><span class="st">"datetime"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="fabrication_files/figure-html/unnamed-chunk-7-1.png" width="576"></p>
+<p><img src="fabrication_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="" width="576"></p>
 <p>Again, specification of a <code>by</code> variable gives the values
 per level of the <code>by</code> variable. By default, this returns a
 list of objects, which could be wrapped using e.g. the
@@ -130,12 +130,12 @@ list of objects, which could be wrapped using e.g. the
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/fab_tod.html">fab_tod</a></span><span class="op">(</span><span class="st">"datetime"</span>, <span class="st">"by"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu">patchwork</span><span class="fu">::</span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html" class="external-link">wrap_plots</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="fabrication_files/figure-html/unnamed-chunk-8-1.png" width="576"></p>
+<p><img src="fabrication_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="" width="576"></p>
 <p>Plots can also be faceted, with the disadvantage that all axes are
 then on the same scale.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/fab_tod.html">fab_tod</a></span><span class="op">(</span><span class="st">"datetime"</span>, <span class="st">"by"</span>, output <span class="op">=</span> <span class="st">"facet"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="fabrication_files/figure-html/unnamed-chunk-9-1.png" width="576"></p>
+<p><img src="fabrication_files/figure-html/unnamed-chunk-9-1.png" class="r-plt" alt="" width="576"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
@@ -148,7 +148,7 @@ then on the same scale.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>

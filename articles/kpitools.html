@@ -6,16 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Using `kpitools` • kpitools</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Using `kpitools`">
 </head>
 <body>
@@ -49,6 +48,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/dcr-unibe-ch/kpitools/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -64,7 +64,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Using `kpitools`</h1>
             
       
-
+      <small class="dont-index">Source: <a href="https://github.com/dcr-unibe-ch/kpitools/blob/main/vignettes/kpitools.Rmd" class="external-link"><code>vignettes/kpitools.Rmd</code></a></small>
       <div class="d-none name"><code>kpitools.Rmd</code></div>
     </div>
 
@@ -77,7 +77,7 @@ away some of the pain of putting them into a report.</p>
 <p><code>kpitools</code> is loaded as any other package, with the
 <code>library</code> or require <code>functions</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">kpitools</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dcr-unibe-ch/kpitools" class="external-link">kpitools</a></span><span class="op">)</span></span></code></pre></div>
 <p>Once the KPIs are defined conceptually, it should be clear what type
 of indicator one needs to report. For instance, using the
 <code>mtcars</code> dataset, we may have an indicator for mileage. We’re
@@ -294,10 +294,10 @@ header).</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x_by</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $cyl</span></span></code></pre></div>
-<p><img src="kpitools_files/figure-html/unnamed-chunk-10-1.png" width="672"></p>
+<p><img src="kpitools_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" alt="" width="672"></p>
 <pre><code><span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $am</span></span></code></pre>
-<p><img src="kpitools_files/figure-html/unnamed-chunk-10-2.png" width="672"></p>
+<p><img src="kpitools_files/figure-html/unnamed-chunk-10-2.png" class="r-plt" alt="" width="672"></p>
 <p>The size of the points is relative to the number of observations
 (participants) in the site/group.</p>
 <p><code>kpitools</code> contains a <code>ggplot2</code> which can be
@@ -305,7 +305,7 @@ used to remove the y-axis, move the legend and make various other
 changes:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span><span class="op">$</span><span class="va">cyl</span> <span class="op">+</span> <span class="fu"><a href="../reference/theme_kpitools.html">theme_kpitools</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="kpitools_files/figure-html/unnamed-chunk-11-1.png" width="672"></p>
+<p><img src="kpitools_files/figure-html/unnamed-chunk-11-1.png" class="r-plt" alt="" width="672"></p>
 <p>Modifications can be made to all plots easily via
 e.g. <code>lapply</code> or <code><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">purrr::map</a></code></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -322,7 +322,7 @@ e.g. <code>lapply</code> or <code><a href="https://purrr.tidyverse.org/referenc
 to arrange the plots</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">patchwork</span><span class="fu">::</span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html" class="external-link">wrap_plots</a></span><span class="op">(</span><span class="va">p</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<p><img src="kpitools_files/figure-html/unnamed-chunk-13-1.png" width="672"></p>
+<p><img src="kpitools_files/figure-html/unnamed-chunk-13-1.png" class="r-plt" alt="" width="672"></p>
 <!-- ### Other modifications -->
 <!-- ```{r, fig.width=7, fig.height=1.5} -->
 <!-- p$cyl + theme_kpitools() + -->
@@ -522,7 +522,7 @@ KPIs in a given strata together.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
